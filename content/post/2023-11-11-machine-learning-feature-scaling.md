@@ -2,7 +2,7 @@
 title:       "机器学习 | 特征缩放"
 subtitle:    "原创"
 description: ""
-date:        2018-06-04
+date:        2023-11-11
 author:      "冶德文"
 image:       ""
 tags:        ["ML", "tag2"]
