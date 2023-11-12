@@ -5,9 +5,9 @@ description: ""
 date:        2023-08-02
 author:      "Devean"
 image:       ""
-tags:  
+tags:        
     - Travel
-categories:  ["Life" ]
+categories:  [ Life ]
 ---
 
 ## 环新疆摩旅
