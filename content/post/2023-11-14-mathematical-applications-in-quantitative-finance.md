@@ -1,5 +1,5 @@
 ---
-title: '量化金融中的数学应用'
+title: '翻译 | 量化金融中的数学应用'
 subtitle: "Mathematical Applications in Quantitative Finance"
 description: "常用金融建模方法和数学工具"
 date: 2023-11-14T22:59:31+08:00
