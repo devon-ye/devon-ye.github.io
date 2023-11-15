@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="" />
-    <meta property="og:title" content="" />
-    <meta property="twitter:title" content="" />
+    <meta name="title" content="翻译 | 什么是套利" />
+    <meta property="og:title" content="翻译 | 什么是套利" />
+    <meta property="twitter:title" content="翻译 | 什么是套利" />
     
 
     
-    <meta name="description" content="德文，程序员, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。">
-    <meta property="og:description" content="德文，程序员, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。" />
-    <meta property="twitter:description" content="德文，程序员, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。" />
+    <meta name="description" content="套机概念、常见套利方法">
+    <meta property="og:description" content="套机概念、常见套利方法" />
+    <meta property="twitter:description" content="套机概念、常见套利方法" />
     
 
     
@@ -42,9 +42,9 @@
 
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Tags | 德文的博客| Devean Blog</title>
+    <title>翻译 | 什么是套利 | 德文的博客| Devean Blog</title>
 
-    <link rel="canonical" href="/tags/">
+    <link rel="canonical" href="/post/2023-11-15-what-is-arbitrage/">
 
     
     
@@ -190,14 +190,41 @@ if (!doNotTrack) {
 
 
 
-<header class="intro-header" style="background-image: url('/img/ladder-sky-bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/ladder-sky-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Devean Blog </h1>
-                    
-		    <span class="subheading">路在脚下，心向远方</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/quantitative-finance" title="Quantitative Finance">
+                            Quantitative Finance
+                        </a>
+                        
+                    </div>
+                    <h1>翻译 | 什么是套利</h1>
+                    <h2 class="subheading">What Is Arbitrage</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    Devean Blog
+                             
+                            on 
+                            Tuesday, November 14, 2023
+                            
+                            
+                            
+                            
+                    </span>
                 </div>
             </div>
         </div>
@@ -210,19 +237,142 @@ if (!doNotTrack) {
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
 
-         	
+                
+                <h2 id="什么是套利">什么是套利</h2>
+<p>套利是指在无风险回报率之外获得确定的利润。 用量化金融的语言来说，我们 可以说套利机会是今天价值为零但未来价值为正的投资组合 的概率，并且未来为负值的概率为零。</p>
+<p>市场上不存在套利机会的假设是经典金融理论的基础。这个想法是俗话说“天下没有免费的午餐”。</p>
+<p>现在我们可以看到，我们可以想到几种套利方式。以下是最重要的几种套利的列表和说明。</p>
+<ul>
+<li>静态套利是一种无需重新平衡正向持仓的套利。</li>
+<li>动态套利是一种需要在未来进行交易的价差套利策略，通常取决于市场状况。</li>
+<li>统计套利并非套利，而只是根据过去的统计数据预测，可能获得超过无风险收益的利润（甚至可能根据承担的风险进行适当调整）。</li>
+<li>模型无关套利是一种不依赖于任何金融工具数学模型而发挥作用的套利。例如，可利用的对看跌期权平价的违反或对债券与掉期之间关系的违反</li>
+<li>依赖于模型的套利需要一个模型。例如，由于不正确的波动率估计，期权定价错误。为了从套利中获利，你需要delta对冲，这需要一个模型。</li>
+</ul>
+<p>这有几个套利失效的原因</p>
+<ul>
+<li>报价错误或不可交易</li>
+<li>期权价格和股票价格没有同步报价</li>
+<li>存在您未计算在内的竞价价差</li>
+<li>你的模型是错误的，或者存在你没有考虑到的风险因素</li>
+</ul>
+<h2 id="what-is-arbitrage">What Is Arbitrage</h2>
+<p>Arbitrage is making a sure profit in excess of the risk-free rate of return. In the language of quantitative finance we
+can say that an arbitrage opportunity is a portfolio of zero value today which is of positive value in the future with positive
+probability,and of negative value in the future with zero probability.</p>
+<p>The assumption that there are no arbitrage opportunities in the market is fundamental to classical finance theory.This idea is
+popularly known as &rsquo;there&rsquo;s no such thing as a free lunch.</p>
+<p>Now we can see that there are several types of arbitrage that we can think of. Here is a list and description of the most important.</p>
+<ul>
+<li>A static arbitrage is an arbitrage that does not require re-balancing of positives</li>
+<li>A dynamic arbitrage is an arbitrage that requires trading instruments in the future,generally contingent on market states</li>
+<li>A statistical arbitrage is not an arbitrage that but simply a likely profit in excess of the risk-free return (perhaps even suitably adjusted for risk taken) as predicted by past statistics</li>
+<li>Model-independent arbitrage is an arbitrage which dose not depend on any mathematical model of financial instruments to work. For example, an exploitable violation of put-call parity or a violation of the relationship between bonds and swaps</li>
+<li>Model-dependent arbitrage dose require a model. For example, options mis-priced because of incorrect volatility estimate. To profit from the arbitrage you need to delta hedge, and that requires a model.</li>
+</ul>
+<p>Here are several reasons for arbitrage fails</p>
+<ul>
+<li>Quoted prices are wrong  or not tradeable</li>
+<li>Option and stock prices were not quoted synchronously</li>
+<li>There is a bid-off spread you have not accounted for</li>
+<li>Your model is wrong, or there is  a risk factor you have not  accounted for</li>
+</ul>
+<hr>
+<p>[1] Wilmott，M 2009 Frequently Asked Questions In Quantitative Finance, second edition. John Wiley &amp; Sons,Ltd.</p>
+<blockquote>
+<p>欢迎扫码关注公众号，订阅更多文章!</p>
+</blockquote>
+<p>
+  <img src="/img/public-plantform-qr.png" alt="欢迎扫">
+
+</p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://devean.cn"><img src="/img/favicon.png" />Devean Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2023-11-14-mathematical-applications-in-quantitative-finance/" data-toggle="tooltip" data-placement="top" title="翻译 | 量化金融中的数学应用">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
                 
 
 
 
-
             </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
             
             <div class="
                 col-lg-8 col-lg-offset-2
@@ -239,13 +389,13 @@ if (!doNotTrack) {
                         
                         
                         <a href="/tags/machine-learning" title="machine-learning">
-                        machine-learning
+                            machine-learning
                         </a>
                         
                         
                         
                         <a href="/tags/quantitative-finance" title="quantitative-finance">
-                        quantitative-finance
+                            quantitative-finance
                         </a>
                         
                         
@@ -357,7 +507,7 @@ if (!doNotTrack) {
             
            
                    <li>
-                       <a href='/tags/index.xml' rel="alternate" type="application/rss+xml" title="Devean Blog" >
+                       <a href='' rel="alternate" type="application/rss+xml" title="Devean Blog" >
                            <span class="fa-stack fa-lg">
                                <i class="fas fa-circle fa-stack-2x"></i>
                                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
