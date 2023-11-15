@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devean Blog</title>
+    <link>https://devean.cn/</link>
+    <description>Recent content on Devean Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Nov 2023 22:59:31 +0800</lastBuildDate>
+    <atom:link href="https://devean.cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>量化金融中的数学应用</title>
+      <link>https://devean.cn/post/2023-11-14-mathematical-applications-in-quantitative-finance/</link>
+      <pubDate>Tue, 14 Nov 2023 22:59:31 +0800</pubDate>
+      <guid>https://devean.cn/post/2023-11-14-mathematical-applications-in-quantitative-finance/</guid>
+      <description>量化金融中有哪些不同类型的数学？ 在数量金融中使用最多的数学领域是概率论和微分方程。当然，通常需要数值方法来生成数字。 这里列出了各种建模方法和</description>
+    </item>
+    <item>
+      <title>机器学习 | 特征缩放</title>
+      <link>https://devean.cn/post/2023-11-11-machine-learning-feature-scaling/</link>
+      <pubDate>Sat, 11 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/post/2023-11-11-machine-learning-feature-scaling/</guid>
+      <description>&lt;p&gt;特征缩放又称归一化，是机器学习中的一种技术，涉及调整数值数据的量度，使所有数据点在相似的尺度上。例如：身高、体重、年龄、收入等个人特征数据，每个维度的区间不一样，为保证所有维度的特征数据尺度一样，我们就需要对原始数据做特征缩放，将身高、体重、年龄、收入都转化为区间[0,1]之间的数据。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>机器学习 | 基础概念</title>
+      <link>https://devean.cn/post/2023-09-08-machine-learning-basic-concepts/</link>
+      <pubDate>Fri, 08 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/post/2023-09-08-machine-learning-basic-concepts/</guid>
+      <description>什么是机器学习 机器学习是人工智能的一个分支,它让计算机从数据中自动“学”到知识,并用这些知识做决策或预测,而不需要我们一步步明确地告诉它怎么</description>
+    </item>
+    <item>
+      <title>环新疆摩旅</title>
+      <link>https://devean.cn/post/2023-08-02-motorcycle-tour-around-xinjiang/</link>
+      <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/post/2023-08-02-motorcycle-tour-around-xinjiang/</guid>
+      <description>环新疆摩旅</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://devean.cn/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/about/</guid>
+      <description>About Me Devean Ye is</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://devean.cn/notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/notes/</guid>
+      <description>Java 语言学习笔记</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://devean.cn/search/placeholder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/search/placeholder/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Posts Archive</title>
+      <link>https://devean.cn/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/archive/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

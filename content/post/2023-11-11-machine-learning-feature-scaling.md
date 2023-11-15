@@ -1,12 +1,13 @@
 ---
 title:       "机器学习 | 特征缩放"
-subtitle:    "原创"
-description: ""
+subtitle:    "Machine Learning Feature Scaling"
+description: "特征缩放概念、目的、通用缩放方法、python可视化比较"
 date:        2023-11-11
 author:      "Devean"
 image:       ""
 tags:
    - Machine Learning
+math: true
 categories:  ["Tech" ]
 ---
 
@@ -15,7 +16,6 @@ categories:  ["Tech" ]
 特征缩放又称归一化，是机器学习中的一种技术，涉及调整数值数据的量度，使所有数据点在相似的尺度上。例如：身高、体重、年龄、收入等个人特征数据，每个维度的区间不一样，为保证所有维度的特征数据尺度一样，我们就需要对原始数据做特征缩放，将身高、体重、年龄、收入都转化为区间[0,1]之间的数据。
 
 <!--more-->
-[关注公众号订阅更多](https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&mid=2247484510&idx=1&sn=bb7cf6117c620aae01064f1051730c29&chksm=fb41f44bcc367d5d223dd7a8d445e92d97e2e993a49d122e019f80a1555b0b651567f5056060#rd)
 
 ## 为什么要做特征缩放
 
@@ -168,4 +168,10 @@ plt.show()
 
 ### 特征缩放图示
 
-![](https://files.mdnice.com/user/50789/d6ee40a9-3d28-4d9e-a603-ac19bca9a5bf.png)
+
+![1696885427440](https://picx.zhimg.com/70/v2-8c14f9c712e3377ac8a94917dc2ff8c5_1440w.avis?source=172ae18b&biz_tag=Post)
+
+
+> 欢迎扫码关注公众号，订阅更多文章!
+
+![欢迎扫](/img/public-plantform-qr.png)

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Devean Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://devean.cn/img/ladder-sky-bg.jpg">
+    <meta property="twitter:image" content="https://devean.cn/img/ladder-sky-bg.jpg" />
+    
+
+    
+    <meta name="title" content="机器学习 | 基础概念" />
+    <meta property="og:title" content="机器学习 | 基础概念" />
+    <meta property="twitter:title" content="机器学习 | 基础概念" />
+    
+
+    
+    <meta name="description" content="机器学习基础入门概念详细汇总">
+    <meta property="og:description" content="机器学习基础入门概念详细汇总" />
+    <meta property="twitter:description" content="机器学习基础入门概念详细汇总" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="德文, Devean, DevonYe, 机器学习, 德文的网络日志, 德文的博客, Devean Blog, 博客, 个人网站, 互联网, Web, 云原生,微服务, Microservice">
+
+    
+    
+    <meta name="baidu-site-verification" content="codeva-k4Gz4N5kH1" />
+    
+    <meta name="google-site-verification" content="5YbYjVsLhmXRSCU2u_xrAegZCOyvI296GhQyr-o9L9c" />
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>机器学习 | 基础概念 | 德文的博客| Devean Blog</title>
+
+    <link rel="canonical" href="/post/2023-09-08-machine-learning-basic-concepts/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    <script src="/js/bing-clarity.min.js"></script>
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ]
+        });
+    });
+</script>
+    
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B430VD5TJ2"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-B430VD5TJ2', { 'anonymize_ip': false });
+}
+</script>
+
+    
+</head>
+
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Devean Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/finance/">finance</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/ladder-sky-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/machine-learning" title="Machine Learning">
+                            Machine Learning
+                        </a>
+                        
+                    </div>
+                    <h1>机器学习 | 基础概念</h1>
+                    <h2 class="subheading">Machine Learning Basic Concepts</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                     &#34;Devean&#34;
+                             
+                            on 
+                            Friday, September 8, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h3 id="什么是机器学习">什么是机器学习</h3>
+<p>机器学习是人工智能的一个分支,它让计算机从数据中自动“学”到知识,并用这些知识做决策或预测,而不需要我们一步步明确地告诉它怎么做。</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696885427440.png" alt="1696885427440">
+
+</p>
+<h3 id="传统数学-vs-机器学习">传统数学 vs 机器学习</h3>
+<ul>
+<li>数学建模</li>
+</ul>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696886421687.png" alt="1696886421687">
+
+</p>
+<ul>
+<li>机器学习</li>
+</ul>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696886519537.png" alt="1696886519537">
+
+</p>
+<h4 id="相同点">相同点</h4>
+<ul>
+<li>
+<p><strong>数据驱动:</strong> 两者都利用数据来构建和验证模型。</p>
+</li>
+<li>
+<p><strong>预测和推断:</strong> 数学建模和机器学习都可以用于预测未知的输出或解释数据中的模式。</p>
+</li>
+<li>
+<p><strong>优化问题:</strong> 在某些情况下，两者都可能涉及到优化问题，例如，寻找最小化误差的参数。</p>
+</li>
+</ul>
+<h4 id="不同点">不同点</h4>
+<ol>
+<li><strong>目的</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：旨在用数学的形式来描述现实世界中的现象或问题，往往为了理解其背后的机制或原理。</p>
+</li>
+<li>
+<p>主要关注的是预测和泛化。机器学习模型可能不太关心背后的机制，而是关心在未知数据上的性能。</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>模型构建</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：模型的形式通常基于对现象的物理、生物或经济学的理解。例如，描述人口增长的模型可能基于出生率和死亡率的估计。</p>
+</li>
+<li>
+<p>机器学习：模型的形式主要基于数据。使用的模型可能没有明确的现实意义，例如深度学习模型。</p>
+</li>
+</ul>
+<ol start="3">
+<li><strong>验证</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：模型的验证通常基于其是否与现实世界的观察相符合，以及其是否可以提供洞察力。</p>
+</li>
+<li>
+<p>机器学习：验证通常基于模型在独立测试集上的性能。</p>
+</li>
+</ul>
+<ol start="4">
+<li><strong>模型的解释性</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：模型往往更具解释性，因为它们是基于现象的某些已知原理或规律构建的。</p>
+</li>
+<li>
+<p>机器学习：尤其是某些复杂的模型，如深度神经网络，可能难以解释。尽管如此，机器学习领域也有许多工作在努力提高模型的可解释性。</p>
+</li>
+</ul>
+<ol start="5">
+<li><strong>应用</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：常应用于工程、物理学、经济学等领域，以帮助专家了解和控制系统。</p>
+</li>
+<li>
+<p>机器学习：广泛应用于计算机视觉、自然语言处理、推荐系统等领域，主要关注自动化和预测。</p>
+</li>
+</ul>
+<ol start="6">
+<li><strong>模型复杂性</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：往往倾向于使用更简单的、基于物理学或其他学科原理的模型。</p>
+</li>
+<li>
+<p>机器学习：可能使用非常复杂的模型，特别是当数据量大且复杂度高时。</p>
+</li>
+</ul>
+<p>总的来说，数学建模和机器学习都是理解、解释和预测现象的工具，但它们的关注点、方法和应用有所不同。</p>
+<h3 id="主要类别">主要类别</h3>
+<p>机器学习主要分为三大类：监督学习、非监督学习、强化学习，而监督学习和非监督学习中又衍生出半监督学习。</p>
+<h4 id="监督学习">监督学习</h4>
+<p>Supervised Learning是机器学习的一种方法，其模型是通过输入-输出(有标签的数据)对进行训练，目标是从给定的数据中学习一个映射函数,以便在给定新的输入时，模型可以预测相应的输出 。训练过程涉及到输入数据和其相应的标签，并尝试找到这两者之间的关系。一旦模型被训练，它可以用来预测新、未标签数据的输出。</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918697490.png" alt="1696918697490">
+
+</p>
+<h4 id="非监督学习">非监督学习</h4>
+<p>Unsupervised Learning模型被训练在没有标签的数据上。它的目的是学习数据的底层结构、分布或表示，而不是预测标签。与监督学习不同，非监督学习的目标并不是预测一个输出。相反，它试图通过某种方式学习数据的结构，这可以是通过聚类、降维或生成模型等方式来实现的。</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918812954.png" alt="1696918812954">
+
+</p>
+<h4 id="强化学习">强化学习</h4>
+<p>Reinforcement Learning是通过与环境交互来学习如何行动，从而最大化某种定义的长期回报。与传统的监督学习不同，强化学习通常涉及决策问题，其中每个行动都会影响未来的回报。</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696922019053.png" alt="1696922019053">
+
+</p>
+<h4 id="半监督学习">半监督学习</h4>
+<p>Semi-supervised Learning是介于两个极端之间(监督式是指整个数据集被标记，而非监督式是指没有标记)。半监督学习任务具有一个标记和一个未标记的数据集。它使用未标记的数据来获得对数据结构的更多理解。通常，SSL使用小的带标签数据集和较大的未带标签数据集来进行学习。)学习正如其名称所示，介于两个极端之间(监督式是指整个数据集被标记，而非监督式是指没有标记)。半监督学习任务具有一个标记和一个未标记的数据集。它使用未标记的数据来获得对数据结构的更多理解。通常，SSL使用小的带标签数据集和较大的未带标签数据集来进行学习。</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918942278.png" alt="1696918942278">
+
+</p>
+<h4 id="为什么会用半监督学习">为什么会用半监督学习</h4>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696942056582.png" alt="1696942056582">
+
+</p>
+<p>半监督学习位于监督学习和非监督学习之间，利用少量的标记数据和大量的未标记数据进行学习。以下是为什么要使用半监督学习的原因：</p>
+<ul>
+<li>
+<p><strong>数据标注成本高</strong> ：在很多应用中，收集大量数据是相对容易的，但为这些数据打标签则既昂贵又耗时。例如，在医学图像领域，一个专家可能需要花费大量时间来手动标注图像中的特定结构或病变。利用半监督学习，可以用少量的标注数据和大量的未标注数据共同训练模型。</p>
+</li>
+<li>
+<p><strong>利用数据的完整潜力</strong> ：未标记的数据包含有关数据分布的有用信息。半监督学习方法尝试利用这些信息来改善模型的性能。</p>
+</li>
+<li>
+<p><strong>提高泛化能力</strong> ：在某些情况下，利用大量的未标记数据可以帮助模型更好地泛化到新的、未见过的数据。</p>
+</li>
+<li>
+<p><strong>数据标注可能存在误差</strong> ：在某些场景中，即使数据被标注，标签也可能存在噪音或误差。在这种情况下，使用半监督学习方法，结合大量的未标记数据，可能会提供一个更稳健的学习策略。</p>
+</li>
+<li>
+<p><strong>在某些任务中，有很多相关的未标记数据</strong> ：例如，在自然语言处理中，我们可能有少量标记的数据集，但可以从网络上轻松获得大量的相关文本。半监督学习可以利用这些未标记的文本来提高模型的性能。</p>
+</li>
+<li>
+<p><strong>适应数据的变化</strong> ：在动态环境中，数据分布可能随时间而变化。利用半监督学习，可以定期利用新收集的未标记数据来更新模型，使其适应变化。</p>
+</li>
+</ul>
+<p>总之，半监督学习提供了一种在有限标记数据的情况下利用未标记数据的方法，这对于许多实际应用来说是非常有价值的。</p>
+<h3 id="模型">模型</h3>
+<h4 id="k近临">K近临</h4>
+<p>K Nearest-Neighbours是一种监督学习技术，给定一个新的观测值，KNN算法会从训练数据集中搜索出k个与其最相似的实例，然后基于这些邻居的属性来预测新观测值的标签。</p>
+<h4 id="原理">原理</h4>
+<ul>
+<li>
+<p><strong>距离计算</strong> ：对于给定的新数据点，计算它与训练数据集中每个点的距离。</p>
+</li>
+<li>
+<p><strong>选取K个邻居</strong> ：从训练数据集中选取距离最近的K个点。</p>
+</li>
+<li>
+<p><strong>投票 (对于分类)</strong> ：对于K个邻居，看哪个类别最为常见，并将其指定为新数据点的类别。</p>
+</li>
+<li>
+<p><strong>平均 (对于回归)</strong> ：对于K个邻居，计算其属性的平均值，并将其指定为新数据点的值。</p>
+</li>
+</ul>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696922323938.png" alt="1696922323938">
+
+</p>
+<h4 id="k均值">K均值</h4>
+<p>K-Means Clustering是一种无监督的聚类算法，其目的是将n个数据点分为k个聚类。每个聚类都有一个中心，这些中心最小化了其内部数据点与中心之间的距离。</p>
+<h5 id="原理-1">原理</h5>
+<ul>
+<li>
+<p><strong>初始化：</strong> 随机选择k个数据点作为初始聚类中心。</p>
+</li>
+<li>
+<p><strong>分配：</strong> 为每个数据点分配最近的聚类中心。</p>
+</li>
+<li>
+<p><strong>更新：</strong> 计算每个聚类的平均值，并将平均值设为新的聚类中心。</p>
+</li>
+<li>
+<p><strong>重复：</strong> 重复步骤2和3，直到聚类中心不再显著变化。</p>
+</li>
+</ul>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918922617.png" alt="1696918922617">
+
+</p>
+<h4 id="朴素贝叶斯">朴素贝叶斯</h4>
+<p>Naive Bayes Classifier监督学习技术是基于贝叶斯定理的一种简单概率分类器。它假设特征之间是独立的（这就是“朴素”一词的来源），即一个特征的出现不会影响另一个特征的出现。</p>
+<h5 id="原理-2">原理</h5>
+<p>给定一个类别 <code>C</code> 和一个特定的特 <code>x</code> ，贝叶斯定理表示为：</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696938714805.png" alt="1696938714805">
+
+</p>
+<p>其中</p>
+<ul>
+<li>
+<p><code>P(C|x)</code> 是在给定特征 x 的情况下类别 C 的后验概率。</p>
+</li>
+<li>
+<p><code>P(x|C)</code> 是在类别 C 的情况下观察到特征 x 的概率。</p>
+</li>
+<li>
+<p><code>P(C)</code> 是类别 C 的先验概率。</p>
+</li>
+<li>
+<p><code>P(x)</code> 是观察到特征 x 的概率。</p>
+</li>
+</ul>
+<p>对于分类问题，我们可以忽略分母（因为它对所有的类别都是相同的）并计算每个类别的$P(C)×P(x∣C)$。我们将数据点分类为给出最大值的类别。</p>
+<h4 id="回归方法">回归方法</h4>
+<p>Regression Methods是一种预测性监督学习技术，它研究的是因变量(目标)和自变量(预测器)之间的关系。 这种技术通常用于预测分析，时间序列模型以及发现变量之间的因果关系。</p>
+<h4 id="支持向量机">支持向量机</h4>
+<p>Support Vector Machines, SVM）是一种在分类和回归分析中使用的监督学习模型，基本思想是找到一个超平面，使得两个类别之间的边界最大化。对于线性可分的数据，这意味着超平面可以完美地分隔两个类别，并且最大化与最近的训练数据点（即支持向量）之间的距离。SVM使用所谓的核方法进行扩展。核方法的思想是将数据映射到一个更高维度的空间，使其在新的空间中变得线性可分。</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696929242825.png" alt="1696929242825">
+
+</p>
+<h4 id="自组织映射">自组织映射</h4>
+<p>Self-Organizing Maps，简称SOM是一种无监督学习的神经网络，SOM是一种将高维数据映射到通常是二维（有时是三维）的网格结构上的方法。与其他神经网络不同，SOM没有激活函数，它根据输入特征的相似性将相似的输入向量组合在一起。</p>
+<h5 id="原理-3">原理</h5>
+<ul>
+<li>
+<p><strong>初始化</strong> ：为每个节点（或称为神经元）随机初始化一个权重向量。</p>
+</li>
+<li>
+<p><strong>竞争</strong> ：对于每个输入样本，找到与其最相似（即欧几里得距离最近）的权重向量的节点，这个节点被称为胜者节点（winning node）。</p>
+</li>
+<li>
+<p><strong>适应</strong> ：更新胜者节点和其邻居节点的权重向量，使它们更接近当前输入样本。邻居节点的定义和更新的幅度都随时间逐渐减少。</p>
+</li>
+<li>
+<p><strong>迭代</strong> ：对于大量的迭代，重复上述步骤，直到模型收敛。</p>
+</li>
+</ul>
+<h4 id="决策树">决策树</h4>
+<p>Decision Trees是一种监督学习模型、主要用于分类和回归任务，决策树是一个树形结构，其中每个内部节点表示一个特征属性上的测试，每个分支代表一个测试结果，每个叶节点代表一个类别（在分类任务中）或连续的值（在回归任务中）。</p>
+<h5 id="原理-4">原理</h5>
+<p>决策树通过一系列基于特征值的测试，将输入数据点分配到叶节点中的一个，从而完成分类或预测任务。</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696930200188.png" alt="1696930200188">
+
+</p>
+<h4 id="神经网络">神经网络</h4>
+<p>Neural Networks是一种模仿生物神经网络结构和功能的计算模型。</p>
+<h5 id="基本结构"><strong>基本结构</strong></h5>
+<ul>
+<li>
+<p><strong>神经元（Neuron）</strong> : 神经网络的基本单元。每个神经元接收一个或多个输入，加权处理这些输入，然后产生一个输出。</p>
+</li>
+<li>
+<p><strong>层（Layer）</strong> ：神经网络由多层神经元组成。主要有三种类型的层：</p>
+<ul>
+<li>
+<p><strong>输入层（Input Layer）</strong> ：接收外部数据的层。</p>
+</li>
+<li>
+<p><strong>隐藏层（Hidden Layers）</strong> ：在输入层和输出层之间的层，可以有多个。</p>
+</li>
+<li>
+<p><strong>输出层（Output Layer）</strong> ：产生最终预测或分类的层。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="工作原理"><strong>工作原理</strong></h5>
+<p>每个神经元的输入都与一个权重相乘，所有加权输入的总和加上一个偏置，然后传递给激活函数。激活函数的输出是该神经元的输出。</p>
+<p>
+  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696933327363.png" alt="1696933327363">
+
+</p>
+<blockquote>
+<p>欢迎扫码关注公众号，订阅更多文章!</p>
+</blockquote>
+<p>
+  <img src="/img/public-plantform-qr.png" alt="">
+
+</p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://devean.cn"><img src="/img/favicon.png" />Devean Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2023-08-02-motorcycle-tour-around-xinjiang/" data-toggle="tooltip" data-placement="top" title="环新疆摩旅">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2023-11-11-machine-learning-feature-scaling/" data-toggle="tooltip" data-placement="top" title="机器学习 | 特征缩放">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href=""></a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:devean.ye@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/devonaha">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat-QRCode.png">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/devon-ye">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/yourlinkedinid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/7220519">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Devean Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Devean Blog 2023
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
