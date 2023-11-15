@@ -16,7 +16,7 @@ home = ["HTML", "RSS", "Algolia"]
   header_image = "img/ladder-sky-bg.jpg"
   SEOTitle = "德文的博客| Devean Blog"
   description = "德文，程序员, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。"
-  keyword = "德文, Devean, DevonYe, 机器学习, 德文的网络日志, 德文的博客, Devean Blog, 博客, 个人网站, 互联网, Web, 云原生,微服务, Microservice"
+  keyword = "德文, Devean, DevonYe, 机器学习,量化金融, QuantitaTAtive Finance, 德文的网络日志, 德文的博客, Devean Blog, 博客, 个人网站, 互联网, Web, 云原生,微服务, Microservice"
   slogan = "路在脚下，心向远方"
 
   image_404 = "img/404-bg.jpg"

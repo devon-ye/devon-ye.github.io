@@ -4,7 +4,7 @@ subtitle: "What Is Arbitrage"
 description: "套机概念、常见套利方法"
 date: 2023-11-14T22:59:31+08:00
 tags:
-- Quantitative Finance
+    - Quantitative Finance
 categories:  [ "Finance" ]
 ---
 
