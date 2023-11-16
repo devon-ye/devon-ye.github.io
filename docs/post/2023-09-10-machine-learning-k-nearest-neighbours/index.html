@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="机器学习 | 基础概念" />
-    <meta property="og:title" content="机器学习 | 基础概念" />
-    <meta property="twitter:title" content="机器学习 | 基础概念" />
+    <meta name="title" content="机器学习 | K临近" />
+    <meta property="og:title" content="机器学习 | K临近" />
+    <meta property="twitter:title" content="机器学习 | K临近" />
     
 
     
-    <meta name="description" content="机器学习基础入门概念详细汇总">
-    <meta property="og:description" content="机器学习基础入门概念详细汇总" />
-    <meta property="twitter:description" content="机器学习基础入门概念详细汇总" />
+    <meta name="description" content="德文，程序员, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="德文，程序员, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="德文，程序员, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。" />
     
 
     
@@ -42,9 +42,9 @@
 
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>机器学习 | 基础概念 | 德文的博客| Devean Blog</title>
+    <title>机器学习 | K临近 | 德文的博客| Devean Blog</title>
 
-    <link rel="canonical" href="/post/2023-09-08-machine-learning-basic-concepts/">
+    <link rel="canonical" href="/post/2023-09-10-machine-learning-k-nearest-neighbours/">
 
     
     
@@ -225,8 +225,8 @@ if (!doNotTrack) {
                         </a>
                         
                     </div>
-                    <h1>机器学习 | 基础概念</h1>
-                    <h2 class="subheading">Machine Learning Basic Concepts</h2>
+                    <h1>机器学习 | K临近</h1>
+                    <h2 class="subheading">Machine Learning K Nearest-Neighbours</h2>
                     <span class="meta">
                         
                             Posted by 
@@ -234,7 +234,7 @@ if (!doNotTrack) {
                                      &#34;Devean&#34;
                              
                             on 
-                            Friday, September 8, 2023
+                            Sunday, September 10, 2023
                             
                             
                             
@@ -260,293 +260,136 @@ if (!doNotTrack) {
                 post-container">
 
                 
-                <h3 id="什么是机器学习">什么是机器学习</h3>
-<p>机器学习是人工智能的一个分支,它让计算机从数据中自动“学”到知识,并用这些知识做决策或预测,而不需要我们一步步明确地告诉它怎么做。</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696885427440.png" alt="1696885427440">
-
-</p>
-<h3 id="传统数学-vs-机器学习">传统数学 vs 机器学习</h3>
-<ul>
-<li>数学建模</li>
-</ul>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696886421687.png" alt="1696886421687">
-
-</p>
-<ul>
-<li>机器学习</li>
-</ul>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696886519537.png" alt="1696886519537">
-
-</p>
-<h4 id="相同点">相同点</h4>
-<ul>
-<li>
-<p><strong>数据驱动:</strong> 两者都利用数据来构建和验证模型。</p>
-</li>
-<li>
-<p><strong>预测和推断:</strong> 数学建模和机器学习都可以用于预测未知的输出或解释数据中的模式。</p>
-</li>
-<li>
-<p><strong>优化问题:</strong> 在某些情况下，两者都可能涉及到优化问题，例如，寻找最小化误差的参数。</p>
-</li>
-</ul>
-<h4 id="不同点">不同点</h4>
-<ol>
-<li><strong>目的</strong></li>
-</ol>
-<ul>
-<li>
-<p>数学建模：旨在用数学的形式来描述现实世界中的现象或问题，往往为了理解其背后的机制或原理。</p>
-</li>
-<li>
-<p>主要关注的是预测和泛化。机器学习模型可能不太关心背后的机制，而是关心在未知数据上的性能。</p>
-</li>
-</ul>
-<ol start="2">
-<li><strong>模型构建</strong></li>
-</ol>
-<ul>
-<li>
-<p>数学建模：模型的形式通常基于对现象的物理、生物或经济学的理解。例如，描述人口增长的模型可能基于出生率和死亡率的估计。</p>
-</li>
-<li>
-<p>机器学习：模型的形式主要基于数据。使用的模型可能没有明确的现实意义，例如深度学习模型。</p>
-</li>
-</ul>
-<ol start="3">
-<li><strong>验证</strong></li>
-</ol>
-<ul>
-<li>
-<p>数学建模：模型的验证通常基于其是否与现实世界的观察相符合，以及其是否可以提供洞察力。</p>
-</li>
-<li>
-<p>机器学习：验证通常基于模型在独立测试集上的性能。</p>
-</li>
-</ul>
-<ol start="4">
-<li><strong>模型的解释性</strong></li>
-</ol>
-<ul>
-<li>
-<p>数学建模：模型往往更具解释性，因为它们是基于现象的某些已知原理或规律构建的。</p>
-</li>
-<li>
-<p>机器学习：尤其是某些复杂的模型，如深度神经网络，可能难以解释。尽管如此，机器学习领域也有许多工作在努力提高模型的可解释性。</p>
-</li>
-</ul>
-<ol start="5">
-<li><strong>应用</strong></li>
-</ol>
-<ul>
-<li>
-<p>数学建模：常应用于工程、物理学、经济学等领域，以帮助专家了解和控制系统。</p>
-</li>
-<li>
-<p>机器学习：广泛应用于计算机视觉、自然语言处理、推荐系统等领域，主要关注自动化和预测。</p>
-</li>
-</ul>
-<ol start="6">
-<li><strong>模型复杂性</strong></li>
-</ol>
-<ul>
-<li>
-<p>数学建模：往往倾向于使用更简单的、基于物理学或其他学科原理的模型。</p>
-</li>
-<li>
-<p>机器学习：可能使用非常复杂的模型，特别是当数据量大且复杂度高时。</p>
-</li>
-</ul>
-<p>总的来说，数学建模和机器学习都是理解、解释和预测现象的工具，但它们的关注点、方法和应用有所不同。</p>
-<h3 id="主要类别">主要类别</h3>
-<p>机器学习主要分为三大类：监督学习、非监督学习、强化学习，而监督学习和非监督学习中又衍生出半监督学习。</p>
-<h4 id="监督学习">监督学习</h4>
-<p>Supervised Learning是机器学习的一种方法，其模型是通过输入-输出(有标签的数据)对进行训练，目标是从给定的数据中学习一个映射函数,以便在给定新的输入时，模型可以预测相应的输出 。训练过程涉及到输入数据和其相应的标签，并尝试找到这两者之间的关系。一旦模型被训练，它可以用来预测新、未标签数据的输出。</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918697490.png" alt="1696918697490">
-
-</p>
-<h4 id="非监督学习">非监督学习</h4>
-<p>Unsupervised Learning模型被训练在没有标签的数据上。它的目的是学习数据的底层结构、分布或表示，而不是预测标签。与监督学习不同，非监督学习的目标并不是预测一个输出。相反，它试图通过某种方式学习数据的结构，这可以是通过聚类、降维或生成模型等方式来实现的。</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918812954.png" alt="1696918812954">
-
-</p>
-<h4 id="强化学习">强化学习</h4>
-<p>Reinforcement Learning是通过与环境交互来学习如何行动，从而最大化某种定义的长期回报。与传统的监督学习不同，强化学习通常涉及决策问题，其中每个行动都会影响未来的回报。</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696922019053.png" alt="1696922019053">
-
-</p>
-<h4 id="半监督学习">半监督学习</h4>
-<p>Semi-supervised Learning是介于两个极端之间(监督式是指整个数据集被标记，而非监督式是指没有标记)。半监督学习任务具有一个标记和一个未标记的数据集。它使用未标记的数据来获得对数据结构的更多理解。通常，SSL使用小的带标签数据集和较大的未带标签数据集来进行学习。)学习正如其名称所示，介于两个极端之间(监督式是指整个数据集被标记，而非监督式是指没有标记)。半监督学习任务具有一个标记和一个未标记的数据集。它使用未标记的数据来获得对数据结构的更多理解。通常，SSL使用小的带标签数据集和较大的未带标签数据集来进行学习。</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918942278.png" alt="1696918942278">
-
-</p>
-<h4 id="为什么会用半监督学习">为什么会用半监督学习</h4>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696942056582.png" alt="1696942056582">
-
-</p>
-<p>半监督学习位于监督学习和非监督学习之间，利用少量的标记数据和大量的未标记数据进行学习。以下是为什么要使用半监督学习的原因：</p>
-<ul>
-<li>
-<p><strong>数据标注成本高</strong> ：在很多应用中，收集大量数据是相对容易的，但为这些数据打标签则既昂贵又耗时。例如，在医学图像领域，一个专家可能需要花费大量时间来手动标注图像中的特定结构或病变。利用半监督学习，可以用少量的标注数据和大量的未标注数据共同训练模型。</p>
-</li>
-<li>
-<p><strong>利用数据的完整潜力</strong> ：未标记的数据包含有关数据分布的有用信息。半监督学习方法尝试利用这些信息来改善模型的性能。</p>
-</li>
-<li>
-<p><strong>提高泛化能力</strong> ：在某些情况下，利用大量的未标记数据可以帮助模型更好地泛化到新的、未见过的数据。</p>
-</li>
-<li>
-<p><strong>数据标注可能存在误差</strong> ：在某些场景中，即使数据被标注，标签也可能存在噪音或误差。在这种情况下，使用半监督学习方法，结合大量的未标记数据，可能会提供一个更稳健的学习策略。</p>
-</li>
-<li>
-<p><strong>在某些任务中，有很多相关的未标记数据</strong> ：例如，在自然语言处理中，我们可能有少量标记的数据集，但可以从网络上轻松获得大量的相关文本。半监督学习可以利用这些未标记的文本来提高模型的性能。</p>
-</li>
-<li>
-<p><strong>适应数据的变化</strong> ：在动态环境中，数据分布可能随时间而变化。利用半监督学习，可以定期利用新收集的未标记数据来更新模型，使其适应变化。</p>
-</li>
-</ul>
-<p>总之，半监督学习提供了一种在有限标记数据的情况下利用未标记数据的方法，这对于许多实际应用来说是非常有价值的。</p>
-<h3 id="模型">模型</h3>
-<h4 id="k近临">K近临</h4>
-<p>K Nearest-Neighbours是一种监督学习技术，给定一个新的观测值，KNN算法会从训练数据集中搜索出k个与其最相似的实例，然后基于这些邻居的属性来预测新观测值的标签。</p>
-<h4 id="原理">原理</h4>
-<ul>
-<li>
-<p><strong>距离计算</strong> ：对于给定的新数据点，计算它与训练数据集中每个点的距离。</p>
-</li>
-<li>
-<p><strong>选取K个邻居</strong> ：从训练数据集中选取距离最近的K个点。</p>
-</li>
-<li>
-<p><strong>投票 (对于分类)</strong> ：对于K个邻居，看哪个类别最为常见，并将其指定为新数据点的类别。</p>
-</li>
-<li>
-<p><strong>平均 (对于回归)</strong> ：对于K个邻居，计算其属性的平均值，并将其指定为新数据点的值。</p>
-</li>
-</ul>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696922323938.png" alt="1696922323938">
-
-</p>
-<h4 id="k均值">K均值</h4>
-<p>K-Means Clustering是一种无监督的聚类算法，其目的是将n个数据点分为k个聚类。每个聚类都有一个中心，这些中心最小化了其内部数据点与中心之间的距离。</p>
-<h5 id="原理-1">原理</h5>
-<ul>
-<li>
-<p><strong>初始化：</strong> 随机选择k个数据点作为初始聚类中心。</p>
-</li>
-<li>
-<p><strong>分配：</strong> 为每个数据点分配最近的聚类中心。</p>
-</li>
-<li>
-<p><strong>更新：</strong> 计算每个聚类的平均值，并将平均值设为新的聚类中心。</p>
-</li>
-<li>
-<p><strong>重复：</strong> 重复步骤2和3，直到聚类中心不再显著变化。</p>
-</li>
-</ul>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918922617.png" alt="1696918922617">
-
-</p>
-<h4 id="朴素贝叶斯">朴素贝叶斯</h4>
-<p>Naive Bayes Classifier监督学习技术是基于贝叶斯定理的一种简单概率分类器。它假设特征之间是独立的（这就是“朴素”一词的来源），即一个特征的出现不会影响另一个特征的出现。</p>
-<h5 id="原理-2">原理</h5>
-<p>给定一个类别 <code>C</code> 和一个特定的特 <code>x</code> ，贝叶斯定理表示为：</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696938714805.png" alt="1696938714805">
-
-</p>
-<p>其中</p>
-<ul>
-<li>
-<p><code>P(C|x)</code> 是在给定特征 x 的情况下类别 C 的后验概率。</p>
-</li>
-<li>
-<p><code>P(x|C)</code> 是在类别 C 的情况下观察到特征 x 的概率。</p>
-</li>
-<li>
-<p><code>P(C)</code> 是类别 C 的先验概率。</p>
-</li>
-<li>
-<p><code>P(x)</code> 是观察到特征 x 的概率。</p>
-</li>
-</ul>
-<p>对于分类问题，我们可以忽略分母（因为它对所有的类别都是相同的）并计算每个类别的$P(C)×P(x∣C)$。我们将数据点分类为给出最大值的类别。</p>
-<h4 id="回归方法">回归方法</h4>
-<p>Regression Methods是一种预测性监督学习技术，它研究的是因变量(目标)和自变量(预测器)之间的关系。 这种技术通常用于预测分析，时间序列模型以及发现变量之间的因果关系。</p>
-<h4 id="支持向量机">支持向量机</h4>
-<p>Support Vector Machines, SVM）是一种在分类和回归分析中使用的监督学习模型，基本思想是找到一个超平面，使得两个类别之间的边界最大化。对于线性可分的数据，这意味着超平面可以完美地分隔两个类别，并且最大化与最近的训练数据点（即支持向量）之间的距离。SVM使用所谓的核方法进行扩展。核方法的思想是将数据映射到一个更高维度的空间，使其在新的空间中变得线性可分。</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696929242825.png" alt="1696929242825">
-
-</p>
-<h4 id="自组织映射">自组织映射</h4>
-<p>Self-Organizing Maps，简称SOM是一种无监督学习的神经网络，SOM是一种将高维数据映射到通常是二维（有时是三维）的网格结构上的方法。与其他神经网络不同，SOM没有激活函数，它根据输入特征的相似性将相似的输入向量组合在一起。</p>
-<h5 id="原理-3">原理</h5>
-<ul>
-<li>
-<p><strong>初始化</strong> ：为每个节点（或称为神经元）随机初始化一个权重向量。</p>
-</li>
-<li>
-<p><strong>竞争</strong> ：对于每个输入样本，找到与其最相似（即欧几里得距离最近）的权重向量的节点，这个节点被称为胜者节点（winning node）。</p>
-</li>
-<li>
-<p><strong>适应</strong> ：更新胜者节点和其邻居节点的权重向量，使它们更接近当前输入样本。邻居节点的定义和更新的幅度都随时间逐渐减少。</p>
-</li>
-<li>
-<p><strong>迭代</strong> ：对于大量的迭代，重复上述步骤，直到模型收敛。</p>
-</li>
-</ul>
-<h4 id="决策树">决策树</h4>
-<p>Decision Trees是一种监督学习模型、主要用于分类和回归任务，决策树是一个树形结构，其中每个内部节点表示一个特征属性上的测试，每个分支代表一个测试结果，每个叶节点代表一个类别（在分类任务中）或连续的值（在回归任务中）。</p>
-<h5 id="原理-4">原理</h5>
-<p>决策树通过一系列基于特征值的测试，将输入数据点分配到叶节点中的一个，从而完成分类或预测任务。</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696930200188.png" alt="1696930200188">
-
-</p>
-<h4 id="神经网络">神经网络</h4>
-<p>Neural Networks是一种模仿生物神经网络结构和功能的计算模型。</p>
-<h5 id="基本结构"><strong>基本结构</strong></h5>
-<ul>
-<li>
-<p><strong>神经元（Neuron）</strong> : 神经网络的基本单元。每个神经元接收一个或多个输入，加权处理这些输入，然后产生一个输出。</p>
-</li>
-<li>
-<p><strong>层（Layer）</strong> ：神经网络由多层神经元组成。主要有三种类型的层：</p>
-<ul>
-<li>
-<p><strong>输入层（Input Layer）</strong> ：接收外部数据的层。</p>
-</li>
-<li>
-<p><strong>隐藏层（Hidden Layers）</strong> ：在输入层和输出层之间的层，可以有多个。</p>
-</li>
-<li>
-<p><strong>输出层（Output Layer）</strong> ：产生最终预测或分类的层。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="工作原理"><strong>工作原理</strong></h5>
-<p>每个神经元的输入都与一个权重相乘，所有加权输入的总和加上一个偏置，然后传递给激活函数。激活函数的输出是该神经元的输出。</p>
-<p>
-  <img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696933327363.png" alt="1696933327363">
-
-</p>
-<blockquote>
-<p>欢迎扫码关注公众号，订阅更多文章!</p>
+                <blockquote>
+<p>本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法</p>
 </blockquote>
+<h2 id="k-近临k-nearest-neighbours">K 近临(K Nearest-Neighbours)</h2>
+<p>一种简单的监督学习算法，惰性学习算法，在技术上并不训练模型来预测。适用于分类和回归任务。它的核心思想是：相似的对象彼此接近。例如，若果你想分类一个新的数据点(绿点)，可以查看训练数据中哪些数据点与它最接近，并根据这些最接近的数据点和标签来预测它的标签(红点或蓝圆)。</p>
 <p>
-  <img src="/img/public-plantform-qr.png" alt="">
+  <img src="https://files.mdnice.com/user/50789/820309be-f639-4c8b-99f2-9a10f79dbf45.png" alt="">
+
+</p>
+<p>
+  <img src="https://files.mdnice.com/user/50789/4d624ed3-03a0-4180-a30c-fc977b6d0064.png" alt="">
+
+</p>
+<h2 id="概念">概念</h2>
+<p><strong>K:</strong> 这是一个用户指定的正整数，即训练数据分类数量，代表要考虑的最近邻居的数量，上图中假设 K=2,即训练数据分类为蓝色圆和红色三角两类标签。</p>
+<p><strong>距离函数:</strong> 用于计算数据点之间的距离。最常见的是欧几里得距离、曼哈顿距离、马氏距离等。</p>
+<p><strong>投票机制:</strong></p>
+<ul>
+<li><strong>分类任务:</strong> 将根据 k 个最近邻的多数投票来确定新数据点的类别。</li>
+<li><strong>回归任务:</strong> 通常取 k 个最近邻的输出变量的平均值。</li>
+</ul>
+<h2 id="原理">原理</h2>
+<ul>
+<li><strong>距离计算：</strong> 对于给定的新数据点，计算它与训练数据集中每个点的距离。</li>
+<li><strong>选取 K 个邻居：</strong> 从训练数据集中选取距离最近的 K 个点。</li>
+<li><strong>投票 (对于分类)：</strong> 对于 K 个邻居，看哪个类别最为常见，并将其指定为新数据点的类别。</li>
+<li><strong>均值 (对于回归)：</strong> 对于 K 个邻居，计算其属性的平均值，并将其指定为新数据点的值。</li>
+</ul>
+<h2 id="距离度量">距离度量</h2>
+<h3 id="欧几里得距离-euclidean-distance">欧几里得距离 (Euclidean Distance)</h3>
+<p>欧几里得距离的名称来源于古希腊数学家欧几里得，是衡量两点在平面或更高维空间中的&quot;直线&quot;距离。它基于勾股定理，用于计算两点之间的最短距离。在日常生活中，我们经常无意识地使用欧几里得距离，例如，当我们说两地之间的&quot;直线&quot;距离时，实际上是在引用欧几里得距离。
+<strong>公式:</strong>
+给定两点 <code>P</code> 和 <code>Q</code>，其坐标分别为 $P(x_1, x_2, &hellip;, x_n)$ 和 $Q(y_1, y_2, &hellip;, y_n)$ 在一个 n 维空间中，它们之间的欧几里得距离 <code>d</code> 定义为：</p>
+<p>$d(P, Q) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$</p>
+<h3 id="曼哈顿距离-manhattan-distance">曼哈顿距离 (Manhattan Distance)</h3>
+<p>曼哈顿距离得名于纽约的曼哈顿，因为在曼哈顿的街道布局是网格状的。想象一下，你在一个街区的一个角落，要走到对面的角落，你不能直接穿越街区，只能沿着街道走。这就是曼哈顿距离的来源，也因此它有时被称为“城市街区距离”。</p>
+<p><strong>公式</strong></p>
+<p>给定两点 <code>P</code> 和 <code>Q</code>，其坐标分别为 $P(x_1, x_2, &hellip;, x_n)$ 和 $Q(y_1, y_2, &hellip;, y_n)$ 在一个 n 维空间中，它们之间的曼哈顿距离 <code>L1</code> 定义为：</p>
+<p>$L1(P, Q) = \sum_{i=1}^{n} |x_i - y_i|$</p>
+<h3 id="闵可夫斯基距离-minkowski-distance">闵可夫斯基距离 (Minkowski Distance)</h3>
+<p>闵可夫斯基距离是一种在向量空间中度量两个点之间距离的方法。它实际上是一种泛化的距离度量，可以看作是其他距离度量（如欧几里得距离、曼哈顿距离）的泛化。通过改变一个参数<code>p</code>，它可以表示多种距离度量。</p>
+<p><strong>公式</strong></p>
+<p>给定两点 <code>P</code> 和 <code>Q</code>，其坐标分别为 $P(x_1, x_2, &hellip;, x_n)$ 和 $Q(y_1, y_2, &hellip;, y_n)$ 在一个 n 维空间中，它们之间的闵可夫斯基距离 <code>Lp</code> 定义为：</p>
+<p>$Lp(P, Q) = \left( \sum_{i=1}^{n} |x_i - y_i|^p \right)^{\frac{1}{p}}$</p>
+<p>其中 <code>p</code> 是一个大于等于 1 的实数。特定的 <code>p</code> 值会导致其他常见的距离度量：</p>
+<ul>
+<li>当 <code>p = 1</code> 时，这变成了<strong>曼哈顿距离</strong>。</li>
+<li>当 <code>p = 2</code> 时，这变成了<strong>欧几里得距离</strong>。</li>
+</ul>
+<h3 id="余弦相似性-cosine-similarity">余弦相似性 (Cosine Similarity)</h3>
+<p>余弦相似性度量了两个向量方向的相似度，而不是它们的大小。换句话说，它是通过比较两个向量之间的夹角来测量它们的相似性的。夹角越小，相似性就越高。</p>
+<p>它经常在高维空间中（如 TF-IDF 权重的文档向量）使用，因为在高维空间中，基于欧几里得距离的相似性度量可能不太有效。</p>
+<h5 id="公式">公式</h5>
+<p>给定两个向量 <code>A</code> 和 <code>B</code>，它们的余弦相似性定义为：</p>
+<p>$\text{cosine similarity}(A, B) = \frac{A \cdot B}{|A| |B|}$</p>
+<p>其中：</p>
+<ul>
+<li>$A \cdot B$ 是向量 <code>A</code> 和 <code>B</code> 的点积。</li>
+<li>$|A|$ 和 $|B|$ 分别是向量 <code>A</code> 和 <code>B</code> 的欧几里得长度（或模）。</li>
+</ul>
+<p>公式可以进一步扩展为：</p>
+<p>$\text{cosine similarity}(A, B) = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \sqrt{\sum_{i=1}^{n} B_i^2}}$</p>
+<p>这里，<code>n</code> 是向量的维度，而 $A_i$ 和 $B_i$ 分别是向量 <code>A</code> 和 <code>B</code> 在第 <code>i</code> 维度上的值。</p>
+<p>余弦相似性值范围为[-1, 1]，其中 1 表示完全相似，0 表示不相关，而-1 表示完全相异。</p>
+<h2 id="k-值的确定方法">K 值的确定方法：</h2>
+<ul>
+<li>
+<p><strong>交叉验证：</strong> 这是确定 k 值的最常用方法。对于每一个可能的 k 值，使用交叉验证计算模型的预测错误率，选择错误率最低的 k 值。</p>
+</li>
+<li>
+<p><strong>启发式方法：</strong> 有时，可以选择 sqrt(n)作为起始点，其中 n 是训练样本的数量。这只是一个粗略的估计，通常需要进一步验证。</p>
+</li>
+<li>
+<p><strong>误差曲线：</strong> 画出不同 k 值对应的误差率曲线，选择误差变化开始平稳的点。</p>
+</li>
+<li>
+<p><strong>领域知识：</strong> 在某些应用中，基于领域知识和经验选择 k 值可能更为合适。</p>
+</li>
+</ul>
+<h2 id="k-值的影响">K 值的影响：</h2>
+<h3 id="过小的-k-值">过小的 k 值：</h3>
+<ul>
+<li>分类：模型可能变得过于敏感和复杂。它可能对训练数据中的噪声或异常点特别敏感，从而容易过拟合。当 k=1 时，任何训练数据中的异常点都可能影响预测结果。</li>
+<li>回归：模型可能会受到异常值的强烈影响，导致预测结果出现明显的波动。</li>
+</ul>
+<h3 id="过大的-k-值">过大的 k 值：</h3>
+<ul>
+<li>分类：模型可能变得过于简化。随着 k 值的增加，分类决策的边界会变得更加平滑，可能会忽视数据中的细微模式，导致欠拟合。</li>
+<li>回归：模型同样可能会过于简化。大 k 值使模型的预测偏向于所有数据点的平均值，因此可能会忽视数据中的局部特性或细节。</li>
+</ul>
+<h2 id="优缺点">优缺点</h2>
+<h3 id="优点">优点</h3>
+<p>简单且直观。
+无需训练阶段，适用于动态变化的数据集。
+对异常值不敏感（取决于 K 的大小）。</p>
+<h3 id="缺点">缺点</h3>
+<p>计算复杂度高，因为对于每一个新的数据点，都需要与所有训练数据计算距离。
+需要决定 K 的大小，这可能会影响结果。
+高维数据中的性能下降。</p>
+<h2 id="应用场景">应用场景：</h2>
+<ul>
+<li>
+<p><strong>推荐系统:</strong></p>
+<ul>
+<li>基于用户之前的喜好推荐相似电影</li>
+<li>推荐用户可能喜欢的曲目或歌手</li>
+</ul>
+</li>
+<li>
+<p><strong>文本分类:</strong>
+区分垃圾邮件和正常邮件。</p>
+</li>
+<li>
+<p><strong>图像识别:</strong> 识别包括上的手写邮政编码，分类投递邮件包裹</p>
+</li>
+<li>
+<p><strong>医疗诊断：</strong> 预测患者可能的疾病风险。</p>
+</li>
+<li>
+<p><strong>信用评分</strong>：预测客户的信用风险。</p>
+</li>
+<li>
+<p><strong>欺诈检测</strong>：识别信用卡中的异常交易。</p>
+</li>
+<li>
+<p><strong>位置基服务</strong>：基于位置提供餐厅或服务推荐。</p>
+</li>
+</ul>
+<p>
+  <img src="https://files.mdnice.com/user/50789/99d8f4cf-52ef-43bf-b4a0-74886881b8e1.png" alt="">
 
 </p>
 
@@ -598,13 +441,13 @@ if (!doNotTrack) {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/2023-08-02-motorcycle-tour-around-xinjiang/" data-toggle="tooltip" data-placement="top" title="环新疆摩旅">&larr;
+                        <a href="/post/2023-09-08-machine-learning-basic-concepts/" data-toggle="tooltip" data-placement="top" title="机器学习 | 基础概念">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/post/2023-09-10-machine-learning-k-nearest-neighbours/" data-toggle="tooltip" data-placement="top" title="机器学习 | K临近">Next
+                        <a href="/post/2023-11-11-machine-learning-feature-scaling/" data-toggle="tooltip" data-placement="top" title="机器学习 | 特征缩放">Next
                             Post &rarr;</a>
                     </li>
                     
