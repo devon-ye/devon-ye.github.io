@@ -1,7 +1,7 @@
 ---
 title:       "机器学习 | 特征缩放"
 subtitle:    "Machine Learning Feature Scaling"
-description: "特征缩放概念、目的、通用缩放方法、python可视化比较"
+description: ""
 date:        2023-11-11
 author:      "Devean"
 image:       ""
@@ -11,7 +11,9 @@ math: true
 categories:  ["Tech" ]
 ---
 
+> 本文从特征缩放概念、目的、常用特征缩放方法：最小-最大缩放、标准缩放、鲁棒缩放、L2 Normalization、L1 Normalization、Power Transformer的公式讲解、Python缩放数据可视化对比诠释了特征缩放
 
+## 什么是特征缩放
  
 特征缩放又称归一化，是机器学习中的一种技术，涉及调整数值数据的量度，使所有数据点在相似的尺度上。例如：身高、体重、年龄、收入等个人特征数据，每个维度的区间不一样，为保证所有维度的特征数据尺度一样，我们就需要对原始数据做特征缩放，将身高、体重、年龄、收入都转化为区间[0,1]之间的数据。
 

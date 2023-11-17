@@ -1,12 +1,14 @@
 ---
 title: '翻译 | 什么是套利'
 subtitle: "What Is Arbitrage"
-description: "套机概念、常见套利方法"
+description: ""
 date: 2023-11-14T22:59:31+08:00
 tags:
     - Quantitative Finance
 categories:  [ "Finance" ]
 ---
+
+> 本文简单科普了什么是套利、有哪些套利方法、套利失效的原因
 
 ## 什么是套利
 

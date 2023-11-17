@@ -1,7 +1,7 @@
 ---
 title:       "机器学习 | 基础概念"
 subtitle:    "Machine Learning Basic Concepts"
-description: "机器学习基础入门概念详细汇总"
+description: ""
 date:        2023-09-08
 author:      "Devean"
 image:       ""
@@ -11,6 +11,7 @@ math: true
 categories:  ["Tech" ]
 ---
 
+> 本文从机器学习与传统建模区别、机器学习分类：监督、非监督、半监督、强化，基础算法：K临近、K均值、朴素贝叶斯、支持向量机、回归、自组织映射、神经网络原理
 
 ### 什么是机器学习
 
