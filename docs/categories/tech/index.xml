@@ -6,8 +6,15 @@
     <description>Recent content in Tech on Devean Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Nov 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://devean.cn/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>机器学习 | 支持向量机线性可分</title>
+      <link>https://devean.cn/post/2023-11-18-machine-learning-support-vector-machine-linearly-separable/</link>
+      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/post/2023-11-18-machine-learning-support-vector-machine-linearly-separable/</guid>
+      <description>本文从支持向量机概念、硬间隔、软间隔和非线性的区别、原理、术语、最大间隔数学推导几个方面详细讲解线性可分的支持向量机。 基础概念 支持向量机(S</description>
+    </item>
     <item>
       <title>机器学习 | 特征缩放</title>
       <link>https://devean.cn/post/2023-11-11-machine-learning-feature-scaling/</link>
@@ -24,7 +31,7 @@
       <link>https://devean.cn/post/2023-11-12-machine-learning-k-nearest-neighbours/</link>
       <pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate>
       <guid>https://devean.cn/post/2023-11-12-machine-learning-k-nearest-neighbours/</guid>
-      <description>本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法 K 近临(K Nearest-Neighbours) 一种简单的监督学习算法，惰性学习算法，在技术</description>
+      <description>本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法。 K 近临(K Nearest-Neighbours) 一种简单的监督学习算法，惰性学习算法，在技</description>
     </item>
     <item>
       <title>机器学习 | 基础概念</title>

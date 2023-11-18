@@ -3,34 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://devean.cn/categories/</loc>
-    <lastmod>2023-11-14T22:59:31+08:00</lastmod>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://devean.cn/</loc>
-    <lastmod>2023-11-14T22:59:31+08:00</lastmod>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://devean.cn/categories/finance/</loc>
-    <lastmod>2023-11-14T22:59:31+08:00</lastmod>
+    <loc>https://devean.cn/tags/machine-learning/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://devean.cn/post/</loc>
-    <lastmod>2023-11-14T22:59:31+08:00</lastmod>
-  </url><url>
-    <loc>https://devean.cn/tags/quantitative-finance/</loc>
-    <lastmod>2023-11-14T22:59:31+08:00</lastmod>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://devean.cn/tags/</loc>
-    <lastmod>2023-11-14T22:59:31+08:00</lastmod>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://devean.cn/categories/tech/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://devean.cn/post/2023-11-18-machine-learning-support-vector-machine-linearly-separable/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://devean.cn/categories/finance/</loc>
+    <lastmod>2023-11-15T22:59:31+08:00</lastmod>
+  </url><url>
+    <loc>https://devean.cn/tags/quantitative-finance/</loc>
+    <lastmod>2023-11-15T22:59:31+08:00</lastmod>
   </url><url>
     <loc>https://devean.cn/post/2023-11-15-what-is-arbitrage/</loc>
-    <lastmod>2023-11-14T22:59:31+08:00</lastmod>
+    <lastmod>2023-11-15T22:59:31+08:00</lastmod>
   </url><url>
     <loc>https://devean.cn/post/2023-11-14-mathematical-applications-in-quantitative-finance/</loc>
     <lastmod>2023-11-14T22:59:31+08:00</lastmod>
-  </url><url>
-    <loc>https://devean.cn/tags/machine-learning/</loc>
-    <lastmod>2023-11-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://devean.cn/categories/tech/</loc>
-    <lastmod>2023-11-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://devean.cn/post/2023-11-11-machine-learning-feature-scaling/</loc>
     <lastmod>2023-11-11T00:00:00+00:00</lastmod>

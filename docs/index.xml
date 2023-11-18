@@ -6,21 +6,28 @@
     <description>Recent content on Devean Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Nov 2023 22:59:31 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 18 Nov 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://devean.cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>机器学习 | 支持向量机线性可分</title>
+      <link>https://devean.cn/post/2023-11-18-machine-learning-support-vector-machine-linearly-separable/</link>
+      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/post/2023-11-18-machine-learning-support-vector-machine-linearly-separable/</guid>
+      <description>本文从支持向量机概念、硬间隔、软间隔和非线性的区别、原理、术语、最大间隔数学推导几个方面详细讲解线性可分的支持向量机。 基础概念 支持向量机(S</description>
+    </item>
     <item>
       <title>翻译 | 什么是套利</title>
       <link>https://devean.cn/post/2023-11-15-what-is-arbitrage/</link>
-      <pubDate>Tue, 14 Nov 2023 22:59:31 +0800</pubDate>
+      <pubDate>Wed, 15 Nov 2023 22:59:31 +0800</pubDate>
       <guid>https://devean.cn/post/2023-11-15-what-is-arbitrage/</guid>
-      <description>本文简单科普了什么是套利、有哪些套利方法、套利失效的原因 什么是套利 套利是指在无风险回报率之外获得确定的利润。 用量化金融的语言来说，我们 可以说</description>
+      <description>本文简单科普了什么是套利、有哪些套利方法、套利失效的原因。 什么是套利 套利是指在无风险回报率之外获得确定的利润。 用量化金融的语言来说，我们 可以</description>
     </item>
     <item>
       <title>翻译 | 量化金融中的数学应用</title>
       <link>https://devean.cn/post/2023-11-14-mathematical-applications-in-quantitative-finance/</link>
       <pubDate>Tue, 14 Nov 2023 22:59:31 +0800</pubDate>
       <guid>https://devean.cn/post/2023-11-14-mathematical-applications-in-quantitative-finance/</guid>
-      <description>本文量从量化金融中数学的应用、常见的建模方法、常见的数学工具普及了量化金融中的应用 量化金融中有哪些不同类型的数学？ 在数量金融中使用最多的数学</description>
+      <description>本文量从量化金融中数学的应用、常见的建模方法、常见的数学工具普及了量化金融中的应用。 量化金融中有哪些不同类型的数学？ 在数量金融中使用最多的数</description>
     </item>
     <item>
       <title>机器学习 | 特征缩放</title>
@@ -38,7 +45,7 @@
       <link>https://devean.cn/post/2023-11-12-machine-learning-k-nearest-neighbours/</link>
       <pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate>
       <guid>https://devean.cn/post/2023-11-12-machine-learning-k-nearest-neighbours/</guid>
-      <description>本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法 K 近临(K Nearest-Neighbours) 一种简单的监督学习算法，惰性学习算法，在技术</description>
+      <description>本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法。 K 近临(K Nearest-Neighbours) 一种简单的监督学习算法，惰性学习算法，在技</description>
     </item>
     <item>
       <title>机器学习 | 基础概念</title>

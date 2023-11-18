@@ -11,7 +11,7 @@ math: true
 categories:  ["Tech" ]
 ---
 
-> 本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法
+> 本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法。
 
 ## K 近临(K Nearest-Neighbours)
 
