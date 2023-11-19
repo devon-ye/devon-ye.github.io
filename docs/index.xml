@@ -76,17 +76,17 @@
       <description>Java 语言学习笔记</description>
     </item>
     <item>
-      <title></title>
-      <link>https://devean.cn/search/placeholder/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://devean.cn/search/placeholder/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Posts Archive</title>
       <link>https://devean.cn/archive/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://devean.cn/archive/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>搜索</title>
+      <link>https://devean.cn/search/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/search/search/</guid>
       <description></description>
     </item>
   </channel>

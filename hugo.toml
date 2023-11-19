@@ -14,8 +14,8 @@ home = ["HTML", "RSS", "Algolia","JSON"]
 
 [params]
   header_image = "img/ladder-sky-bg.jpg"
-  SEOTitle = "德文的博客| Devean Blog"
-  description = "德文，程序员, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。"
+  SEOTitle = "德文的博客 | Devean Blog"
+  description = "德文, 开源爱好者，生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。"
   keyword = "德文, Devean, DevonYe, 机器学习,量化金融, QuantitaTAtive Finance, 德文的网络日志, 德文的博客, Devean Blog, 博客, 个人网站, 互联网, Web, 云原生,微服务, Microservice"
   slogan = "路在脚下，心向远方"
 
@@ -24,15 +24,15 @@ home = ["HTML", "RSS", "Algolia","JSON"]
   omit_categories = false
 
   # leancloud storage for page view counter
-  page_view_conter = false 
+  page_view_conter = true
   leancloud_app_id = ""
   leancloud_app_key = ""
 
   # algolia site search
   algolia_search = true
-  algolia_appId = ""
-  algolia_indexName = ""
-  algolia_apiKey = ""
+  algolia_appId = "HSQWDBMC2T"
+  algolia_indexName = "DeveanBlog"
+  algolia_apiKey = "e6f3dbe435f1b262622db4ca6d2fbebb"
 
   # Sidebar settings
   sidebar_about_description = "Software Developer, Open Source Enthusiast and Life Adventurer"
@@ -43,7 +43,7 @@ home = ["HTML", "RSS", "Algolia","JSON"]
   featured_condition_size = 1 
 
   # Baidu Analytics
-  ba_track_id = ""
+  ba_track_id = "1ae0b78ddcca3b07f0cf346c87ee7585"
   
   # We need a proxy to access Disqus api in China
   # Follow https://github.com/zhaohuabing/disqus-php-api to set up your own disqus proxy

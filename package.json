@@ -1,0 +1,33 @@
+{
+  "name": "devon-ye.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Devean",
+  "license": "ISC",
+  "dependencies": {
+    "atomic-algolia": "^0.3.19"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devon-ye/devon-ye.github.io.git"
+  },
+  "keywords": [
+    "德文的博客",
+    "Devean",
+    "devon",
+    "Devon",
+    "Blog"
+  ],
+  "bugs": {
+    "url": "https://github.com/devon-ye/devon-ye.github.io/issues"
+  },
+  "homepage": "https://github.com/devon-ye/devon-ye.github.io#readme"
+}
