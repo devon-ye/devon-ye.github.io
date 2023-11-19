@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Devean Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Nov 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://devean.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>机器学习 | 支持向量机线性不可分</title>
+      <link>https://devean.cn/post/2023-11-19-machine-learning-support-vector-machine-non-linearly-separable/</link>
+      <pubDate>Sun, 19 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/post/2023-11-19-machine-learning-support-vector-machine-non-linearly-separable/</guid>
+      <description>本文从支持向量机线性不可分、软间隔、松弛变量、目标函数、约束条件、超参数 C,实际应用场景判别线性是否可分等几方面讲概述了支持向量机线性不可分</description>
+    </item>
     <item>
       <title>机器学习 | 支持向量机线性可分</title>
       <link>https://devean.cn/post/2023-11-18-machine-learning-support-vector-machine-linearly-separable/</link>
