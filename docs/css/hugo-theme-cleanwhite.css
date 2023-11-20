@@ -509,12 +509,11 @@ pre code{
         font-size:17px
     }
     .post-preview .post-meta{
-        font-size:18px
+        font-size:12px
     }
 }
 .post-content-preview{
     font-size:13px;
-    font-style:italic;
     color:#595959
 }
 .post-content-preview:hover{
