@@ -58,7 +58,7 @@ home = ["HTML", "RSS", "Algolia","JSON"]
   reward = true 
   # reward_guide = "如果这篇文章对你有用,请随意打赏" 
 
-  friends = true
+  friends = false
   bookmarks = false
   about_me = true
 
