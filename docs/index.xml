@@ -6,8 +6,15 @@
     <description>Recent content on Devean Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://devean.cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>机器学习 | 非线性支持向量机</title>
+      <link>https://devean.cn/post/2023-12-02-machine-learning-nonlinear-support-vector-machines/</link>
+      <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://devean.cn/post/2023-12-02-machine-learning-nonlinear-support-vector-machines/</guid>
+      <description>非线性支持向量机（SVM）是一种强大的监督学习算法，用于解决分类和回归问题。它通过使用核技巧将数据映射到高维空间，从而处理非线性关系。在这篇</description>
+    </item>
     <item>
       <title>机器学习 | 支持向量机线性不可分</title>
       <link>https://devean.cn/post/2023-11-19-machine-learning-support-vector-machine-non-linearly-separable/</link>
