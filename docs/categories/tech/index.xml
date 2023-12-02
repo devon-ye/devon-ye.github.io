@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tech on Devean Blog</title>
+    <title>Tech on 德文的博客</title>
     <link>https://devean.cn/categories/tech/</link>
-    <description>Recent content in Tech on Devean Blog</description>
+    <description>Recent content in Tech on 德文的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 19 Nov 2023 00:00:00 +0000</lastBuildDate>
