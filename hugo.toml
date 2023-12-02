@@ -63,8 +63,8 @@ home = ["HTML", "RSS", "Algolia","JSON"]
   about_me = true
 
   # Include any custom CSS and/or JS files, url or relative to /static folder
-  custom_css = ["css/lightbox.css", "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css", "css/main.css"]
-  jquery.min.js = ["js/lightbox.js", "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", "js/main.js"]
+  custom_css = ["https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"]
+  jquery.min.js = ["https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"]
 
   [params.social]
   rss            = true
