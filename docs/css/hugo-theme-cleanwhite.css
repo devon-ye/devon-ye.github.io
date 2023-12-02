@@ -22,7 +22,7 @@
     }
 }
 .sidebar-container{
-    color:#bfbfbf;
+    color:#696868;
     font-size:15px
 }
 .sidebar-container h5{
@@ -40,7 +40,7 @@
     color:#0085a1!important
 }
 .sidebar-container .tags a{
-    border-color:#bfbfbf
+    border-color:#818181
 }
 .sidebar-container .tags a:hover,.sidebar-container .tags a:active{
     border-color:#0085a1
@@ -53,7 +53,8 @@
 }
 .sidebar-container .short-about p{
     margin-top:0;
-    margin-bottom:20px
+    margin-bottom:20px;
+    border-color: #818181;
 }
 .sidebar-container .short-about .list-inline>li{
     padding-left:0;
