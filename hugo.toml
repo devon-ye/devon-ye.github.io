@@ -139,4 +139,4 @@ params = ["categories", "tags"]
 # If porting an existing theme
 [original]
   name = "Devean"
-  homepage = "https://devean.cn/"
+  homepage = "https://www.devean.cn/"
