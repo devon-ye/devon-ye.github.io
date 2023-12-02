@@ -1,5 +1,5 @@
 baseurl = "https://devean.cn"
-title = "德文的博客"
+title = "Devean Blog"
 theme = "hugo-theme-cleanwhite"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
@@ -14,7 +14,7 @@ home = ["HTML", "RSS", "Algolia","JSON"]
 
 [params]
   header_image = "img/ladder-sky-bg.jpg"
-  SEOTitle = "Devean Blog | 德文的博客"
+  SEOTitle = "德文的博客 | Devean Blog"
   description = "机器学习基础知识,量化金融书籍翻译,德文的个人博客, 开源爱好者,生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。"
   keyword = "机器学习,量化金融,Machine Learning,QuantitaTAtive Finance, 德文的网络日志,德文的博客"
   slogan = "路在脚下，心向远方"
