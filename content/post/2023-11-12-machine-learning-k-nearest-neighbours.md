@@ -1,7 +1,7 @@
 ---
-title:       "机器学习 | K临近"
+title:       "K临近(KNN) | 机器学习"
 subtitle:    "Machine Learning K Nearest-Neighbours"
-description: "K临近的概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法"
+description: "K临近(KNN)的概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法"
 date:        2023-09-10
 author:      "Devean"
 image:       ""

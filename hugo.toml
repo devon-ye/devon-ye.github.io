@@ -1,4 +1,4 @@
-baseurl = "https://devean.cn"
+baseurl = "https://www.devean.cn"
 title = "Devean Blog"
 theme = "hugo-theme-cleanwhite"
 languageCode = "zh-cn"
@@ -16,7 +16,7 @@ home = ["HTML", "RSS", "Algolia","JSON"]
   header_image = "img/bj/kanasi_bj.jpg"
   SEOTitle = "德文的博客 | Devean Blog"
   description = "机器学习基础知识,量化金融书籍翻译,德文的个人博客, 开源爱好者,生活探险家 | 这里是 德文 的博客，与你一起发现更大的世界。"
-  keyword = "机器学习,量化金融,Machine Learning,QuantitaTAtive Finance, 德文的网络日志,德文的博客"
+  keyword = "机器学习,量化金融,Machine Learning,Quantitative Finance, 德文的网络日志,德文的博客"
   slogan = "路在脚下，心向远方"
 
   image_404 = "img/404-bg.jpg"
