@@ -1,8 +1,9 @@
 ---
-title: '翻译 | 量化金融中的数学应用'
+title: '量化金融中的数学应用 | 翻译'
 subtitle: "Mathematical Applications in Quantitative Finance"
 description: "量化金融中数学的应用、常见的建模方法、常见的数学工具普及了量化金融中的应用"
 date: 2023-11-14T22:59:31+08:00
+author:      "Devean"
 tags:
     - Quantitative Finance
 categories:  [ "Finance" ]

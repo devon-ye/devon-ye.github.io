@@ -1,8 +1,9 @@
 ---
-title: '什么是套利'
+title: '什么是套利 | 翻译'
 subtitle: "What Is Arbitrage"
 keywords: [套利,Arbitrage,量化金融,Quantitative Finance]
 description: "简单科普了什么是套利、有哪些套利方法、套利失效的原因。"
+author:      "Devean"
 date: 2023-11-15T22:59:31+08:00
 tags:
     - Quantitative Finance
