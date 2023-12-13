@@ -29,5 +29,19 @@
       <guid>https://www.devean.cn/tags/travel/</guid>
       <description></description>
     </item>
+    <item>
+      <title>tag1</title>
+      <link>https://www.devean.cn/tags/tag1/</link>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/tags/tag1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>tag2</title>
+      <link>https://www.devean.cn/tags/tag2/</link>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/tags/tag2/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
