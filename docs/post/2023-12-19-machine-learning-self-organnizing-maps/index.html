@@ -10,20 +10,20 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="/img/ml/svm13.png">
-    <meta property="twitter:image" content="/img/ml/svm13.png" />
+    <meta property="og:image" content="https://www.devean.cn/img/bj/kanasi_bj.jpg">
+    <meta property="twitter:image" content="https://www.devean.cn/img/bj/kanasi_bj.jpg" />
     
 
     
-    <meta name="title" content="机器学习 | 非线性支持向量机" />
-    <meta property="og:title" content="机器学习 | 非线性支持向量机" />
-    <meta property="twitter:title" content="机器学习 | 非线性支持向量机" />
+    <meta name="title" content="自组织映射 | 机器学习" />
+    <meta property="og:title" content="自组织映射 | 机器学习" />
+    <meta property="twitter:title" content="自组织映射 | 机器学习" />
     
 
     
-    <meta name="description" content="非线性支持向量机的核技巧、核函数、决策函数，股价预测模型、总结支持向量机目标函数">
-    <meta property="og:description" content="非线性支持向量机的核技巧、核函数、决策函数，股价预测模型、总结支持向量机目标函数" />
-    <meta property="twitter:description" content="非线性支持向量机的核技巧、核函数、决策函数，股价预测模型、总结支持向量机目标函数" />
+    <meta name="description" content="在机器学习的广阔领域中，自组织映射（Self-Organizing Map，SOM）占据了一席之地。它是一种无监督学习的人工神经网络，用于数据的降维和可视化。今天，我们将深入探讨SOM的概念、定理、原理，并通过Python示例展示其在实际问题中的应用">
+    <meta property="og:description" content="在机器学习的广阔领域中，自组织映射（Self-Organizing Map，SOM）占据了一席之地。它是一种无监督学习的人工神经网络，用于数据的降维和可视化。今天，我们将深入探讨SOM的概念、定理、原理，并通过Python示例展示其在实际问题中的应用" />
+    <meta property="twitter:description" content="在机器学习的广阔领域中，自组织映射（Self-Organizing Map，SOM）占据了一席之地。它是一种无监督学习的人工神经网络，用于数据的降维和可视化。今天，我们将深入探讨SOM的概念、定理、原理，并通过Python示例展示其在实际问题中的应用" />
     
 
     
@@ -42,9 +42,9 @@
 
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>机器学习 | 非线性支持向量机 | Devean Blog</title>
+    <title>自组织映射 | 机器学习 | Devean Blog</title>
 
-    <link rel="canonical" href="/post/2023-12-02-machine-learning-nonlinear-support-vector-machines/">
+    <link rel="canonical" href="/post/2023-12-19-machine-learning-self-organnizing-maps/">
 
     
     
@@ -208,7 +208,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/ml/svm13.png')
+        background-image: url('/img/bj/kanasi_bj.jpg')
     }
 </style>
 
@@ -225,8 +225,8 @@ if (!doNotTrack) {
                         </a>
                         
                     </div>
-                    <h1>机器学习 | 非线性支持向量机</h1>
-                    <h2 class="subheading">Machine Learning | Nonlinear Support Vector Machine</h2>
+                    <h1>自组织映射 | 机器学习</h1>
+                    <h2 class="subheading">Machine Learning Self-Organnizing Maps</h2>
                     <span class="meta">
                         
                             Posted by 
@@ -234,9 +234,9 @@ if (!doNotTrack) {
                                      &#34;Devean&#34;
                              
                             on 
-                            Saturday, December 2, 2023
+                            Tuesday, December 19, 2023
                             
-                                <span id="/post/2023-12-02-machine-learning-nonlinear-support-vector-machines/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/post/2023-12-19-machine-learning-self-organnizing-maps/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -394,209 +394,114 @@ $(function() {
                 post-container">
 
                 
-                <blockquote>
-<p>非线性支持向量机（SVM）是一种强大的监督学习算法，用于解决分类和回归问题。它通过使用核技巧将数据映射到高维空间，从而处理非线性关系。在这篇文章中，我们将探讨非线性 SVM 的工作原理、核函数的作用以及如何在实际中应用非线性 SVM。</p>
+                <h2 id="引言">引言</h2>
+<blockquote>
+<p>在机器学习的广阔领域中，自组织映射（Self-Organizing Map，SOM）占据了一席之地。它是一种无监督学习的人工神经网络，用于数据的降维和可视化。今天，我们将深入探讨SOM的概念、定理、原理，并通过Python示例展示其在实际问题中的应用。</p>
 </blockquote>
-<h2 id="核心概念">核心概念</h2>
-<h3 id="线性与非线性-svm">线性与非线性 SVM</h3>
-<p>线性 SVM 在处理线性可分数据时效果显著。然而，当数据集呈非线性分布时，线性 SVM 的性能会受限。非线性 SVM 通过核技巧解决了这个问题。</p>
-<h2 id="核技巧kernel-trick">核技巧（Kernel Trick）</h2>
-<h3 id="什么是核技巧">什么是核技巧？</h3>
-<p>核技巧是一种通过转换将低维输入空间映射到高维特征空间的方法，它使得非线性特征组合可以被 SVM 以线性方式处理，核技巧由一些数学工具<strong>核函数</strong>实现。</p>
+<h2 id="历史背景">历史背景</h2>
+<p>SOM的提出源于对大脑皮层处理信息的方式的启发。Kohonen教授通过模拟这种生物学上的信息处理机制，创建了一种能够揭示数据内在结构的神经网络模型。从80年代初到现在，SOM已经在许多领域得到了广泛的应用，如金融分析、生物信息学、图像处理等。</p>
+<h2 id="概念">概念</h2>
+<p>自组织映射（SOM）是由芬兰教授Teuvo Kohonen在1982年提出的一种无监督学习算法。它通过训练过程自我组织，形成一个拓扑结构，能够将高维数据映射到低维空间（通常是二维），同时保持数据的拓扑关系，这使得它在数据可视化方面特别有用。</p>
 <p>
-  <img src="/img/ml/svm12.webp" alt="">
+  <img src="/img/ml/som4.png" alt="">
 
 </p>
-<h3 id="核函数定义">核函数定义</h3>
-<p>核函数是一个数学函数，能够计算数据点在高维特征空间中的内积，而无需直接计算这些特征。换句话说，它可以让我们在原始特征空间中间接地计算在更高维特征空间的内积。</p>
-<h3 id="核函数的作用">核函数的作用</h3>
+<h2 id="与其他机器学习技术的对比">与其他机器学习技术的对比</h2>
+<p>与传统的监督学习方法如深度学习神经网络和支持向量机等相比，SOM提供了一种不同的视角来处理和理解数据。SOM不依赖于标签数据，更专注于揭示数据的内在关系和结构。此外，与主成分分析（PCA）等其他降维技术相比，SOM保留了数据的非线性关系，这在许多复杂数据集的分析中是非常重要的。</p>
+<h2 id="原理">原理</h2>
+<p>SOM的基本原理是将输入向量映射到一个二维的网格上。每个网格点（神经元）都有一个与输入空间维度相同的权重向量。通过竞争学习，SOM能够调整这些权重向量，使得相似的输入被映射到相近的神经元上。</p>
 <ul>
-<li><strong>维度映射：</strong> 核函数通过隐式地将数据映射到一个更高维的空间，帮助处理数据的非线性特征。</li>
-<li><strong>计算简化：</strong> 直接在高维空间中处理数据是复杂和计算密集的。核函数通过在原始空间中进行计算来避免这个问题，从而简化了计算过程。</li>
-<li><strong>处理非线性问题：</strong> 在许多实际问题中，数据集无法用线性方法分割。核函数使 SVM 能够通过在高维空间中寻找线性边界来处理这些非线性问题。</li>
+<li><strong>竞争阶段：</strong> 对于每个输入向量，找到与之最相似（通常是欧氏距离最小）的神经元。</li>
+<li><strong>调整阶段：</strong> 调整胜出神经元及其邻域内的权重向量，使它们更靠近输入向量。</li>
 </ul>
-<h3 id="常见的核函数">常见的核函数</h3>
-<p><strong>高斯径向基函数（RBF）核：</strong> 最常用的核函数，适合处理没有明显特征模式的复杂数据集。
-$$K(\mathbf{x}_i, \mathbf{x}_j) = \exp(-\gamma ||\mathbf{x}_i - \mathbf{x}_j||^2)$$
-其中，$\gamma$ 是缩放参数。</p>
-<p><strong>多项式核：</strong> 用于将数据映射到由原始特征的多项式组成的高维空间。
-$$K(\mathbf{x}_i, \mathbf{x}_j) = (\gamma \mathbf{x}_i \cdot \mathbf{x}_j + r)^d$$</p>
-<p>其中，$\gamma$ 是缩放参数，$d$ 是多项式的度数,$ r $ 是系数项。</p>
-<p><strong>Sigmoid 核：</strong> 类似于神经网络的激活函数。</p>
-<p>$$K(\mathbf{x}_i, \mathbf{x}_j) = 	anh(\gamma \mathbf{x}_i \cdot \mathbf{x}_j + r)$$
-其中，$\gamma$ 是缩放参数，$r$ 是偏置项。</p>
-<h2 id="目标函数引入核函数">目标函数引入核函数</h2>
-<p>对于非线性数据集，目标函数和约束条件与线性不可分 SVM 类似，但使用核技巧在高维空间中寻找最优超平面。</p>
-<ul>
+<p>
+  <img src="/img/ml/som5.png" alt="">
+
+</p>
+<h2 id="流程">流程</h2>
+<ol>
 <li>
-<p><strong>目标函数</strong>:</p>
-<p>$\max_{\alpha} \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i,j=1}^n y_i y_j \alpha_i \alpha_j K(\mathbf{x}_i, \mathbf{x}_j)$</p>
+<p><strong>初始化：</strong> 随机初始化神经元的权重向量。</p>
 </li>
 <li>
-<p><strong>约束条件调整</strong>:</p>
-<p>$\sum_{i=1}^n y_i \alpha_i = 0 \text{ and } 0 \leq \alpha_i \leq C, \quad \forall i$</p>
+<p><strong>竞争：</strong> 对于每个输入样本，找到最相似的神经元。</p>
 </li>
+<li>
+<p><strong>合作：</strong> 确定胜出神经元的邻域。</p>
+</li>
+<li>
+<p><strong>适应：</strong> 调整胜出神经元及其邻域内神经元的权重。</p>
+</li>
+<li>
+<p><strong>重复：</strong> 重复步骤2-4，直到网络稳定。</p>
+</li>
+</ol>
+<h2 id="应用场景">应用场景</h2>
+<ul>
+<li><strong>数据可视化</strong>：将复杂的高维数据集映射到二维空间，以直观的形式展现数据结构。</li>
+<li><strong>聚类分析</strong>：自动发现数据中的模式和群组。</li>
+<li><strong>特征提取</strong>：在降维过程中提取数据的关键特征。</li>
+<li><strong>异常检测</strong>：识别数据集中的异常或离群点。</li>
 </ul>
-<h2 id="构建决策函数">构建决策函数</h2>
-<p>在找到最优超平面后，SVM 使用决策函数来评估新样本属于哪个类别。
-$$ f(x)=sign(∑_{i=1}^n​y_i​α_i​K(x_i​,x)+b) $$</p>
-<h2 id="应用实例">应用实例</h2>
-<p>支持向量机用于预测股票价格（例如 标普 500ETF，代码为 &lsquo;SPY&rsquo;）的未来 &rsquo;n&rsquo; 天收盘价的机器学习模型。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 基础库</span>
+<h2 id="实际应用案例">实际应用案例</h2>
+<p>在金融领域，SOM被用于信用评分系统，通过分析客户的历史交易数据来预测其信用风险。在生物信息学中，SOM用于分析和分类复杂的基因表达数据。在图像处理领域，SOM用于图像压缩和特征提取，帮助提高图像识别的效率和准确性。</p>
+<h2 id="python完整示例">Python完整示例</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> seaborn <span style="color:#ff79c6">as</span> sns
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> matplotlib.font_manager <span style="color:#ff79c6">import</span> FontProperties
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.datasets <span style="color:#ff79c6">import</span> load_iris
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.preprocessing <span style="color:#ff79c6">import</span> StandardScaler
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> minisom <span style="color:#ff79c6">import</span> MiniSom
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>style<span style="color:#ff79c6">.</span>use(<span style="color:#f1fa8c">&#39;fivethirtyeight&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 设置中文字体</span>
-</span></span><span style="display:flex;"><span>fontPath <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;/System/Library/Fonts/PingFang.ttc&#39;</span>
-</span></span><span style="display:flex;"><span>myFont <span style="color:#ff79c6">=</span> FontProperties(fname<span style="color:#ff79c6">=</span>fontPath)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 数据加载</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#ff79c6">=</span> load_iris()
+</span></span><span style="display:flex;"><span>X <span style="color:#ff79c6">=</span> data<span style="color:#ff79c6">.</span>data
+</span></span><span style="display:flex;"><span>y <span style="color:#ff79c6">=</span> data<span style="color:#ff79c6">.</span>target
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 预处理</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.preprocessing <span style="color:#ff79c6">import</span> MinMaxScaler
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.pipeline <span style="color:#ff79c6">import</span> Pipeline
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.model_selection <span style="color:#ff79c6">import</span> train_test_split, TimeSeriesSplit, GridSearchCV
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 数据分析 - 可视化</span>
+</span></span><span style="display:flex;"><span>df <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>DataFrame(X, columns<span style="color:#ff79c6">=</span>data<span style="color:#ff79c6">.</span>feature_names)
+</span></span><span style="display:flex;"><span>sns<span style="color:#ff79c6">.</span>pairplot(df)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># SVM</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.svm <span style="color:#ff79c6">import</span> SVR
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 特征工程 - 标准化</span>
+</span></span><span style="display:flex;"><span>scaler <span style="color:#ff79c6">=</span> StandardScaler()
+</span></span><span style="display:flex;"><span>X_scaled <span style="color:#ff79c6">=</span> scaler<span style="color:#ff79c6">.</span>fit_transform(X)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 忽略警告</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> warnings
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 创建并训练SOM</span>
+</span></span><span style="display:flex;"><span>som <span style="color:#ff79c6">=</span> MiniSom(x<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>, y<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>, input_len<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>, sigma<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.0</span>, learning_rate<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.5</span>)
+</span></span><span style="display:flex;"><span>som<span style="color:#ff79c6">.</span>random_weights_init(X_scaled)
+</span></span><span style="display:flex;"><span>som<span style="color:#ff79c6">.</span>train_random(X_scaled, num_iteration<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>warnings<span style="color:#ff79c6">.</span>filterwarnings(<span style="color:#f1fa8c">&#39;ignore&#39;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 使用 yfinance 加载数据</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> yfinance <span style="color:#ff79c6">as</span> yf
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 定义mapped变量</span>
+</span></span><span style="display:flex;"><span>mapped <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array([som<span style="color:#ff79c6">.</span>winner(d) <span style="color:#ff79c6">for</span> d <span style="color:#ff79c6">in</span> X_scaled])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 创建变量来预测 &#39;n&#39; 天之后的价格</span>
-</span></span><span style="display:flex;"><span>n <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 标记每个样本在SOM网格中的位置 - 优化显示</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>figure(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">10</span>))
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> i, m <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(mapped):
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>plot(m[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">+</span><span style="color:#bd93f9">.5</span>, m[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">+</span><span style="color:#bd93f9">.5</span>, marker<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;o&#39;</span>, color<span style="color:#ff79c6">=</span>plt<span style="color:#ff79c6">.</span>cm<span style="color:#ff79c6">.</span>rainbow(y[i] <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3.</span>), markersize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.5</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 从 yfinance 加载 SPY 的数据</span>
-</span></span><span style="display:flex;"><span>df <span style="color:#ff79c6">=</span> yf<span style="color:#ff79c6">.</span>download(<span style="color:#f1fa8c">&#39;SPY&#39;</span>, start<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;2020-01-01&#39;</span>, end<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;2023-12-02&#39;</span>, progress<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
-</span></span><span style="display:flex;"><span>df <span style="color:#ff79c6">=</span> df[[<span style="color:#f1fa8c">&#39;Adj Close&#39;</span>]]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 打印数据的最后 5 行</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(df<span style="color:#ff79c6">.</span>tail())
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 创建目标变量</span>
-</span></span><span style="display:flex;"><span>df[<span style="color:#f1fa8c">&#39;Target&#39;</span>] <span style="color:#ff79c6">=</span> df[<span style="color:#f1fa8c">&#39;Adj Close&#39;</span>]<span style="color:#ff79c6">.</span>shift(<span style="color:#ff79c6">-</span>n)
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(df<span style="color:#ff79c6">.</span>tail(<span style="color:#bd93f9">6</span>))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 构建预测变量和目标变量</span>
-</span></span><span style="display:flex;"><span>X <span style="color:#ff79c6">=</span> df[[<span style="color:#f1fa8c">&#39;Adj Close&#39;</span>]]<span style="color:#ff79c6">.</span>values[:<span style="color:#ff79c6">-</span>n]
-</span></span><span style="display:flex;"><span>y <span style="color:#ff79c6">=</span> df[<span style="color:#f1fa8c">&#39;Target&#39;</span>]<span style="color:#ff79c6">.</span>values[:<span style="color:#ff79c6">-</span>n]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 拆分训练集和测试集</span>
-</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#ff79c6">=</span> train_test_split(X, y, test_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.2</span>, random_state<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>, shuffle<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 打印训练集和测试集的大小</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;训练集和测试集大小：</span><span style="color:#f1fa8c">{</span><span style="color:#8be9fd;font-style:italic">len</span>(X_train)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, </span><span style="color:#f1fa8c">{</span><span style="color:#8be9fd;font-style:italic">len</span>(X_test)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 使用管道进行特征缩放和模型训练</span>
-</span></span><span style="display:flex;"><span>pipe <span style="color:#ff79c6">=</span> Pipeline([(<span style="color:#f1fa8c">&#34;scaler&#34;</span>, MinMaxScaler()), (<span style="color:#f1fa8c">&#34;regressor&#34;</span>, SVR(kernel<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;rbf&#39;</span>, C<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1e3</span>, gamma<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.1</span>))])
-</span></span><span style="display:flex;"><span>pipe<span style="color:#ff79c6">.</span>fit(X_train, y_train)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 预测测试集</span>
-</span></span><span style="display:flex;"><span>y_pred <span style="color:#ff79c6">=</span> pipe<span style="color:#ff79c6">.</span>predict(X_test)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 输出模型得分</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;训练集准确率：</span><span style="color:#f1fa8c">{</span>pipe<span style="color:#ff79c6">.</span>score(X_train, y_train)<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">0.4f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;测试集准确率：</span><span style="color:#f1fa8c">{</span>pipe<span style="color:#ff79c6">.</span>score(X_test, y_test)<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">0.4f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 使用时间序列交叉验证</span>
-</span></span><span style="display:flex;"><span>tscv <span style="color:#ff79c6">=</span> TimeSeriesSplit(n_splits<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 获取参数列表</span>
-</span></span><span style="display:flex;"><span>pipe<span style="color:#ff79c6">.</span>get_params()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 网格搜索和拟合模型</span>
-</span></span><span style="display:flex;"><span>param_grid <span style="color:#ff79c6">=</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;regressor__C&#34;</span>: [<span style="color:#bd93f9">0.1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">1000</span>],
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;regressor__kernel&#34;</span>: [<span style="color:#f1fa8c">&#34;poly&#34;</span>, <span style="color:#f1fa8c">&#34;rbf&#34;</span>, <span style="color:#f1fa8c">&#34;sigmoid&#34;</span>],
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;regressor__gamma&#34;</span>: [<span style="color:#bd93f9">1e-7</span>, <span style="color:#bd93f9">1e-4</span>, <span style="color:#bd93f9">1e-3</span>, <span style="color:#bd93f9">1e-2</span>]
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gs <span style="color:#ff79c6">=</span> GridSearchCV(pipe, param_grid, n_jobs<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>, cv<span style="color:#ff79c6">=</span>tscv, verbose<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
-</span></span><span style="display:flex;"><span>gs<span style="color:#ff79c6">.</span>fit(X_train, y_train)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 输出最佳模型得分</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;训练集准确率：</span><span style="color:#f1fa8c">{</span>gs<span style="color:#ff79c6">.</span>score(X_train, y_train)<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">0.6f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;测试集准确率：</span><span style="color:#f1fa8c">{</span>gs<span style="color:#ff79c6">.</span>score(X_test, y_test)<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">0.6f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 创建 DataFrame 来包含关键值</span>
-</span></span><span style="display:flex;"><span>df3 <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>DataFrame({<span style="color:#f1fa8c">&#39;X&#39;</span>: X_test<span style="color:#ff79c6">.</span>flatten(), <span style="color:#f1fa8c">&#39;y&#39;</span>: y_pred})
-</span></span><span style="display:flex;"><span>df3[<span style="color:#f1fa8c">&#39;X&#39;</span>] <span style="color:#ff79c6">=</span> df3[<span style="color:#f1fa8c">&#39;X&#39;</span>]<span style="color:#ff79c6">.</span>shift(<span style="color:#ff79c6">-</span>n)
-</span></span><span style="display:flex;"><span>df3[<span style="color:#f1fa8c">&#39;X-y&#39;</span>] <span style="color:#ff79c6">=</span> df3[<span style="color:#f1fa8c">&#39;X&#39;</span>] <span style="color:#ff79c6">-</span> df3[<span style="color:#f1fa8c">&#39;y&#39;</span>]
-</span></span><span style="display:flex;"><span>df3 <span style="color:#ff79c6">=</span> df3[:<span style="color:#ff79c6">-</span>n]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 检查缺失值</span>
-</span></span><span style="display:flex;"><span>df3<span style="color:#ff79c6">.</span>isnull()<span style="color:#ff79c6">.</span>sum()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 输出均值差异</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;均值差异：</span><span style="color:#f1fa8c">{</span>np<span style="color:#ff79c6">.</span>mean(df3[<span style="color:#f1fa8c">&#34;X-y&#34;</span>])<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">0.4f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 可视化预测结果和残差</span>
-</span></span><span style="display:flex;"><span>fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>, figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">20</span>, <span style="color:#bd93f9">10</span>))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ax[<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>scatter(df3[<span style="color:#f1fa8c">&#39;X&#39;</span>], df3[<span style="color:#f1fa8c">&#39;y&#39;</span>])
-</span></span><span style="display:flex;"><span>ax[<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#39;5天后的价格 vs 预测价格&#39;</span>, fontproperties<span style="color:#ff79c6">=</span>myFont)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ax[<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">.</span>plot(df3<span style="color:#ff79c6">.</span>index, y_pred[:<span style="color:#ff79c6">-</span>n], <span style="color:#f1fa8c">&#39;crimson&#39;</span>)
-</span></span><span style="display:flex;"><span>ax[<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#39;预测的价格&#39;</span>, fontproperties<span style="color:#ff79c6">=</span>myFont)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ax[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>plot(df3<span style="color:#ff79c6">.</span>index, df3[<span style="color:#f1fa8c">&#39;X-y&#39;</span>])
-</span></span><span style="display:flex;"><span>ax[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#39;5天后的价格与预测价格的差异&#39;</span>, fontproperties<span style="color:#ff79c6">=</span>myFont)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ax[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">.</span>hist(df3[<span style="color:#f1fa8c">&#39;X-y&#39;</span>], bins<span style="color:#ff79c6">=</span><span style="color:#bd93f9">50</span>, density<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;orange&#39;</span>)
-</span></span><span style="display:flex;"><span>ax[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#39;5天后的价格与预测价格差异的直方图&#39;</span>, fontproperties<span style="color:#ff79c6">=</span>myFont)
-</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xticks(<span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">10</span>))
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>yticks(<span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">10</span>))
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>grid()
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xlim([<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">10</span>])
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>ylim([<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">10</span>])
 </span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
 </span></span></code></pre></div><p>
-  <img src="/img/ml/svm13.png" alt="">
+  <img src="/img/ml/som1.png" alt="">
 
 </p>
-<h2 id="总结">总结</h2>
-<p>支持向量机（SVM）的目标函数取决于处理的数据类型（线性可分、线性不可分、非线性）和相应的优化策略。以下是这三种情况下 SVM 的目标函数：</p>
-<h3 id="线性可分支持向量机hard-margin-svm">线性可分支持向量机（Hard Margin SVM）</h3>
-<p>对于线性可分的数据集，目标是找到一个最优的超平面，即最大化两个类别之间的间隔。</p>
-<ul>
-<li>
-<p><strong>目标函数</strong>:$\min_{\mathbf{w}, b} \frac{1}{2} ||\mathbf{w}||^2$</p>
-</li>
-<li>
-<p><strong>约束条件</strong>:
-$y_i (\mathbf{w} \cdot \mathbf{x}_i + b) \geq 1, \quad \forall i$</p>
-</li>
-</ul>
-<h3 id="线性不可分支持向量机soft-margin-svm">线性不可分支持向量机（Soft Margin SVM）</h3>
-<p>当数据线性不可分时，通过引入“松弛变量”（slack variables）实现间隔和分类违规之间的平衡。</p>
-<ul>
-<li>
-<p><strong>目标函数</strong>:
-$\min_{\mathbf{w}, b, \xi} \frac{1}{2} ||\mathbf{w}||^2 + C \sum_{i=1}^n \xi_i$</p>
-</li>
-<li>
-<p><strong>约束条件</strong>:
-$y_i (\mathbf{w} \cdot \mathbf{x}_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0, \quad \forall i$</p>
-</li>
-</ul>
-<h3 id="非线性支持向量机">非线性支持向量机</h3>
-<p>对于非线性数据集，目标函数和约束条件与线性不可分 SVM 类似，但使用核技巧在高维空间中寻找最优超平面。</p>
-<ul>
-<li>
-<p><strong>目标函数</strong>:
-$\max_{\alpha} \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i,j=1}^n y_i y_j \alpha_i \alpha_j K(\mathbf{x}_i, \mathbf{x}_j)$</p>
-</li>
-<li>
-<p><strong>约束条件</strong>:
-$\sum_{i=1}^n y_i \alpha_i = 0 \text{ and } 0 \leq \alpha_i \leq C, \quad \forall i$
-&quot;&quot;&quot;</p>
-</li>
-</ul>
-<h2 id="非线性-svm-的优势与局限性">非线性 SVM 的优势与局限性</h2>
-<p>总结非线性 SVM 在处理复杂数据集时的优势，以及其面临的挑战和局限性。</p>
+<p>
+  <img src="/img/ml/som3.png" alt="">
+
+</p>
+<p>在SOM的结果中，相似的数据点被映射到彼此相邻的位置。通过观察SOM生成的图，我们可以直观地看到数据的聚类情况。数据点的分布和聚类可以揭示数据的内在结构和潜在的模式。</p>
+<h2 id="优化策略">优化策略</h2>
+<p>优化SOM的关键在于正确选择网络的大小、学习率和邻域函数。此外，根据具体的应用场景，调整这些参数可以提高SOM的性能和准确性。</p>
+<h2 id="结论">结论</h2>
+<p>自组织映射提供了一种强大且灵活的方法来分析和解释复杂的高维数据。通过其独特的自学习和自组织能力，SOM可以揭示数据中的潜在结构和模式，为数据科学家和研究人员提供了一个强大的工具。</p>
+<p>虽然SOM在许多领域表现出色，但它在处理非常大规模的数据集时面临挑战。随着技术的发展，未来的SOM可能会集成更先进的算法，以提高其在大数据环境中的性能。</p>
 <h2 id="往期推荐">往期推荐</h2>
 <ul>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484391&amp;idx=1&amp;sn=716e299395f39c6ee2af72227f34b255&amp;chksm=fb41f3f2cc367ae4f2f89dd7ed47de8378c35abc5904241b7d247e87cd707668b1bb09129a7b#rd">一文看懂机器学习</a></li>
@@ -610,6 +515,7 @@ $\sum_{i=1}^n y_i \alpha_i = 0 \text{ and } 0 \leq \alpha_i \leq C, \quad \foral
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484791&amp;idx=1&amp;sn=5fb140a07fe30805d785303d55307b14&amp;chksm=fb41f562cc367c74b5ae84e05093062b79a8827a505de7b858f2c76414a29ea9d94e08aaaaa5#rd">机器学习 | 线性回归</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484831&amp;idx=1&amp;sn=e052655aa3d5e383192c7ad1d03d170c&amp;chksm=fb41f58acc367c9c16b8879137ff4dcd9a3bbf3610d6ebdba62d699fd6ac1f18a2b0eb9b93e0#rd">机器学习 | 支持向量机线性可分</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484900&amp;idx=1&amp;sn=8496c2006de92416343bb1b061b095b1&amp;chksm=fb41f5f1cc367ce72e519130e8a332c076cde5f74f8b0494987af5ce2881a4f016e78663896b#rd">机器学习 | 支持向量机线性不可分</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484927&amp;idx=1&amp;sn=7d62334723856af745d696e210b83a97&amp;chksm=fb41f5eacc367cfc879ea394bb4e564081290ec756216593b98a4d10c71e7da911d6a92b4876#rd">机器学习 | 非线性支持向量机</a></li>
 </ul>
 <blockquote>
 <p>欢迎扫码关注公众号，订阅更多文章!</p>
@@ -667,15 +573,10 @@ $\sum_{i=1}^n y_i \alpha_i = 0 \text{ and } 0 \leq \alpha_i \leq C, \quad \foral
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/2023-11-19-machine-learning-support-vector-machine-non-linearly-separable/" data-toggle="tooltip" data-placement="top" title="机器学习 | 支持向量机线性不可分">&larr;
+                        <a href="/post/2023-12-02-machine-learning-nonlinear-support-vector-machines/" data-toggle="tooltip" data-placement="top" title="机器学习 | 非线性支持向量机">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/post/2023-12-19-machine-learning-self-organnizing-maps/" data-toggle="tooltip" data-placement="top" title="自组织映射 | 机器学习">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 
