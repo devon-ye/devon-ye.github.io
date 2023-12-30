@@ -52,6 +52,8 @@
     <meta name="baidu-site-verification" content="codeva-aKGHHixfLv" />
     <!-- google验证-->
     <meta name="google-site-verification" content="5YbYjVsLhmXRSCU2u_xrAegZCOyvI296GhQyr-o9L9c" />
+    <meta name="google-adsense-account" content="ca-pub-1062383921426856"/>
+
 
 
     <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
@@ -95,8 +97,13 @@
 
     <script src="{{"js/bing-clarity.min.js" | relURL }}"></script>
 
+
     <!-- Custom JS -->
     {{ range .Site.Params.custom_js }}
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"
+            crossorigin="anonymous"></script>
+
     <script src="{{ . | absURL }}"></script>
     {{ end }}
     <!-- katex 数学公式-->
