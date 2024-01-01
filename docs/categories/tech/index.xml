@@ -6,8 +6,15 @@
     <description>Recent content in Tech on 德文的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 19 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.devean.cn/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>决策树 | 机器学习</title>
+      <link>https://www.devean.cn/post/2024-01-01-machine-learning-decision-trees/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/post/2024-01-01-machine-learning-decision-trees/</guid>
+      <description>引言 机器学习领域中，决策树是一种强大的算法，被广泛应用于分类和回归问题。本文将深入探讨决策树的概念、原理、流程、工业应用场景，并通过代码实践</description>
+    </item>
     <item>
       <title>自组织映射 | 机器学习</title>
       <link>https://www.devean.cn/post/2023-12-19-machine-learning-self-organnizing-maps/</link>
