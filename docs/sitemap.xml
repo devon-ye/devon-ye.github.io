@@ -3,24 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.devean.cn/categories/</loc>
-    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/tags/machine-learning/</loc>
-    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/post/</loc>
-    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/tags/</loc>
-    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/categories/tech/</loc>
-    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2024-01-01-machine-learning-decision-trees/</loc>
-    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.devean.cn/post/2024-01-11-machine-learning-neural-networks/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.devean.cn/post/2024-01-01-machine-learning-decision-trees/</loc>
     <lastmod>2024-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/post/2023-12-19-machine-learning-self-organnizing-maps/</loc>
