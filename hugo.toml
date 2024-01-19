@@ -70,6 +70,7 @@ home = ["HTML", "RSS", "Algolia","JSON"]
   rss            = true
   zhihu          = "https://www.zhihu.com/people/devonaha"
   email          = "devean.ye@gmail.com"
+  youtube        = "https://www.youtube.com/@yedevean"
   #facebook      = "full profile url in facebook"
   #googleplus    = "full profile url in googleplus"
   #twitter       = "full profile url in twitter"
