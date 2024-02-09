@@ -60,7 +60,7 @@ DefaultContentLanguageInSubdir = true
 
     [[languages.en.menu.main]]
         name = "Top Post"
-        url = "/en/blog/2024-01-11-machine-learning-neural-networks/"
+        url = "/en/blog/2023-08-02-motorcycle-tour-around-xinjiang/"
         weight = 4
 
 [params]
@@ -139,7 +139,7 @@ DefaultContentLanguageInSubdir = true
 [params.homepage.social]
   # Global params common for both languages
   title = "关注我"
-  description = "I work on everything coding and tweet developer memes"
+  description = ""
 
   [[params.homepage.social.icons]]
     website = "twitter"

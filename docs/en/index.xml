@@ -6,49 +6,42 @@
     <description>Recent content on Deve</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 15 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://devon-ye.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Free CA certification details process</title>
+      <link>https://devon-ye.github.io/en/blog/2023-12-11-free-ca-certificate-configuration/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://devon-ye.github.io/en/blog/2023-12-11-free-ca-certificate-configuration/</guid>
+      <description>Free CA Certificate Configuration install certbot yum install certbot Manual certificate-only installation certbot run -a manual -i nginx -d domain.com,www.domain.com Saving debug log to /var/log/letsencrypt/letsencrypt.log Requesting a certificate for www.domain.com - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Create a file containing just this data: I7Sl7-xakxMT9dCS67OrHmzn_tFiBx-64g58jlkj9FM.</description>
+    </item>
+    <item>
+      <title>What Is Arbitrage</title>
+      <link>https://devon-ye.github.io/en/blog/2023-11-15-what-is-arbitrage/</link>
+      <pubDate>Wed, 15 Nov 2023 22:59:31 +0800</pubDate>
+      <guid>https://devon-ye.github.io/en/blog/2023-11-15-what-is-arbitrage/</guid>
+      <description>This paper briefly introduces what is arbitrage, what are the arbitrage methods and the reasons why arbitrage fails.&#xA;What Is Arbitrage Arbitrage is making a sure profit in excess of the risk-free rate of return. In the language of quantitative finance we can say that an arbitrage opportunity is a portfolio of zero value today which is of positive value in the future with positive probability,and of negative value in the future with zero probability.</description>
+    </item>
+    <item>
+      <title>Mathematical Applications in Quantitative Finance</title>
+      <link>https://devon-ye.github.io/en/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</link>
+      <pubDate>Tue, 14 Nov 2023 22:59:31 +0800</pubDate>
+      <guid>https://devon-ye.github.io/en/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</guid>
+      <description>This paper volume popularized the application of mathematics in quantitative finance, common modeling methods, and common mathematical tools in quantitative finance.&#xA;What are the different types of Mathematics found in quantitative finance? The field of mathematics most used in quantitative finance are those of probability theory and differential equations. And,of course, numerical methods are usually needed for producing numbers.&#xA;Here‘s a list of the various approaches to modelling and a selection of useful tools.</description>
+    </item>
+    <item>
+      <title>Motorcycle Tour Around Xinjiang</title>
+      <link>https://devon-ye.github.io/en/blog/2023-08-02-motorcycle-tour-around-xinjiang/</link>
+      <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://devon-ye.github.io/en/blog/2023-08-02-motorcycle-tour-around-xinjiang/</guid>
+      <description>Motorcycle Tour Around Xinjiang Copyright: The following pictures are copyrighted by me, all commercial use is prohibited, if you need commercial use, please contact me for authorization, infringement will be punished! 2023.8.2 Beijing &amp;ndash; Bayannaoer Linhe Service Area 2023.8.3 Bayannaoer river service area - Ejin Banner 2023.8.3 Ejin Banner &amp;ndash; Hami 2023.8.5 Hami - Barkol Altun Street Hami Cultural Hall 哈密回王墓 天山庙 巴里坤草原 2023.8.6 巴里坤-吐鲁番-乌鲁木齐 巴里坤糊 天山无人区峡谷 吐峪沟麻扎村 2023.8.7 乌鲁木齐 2023.</description>
+    </item>
     <item>
       <title>About Me</title>
       <link>https://devon-ye.github.io/en/page/about/</link>
       <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
       <guid>https://devon-ye.github.io/en/page/about/</guid>
       <description>About Me</description>
-    </item>
-    <item>
-      <title>Emoji Support</title>
-      <link>https://devon-ye.github.io/en/blog/emoji-support/</link>
-      <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/en/blog/emoji-support/</guid>
-      <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Markdown Syntax Guide</title>
-      <link>https://devon-ye.github.io/en/blog/markdown-syntax/</link>
-      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/en/blog/markdown-syntax/</guid>
-      <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Math Typesetting</title>
-      <link>https://devon-ye.github.io/en/blog/math-typesetting/</link>
-      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/en/blog/math-typesetting/</guid>
-      <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Placeholder Text</title>
-      <link>https://devon-ye.github.io/en/blog/placeholder-text/</link>
-      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/en/blog/placeholder-text/</guid>
-      <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Rich Content</title>
-      <link>https://devon-ye.github.io/en/blog/rich-content/</link>
-      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/en/blog/rich-content/</guid>
-      <description>&lt;p&gt;Hugo ships with several &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Built-in Shortcodes&lt;/a&gt;&#xA; for rich content, along with a &lt;a href=&#34;https://gohugo.io/about/hugo-and-gdpr/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Privacy Config&lt;/a&gt;&#xA; and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.&lt;/p&gt;&#xA;&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;</description>
     </item>
   </channel>
 </rss>

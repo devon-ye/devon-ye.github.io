@@ -5,12 +5,10 @@ description: "支持向量机概念、硬间隔、软间隔和非线性的区别
 date:        2023-11-18
 author:      ""
 image:       ""
-tags:        
-    - Machine Learning
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/svm1.png"
-
+tags:        ["Machine Learning"]
 ---
 
 

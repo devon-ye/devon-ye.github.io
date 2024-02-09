@@ -30,6 +30,13 @@
       <description>引言 在机器学习的广阔领域中，自组织映射（Self-Organizing Map，SOM）占据了一席之地。它是一种无监督学习的人工神经网络，用于数据的降维和可视化。今天，我们将深入探讨SOM的概念、定理、原理，并通过Python示例展示其在实际问题中的应用。&#xA;历史背景 SOM的提出源于对大脑皮层处理信息的方式的启发。Kohonen教授通过模拟这种生物学上的信息处理机制，创建了一种能够揭示数据内在结构的神经网络模型。从80年代初到现在，SOM已经在许多领域得到了广泛的应用，如金融分析、生物信息学、图像处理等。&#xA;概念 自组织映射（SOM）是由芬兰教授Teuvo Kohonen在1982年提出的一种无监督学习算法。它通过训练过程自我组织，形成一个拓扑结构，能够将高维数据映射到低维空间（通常是二维），同时保持数据的拓扑关系，这使得它在数据可视化方面特别有用。&#xA;与其他机器学习技术的对比 与传统的监督学习方法如深度学习神经网络和支持向量机等相比，SOM提供了一种不同的视角来处理和理解数据。SOM不依赖于标签数据，更专注于揭示数据的内在关系和结构。此外，与主成分分析（PCA）等其他降维技术相比，SOM保留了数据的非线性关系，这在许多复杂数据集的分析中是非常重要的。&#xA;原理 SOM的基本原理是将输入向量映射到一个二维的网格上。每个网格点（神经元）都有一个与输入空间维度相同的权重向量。通过竞争学习，SOM能够调整这些权重向量，使得相似的输入被映射到相近的神经元上。&#xA;竞争阶段： 对于每个输入向量，找到与之最相似（通常是欧氏距离最小）的神经元。 调整阶段： 调整胜出神经元及其邻域内的权重向量，使它们更靠近输入向量。 流程 初始化： 随机初始化神经元的权重向量。&#xA;竞争： 对于每个输入样本，找到最相似的神经元。&#xA;合作： 确定胜出神经元的邻域。&#xA;适应： 调整胜出神经元及其邻域内神经元的权重。&#xA;重复： 重复步骤2-4，直到网络稳定。&#xA;应用场景 数据可视化：将复杂的高维数据集映射到二维空间，以直观的形式展现数据结构。 聚类分析：自动发现数据中的模式和群组。 特征提取：在降维过程中提取数据的关键特征。 异常检测：识别数据集中的异常或离群点。 实际应用案例 在金融领域，SOM被用于信用评分系统，通过分析客户的历史交易数据来预测其信用风险。在生物信息学中，SOM用于分析和分类复杂的基因表达数据。在图像处理领域，SOM用于图像压缩和特征提取，帮助提高图像识别的效率和准确性。&#xA;Python完整示例 import numpy as np import pandas as pd import seaborn as sns import matplotlib.pyplot as plt from sklearn.datasets import load_iris from sklearn.preprocessing import StandardScaler from minisom import MiniSom # 数据加载 data = load_iris() X = data.</description>
     </item>
     <item>
+      <title>免费CA认证详细流程</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-12-11-free-ca-certificate-configuration/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-12-11-free-ca-certificate-configuration/</guid>
+      <description>免费CA证书配置 安装certbot yum install certbot 手动只安装证书 certbot run -a manual -i nginx -d domain.com,www.domain.com Saving debug log to /var/log/letsencrypt/letsencrypt.log Requesting a certificate for www.domain.com - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Create a file containing just this data: I7Sl7-xakxMT9dCS67OrHmzn_tFiBx-64g58jlkj9FM.</description>
+    </item>
+    <item>
       <title>机器学习 | 非线性支持向量机</title>
       <link>https://devon-ye.github.io/zh/blog/2023-12-02-machine-learning-nonlinear-support-vector-machines/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
@@ -51,11 +58,46 @@
       <description>本文从支持向量机概念、硬间隔、软间隔和非线性的区别、原理、术语、最大间隔数学推导几个方面详细讲解线性可分的支持向量机。&#xA;基础概念 支持向量机(Support Vector Machine)SVM，是一种监督学习模型，适用于二分类任务。SVM 算法的主要目标是在 N 维空间中找到能够将特征空间中不同类的数据点分开的最优超平面。超平面尝试使不同类的最近点之间的间隔尽可能最大。超平面的维度取决于特征的数量。如果输入特征的数量是两个，那么超平面只是一条线。如果输入特征的数量为三个，则超平面变为二维平面。当特征数量超过三个时就变得难以想象。&#xA;硬间隔、软间隔和非线性SVM区别 硬间隔数据是完全准确可分的、不存在分类错误的情况，软间隔是允许一定量的样本分类错误、而线性不可分是线性公式无解，只能使用非线性方式求解的&#xA;线性可分 SVM 即假设样本数据是线性可分离的情况下，我们直接使用线性 SVM 对数据进行分类。基本原理是找到一个超平面，将数据划分为两个类，使得类别之间的间隔最大化。&#xA;定义 给定训练样本集 D={(x1,y1)，(x2,y2)，&amp;hellip;，(xm,ym)},yi∈{-1,+1}，分类学习最基本的想法就是基于训练集 D 在样本空间中找到一个划分超平面，将不同类别的样本分开。下面列子以二维数据展开、实际生活中多维数据与二维几乎无差别，只是数据特征维度变为了多维。&#xA;直观上看，应该去找位于两类训练样本“正中间”的划分超平面，即图中红色的那个，因为该划分超平面对训练样本局部扰动的“容忍”性最好。如果，由于训练集的局限性或噪声的因素，训练集外的样本可能比图中的训练样本更接近两个类的分隔界，这将使许多划分超平面出现错误，而红色的超平面受影响最小。&#xA;要找到最佳超平面,即得找到样本数据点离超平面最近的点的距离最大化，从上面两个图中可以看出,离图中红线最近的点即被圈住的样本到红色超平面距离最大。其中 w=(w1;w2;&amp;hellip;;wd)为法向量，决定了超平面的方向；b 为位移项，决定了超平面与原点之间的距离。&#xA;术语 向量距离：即上图中任何一个样本点到红色超平面的距离 $$r= \frac {w^Tx+b} {||w||}$$&#xA;支持向量（support vector）：即图中圈中的样本,支持向量是距离超平面最近的数据点，在决定超平面和边距方面起着关键作用。&#xA;决策边界:即上图中红色超平面,用于分隔特征空间中不同类的数据点。在线性分类的情况下，它将是一个线性方程 $$w^Tx+b=0$$&#xA;上边界：将超平面放大 n 背后&#xA;$$w^Tx+b=1$$&#xA;下边界： $$w^Tx+b=-1$$&#xA;间隔(margin)：即如图上下边界之间的距离&#xA;$$\lambda=\frac {2} {||w||}$$&#xA;求解线性 SVM 决策超平面 1. 列出知超平面方程组 $$w^Tx+b=0$$ $$w^Tx+b=1$$ $$w^Tx+b=-1$$&#xA;2 假设正负超平面向量 假设正决策超平面上的存在点 $x_m$、负决策超平面上存在点 $x_n$, 求两点之间的向量可如下图&#xA;3.可将正负超平面上的向量带入方程计算&#xA;$$\vec w_m \vec x+b=1$$ $$\vec w_n \vec x+b=-1$$&#xA;$$\vec {w} \cdot (\vec x_m- \vec x_n)=2$$</description>
     </item>
     <item>
-      <title>表情支持</title>
-      <link>https://devon-ye.github.io/zh/blog/emoji-support/</link>
-      <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/zh/blog/emoji-support/</guid>
-      <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;</description>
+      <title>什么是套利 | 翻译</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-11-15-what-is-arbitrage/</link>
+      <pubDate>Wed, 15 Nov 2023 22:59:31 +0800</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-11-15-what-is-arbitrage/</guid>
+      <description>本文简单科普了什么是套利、有哪些套利方法、套利失效的原因。&#xA;什么是套利 套利是指在无风险回报率之外获得确定的利润。 用量化金融的语言来说，我们 可以说套利机会是今天价值为零但未来价值为正的投资组合 的概率，并且未来为负值的概率为零。&#xA;市场上不存在套利机会的假设是经典金融理论的基础。这个想法是俗话说“天下没有免费的午餐”。&#xA;现在我们可以看到，我们可以想到几种套利方式。以下是最重要的几种套利的列表和说明。&#xA;静态套利是一种无需重新平衡正向持仓的套利。 动态套利是一种需要在未来进行交易的价差套利策略，通常取决于市场状况。 统计套利并非套利，而只是根据过去的统计数据预测，可能获得超过无风险收益的利润（甚至可能根据承担的风险进行适当调整）。 模型无关套利是一种不依赖于任何金融工具数学模型而发挥作用的套利。例如，可利用的对看跌期权平价的违反或对债券与掉期之间关系的违反 依赖于模型的套利需要一个模型。例如，由于不正确的波动率估计，期权定价错误。为了从套利中获利，你需要delta对冲，这需要一个模型。 这有几个套利失效的原因&#xA;报价错误或不可交易 期权价格和股票价格没有同步报价 存在您未计算在内的竞价价差 你的模型是错误的，或者存在你没有考虑到的风险因素 [1] Wilmott，M 2009 Frequently Asked Questions In Quantitative Finance, second edition. John Wiley &amp;amp; Sons,Ltd.&#xA;欢迎扫码关注公众号，订阅更多文章!</description>
+    </item>
+    <item>
+      <title>量化金融中的数学应用 | 翻译</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</link>
+      <pubDate>Tue, 14 Nov 2023 22:59:31 +0800</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</guid>
+      <description>本文量从量化金融中数学的应用、常见的建模方法、常见的数学工具普及了量化金融中的应用。&#xA;量化金融中有哪些不同类型的数学？ 在数量金融中使用最多的数学领域是概率论和微分方程。当然，通常需要数值方法来生成数字。&#xA;这里列出了各种建模方法和一些有用的工具。“建模方法”和“工具”之间的区别将开始变得清晰。&#xA;建模方法&#xA;概率模型 决策模型 离散：差分方程 连续：微分方程 实用工具&#xA;模拟 离散化方法 近似值 渐进分析 级数解 格林函数 虽然这些清单并非完全是任意列出的，但可以接受一些批评或补充。让我们先来看看建模方法。&#xA;[1] Wilmott，M 2009 Frequently Asked Questions In Quantitative Finance, second edition. John Wiley &amp;amp; Sons,Ltd.</description>
+    </item>
+    <item>
+      <title>机器学习 | 特征缩放</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-11-11-machine-learning-feature-scaling/</link>
+      <pubDate>Sat, 11 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-11-11-machine-learning-feature-scaling/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;本文从特征缩放概念、目的、常用特征缩放方法：最小-最大缩放、标准缩放、鲁棒缩放、L2 Normalization、L1 Normalization、Power Transformer的公式讲解、Python缩放数据可视化对比诠释了特征缩放&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;什么是特征缩放&#34;&gt;什么是特征缩放&lt;/h2&gt;&#xA;&lt;p&gt;特征缩放又称归一化，是机器学习中的一种技术，涉及调整数值数据的量度，使所有数据点在相似的尺度上。例如：身高、体重、年龄、收入等个人特征数据，每个维度的区间不一样，为保证所有维度的特征数据尺度一样，我们就需要对原始数据做特征缩放，将身高、体重、年龄、收入都转化为区间[0,1]之间的数据。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>K临近(KNN) | 机器学习</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-11-12-machine-learning-k-nearest-neighbours/</link>
+      <pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-11-12-machine-learning-k-nearest-neighbours/</guid>
+      <description>本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法。&#xA;K 近临(K Nearest-Neighbours) 一种简单的监督学习算法，惰性学习算法，在技术上并不训练模型来预测。适用于分类和回归任务。它的核心思想是：相似的对象彼此接近。例如，若果你想分类一个新的数据点(绿点)，可以查看训练数据中哪些数据点与它最接近，并根据这些最接近的数据点和标签来预测它的标签(红点或蓝圆)。&#xA;概念 K: 这是一个用户指定的正整数，即训练数据分类数量，代表要考虑的最近邻居的数量，上图中假设 K=2,即训练数据分类为蓝色圆和红色三角两类标签。&#xA;距离函数: 用于计算数据点之间的距离。最常见的是欧几里得距离、曼哈顿距离、马氏距离等。&#xA;投票机制:&#xA;分类任务: 将根据 k 个最近邻的多数投票来确定新数据点的类别。 回归任务: 通常取 k 个最近邻的输出变量的平均值。 原理 距离计算： 对于给定的新数据点，计算它与训练数据集中每个点的距离。 选取 K 个邻居： 从训练数据集中选取距离最近的 K 个点。 投票 (对于分类)： 对于 K 个邻居，看哪个类别最为常见，并将其指定为新数据点的类别。 均值 (对于回归)： 对于 K 个邻居，计算其属性的平均值，并将其指定为新数据点的值。 距离度量 欧几里得距离 (Euclidean Distance) 欧几里得距离的名称来源于古希腊数学家欧几里得，是衡量两点在平面或更高维空间中的&amp;quot;直线&amp;quot;距离。它基于勾股定理，用于计算两点之间的最短距离。在日常生活中，我们经常无意识地使用欧几里得距离，例如，当我们说两地之间的&amp;quot;直线&amp;quot;距离时，实际上是在引用欧几里得距离。 公式: 给定两点 P 和 Q，其坐标分别为 $P(x_1, x_2, &amp;hellip;, x_n)$ 和 $Q(y_1, y_2, &amp;hellip;, y_n)$ 在一个 n 维空间中，它们之间的欧几里得距离 d 定义为：&#xA;$d(P, Q) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$</description>
+    </item>
+    <item>
+      <title>机器学习 | 基础概念</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-09-08-machine-learning-basic-concepts/</link>
+      <pubDate>Fri, 08 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-09-08-machine-learning-basic-concepts/</guid>
+      <description>本文从机器学习与传统建模区别、机器学习分类：监督、非监督、半监督、强化，基础算法：K临近(KNN)、K均值(KMC)、朴素贝叶斯(NBC)、支持向量机(SVM)、回归、自组织映射、神经网络原理(NLP)&#xA;什么是机器学习 机器学习是人工智能的一个分支,它让计算机从数据中自动“学”到知识,并用这些知识做决策或预测,而不需要我们一步步明确地告诉它怎么做。&#xA;传统数学 vs 机器学习 数学建模 机器学习 相同点 数据驱动: 两者都利用数据来构建和验证模型。&#xA;预测和推断: 数学建模和机器学习都可以用于预测未知的输出或解释数据中的模式。&#xA;优化问题: 在某些情况下，两者都可能涉及到优化问题，例如，寻找最小化误差的参数。&#xA;不同点 目的 数学建模：旨在用数学的形式来描述现实世界中的现象或问题，往往为了理解其背后的机制或原理。&#xA;主要关注的是预测和泛化。机器学习模型可能不太关心背后的机制，而是关心在未知数据上的性能。&#xA;模型构建 数学建模：模型的形式通常基于对现象的物理、生物或经济学的理解。例如，描述人口增长的模型可能基于出生率和死亡率的估计。&#xA;机器学习：模型的形式主要基于数据。使用的模型可能没有明确的现实意义，例如深度学习模型。&#xA;验证 数学建模：模型的验证通常基于其是否与现实世界的观察相符合，以及其是否可以提供洞察力。&#xA;机器学习：验证通常基于模型在独立测试集上的性能。&#xA;模型的解释性 数学建模：模型往往更具解释性，因为它们是基于现象的某些已知原理或规律构建的。&#xA;机器学习：尤其是某些复杂的模型，如深度神经网络，可能难以解释。尽管如此，机器学习领域也有许多工作在努力提高模型的可解释性。&#xA;应用 数学建模：常应用于工程、物理学、经济学等领域，以帮助专家了解和控制系统。&#xA;机器学习：广泛应用于计算机视觉、自然语言处理、推荐系统等领域，主要关注自动化和预测。&#xA;模型复杂性 数学建模：往往倾向于使用更简单的、基于物理学或其他学科原理的模型。&#xA;机器学习：可能使用非常复杂的模型，特别是当数据量大且复杂度高时。&#xA;总的来说，数学建模和机器学习都是理解、解释和预测现象的工具，但它们的关注点、方法和应用有所不同。&#xA;主要类别 机器学习主要分为三大类：监督学习、非监督学习、强化学习，而监督学习和非监督学习中又衍生出半监督学习。&#xA;监督学习 Supervised Learning是机器学习的一种方法，其模型是通过输入-输出(有标签的数据)对进行训练，目标是从给定的数据中学习一个映射函数,以便在给定新的输入时，模型可以预测相应的输出 。训练过程涉及到输入数据和其相应的标签，并尝试找到这两者之间的关系。一旦模型被训练，它可以用来预测新、未标签数据的输出。&#xA;非监督学习 Unsupervised Learning模型被训练在没有标签的数据上。它的目的是学习数据的底层结构、分布或表示，而不是预测标签。与监督学习不同，非监督学习的目标并不是预测一个输出。相反，它试图通过某种方式学习数据的结构，这可以是通过聚类、降维或生成模型等方式来实现的。&#xA;强化学习 Reinforcement Learning是通过与环境交互来学习如何行动，从而最大化某种定义的长期回报。与传统的监督学习不同，强化学习通常涉及决策问题，其中每个行动都会影响未来的回报。&#xA;半监督学习 Semi-supervised Learning是介于两个极端之间(监督式是指整个数据集被标记，而非监督式是指没有标记)。半监督学习任务具有一个标记和一个未标记的数据集。它使用未标记的数据来获得对数据结构的更多理解。通常，SSL使用小的带标签数据集和较大的未带标签数据集来进行学习。)学习正如其名称所示，介于两个极端之间(监督式是指整个数据集被标记，而非监督式是指没有标记)。半监督学习任务具有一个标记和一个未标记的数据集。它使用未标记的数据来获得对数据结构的更多理解。通常，SSL使用小的带标签数据集和较大的未带标签数据集来进行学习。&#xA;为什么会用半监督学习 半监督学习位于监督学习和非监督学习之间，利用少量的标记数据和大量的未标记数据进行学习。以下是为什么要使用半监督学习的原因：&#xA;数据标注成本高 ：在很多应用中，收集大量数据是相对容易的，但为这些数据打标签则既昂贵又耗时。例如，在医学图像领域，一个专家可能需要花费大量时间来手动标注图像中的特定结构或病变。利用半监督学习，可以用少量的标注数据和大量的未标注数据共同训练模型。&#xA;利用数据的完整潜力 ：未标记的数据包含有关数据分布的有用信息。半监督学习方法尝试利用这些信息来改善模型的性能。&#xA;提高泛化能力 ：在某些情况下，利用大量的未标记数据可以帮助模型更好地泛化到新的、未见过的数据。&#xA;数据标注可能存在误差 ：在某些场景中，即使数据被标注，标签也可能存在噪音或误差。在这种情况下，使用半监督学习方法，结合大量的未标记数据，可能会提供一个更稳健的学习策略。&#xA;在某些任务中，有很多相关的未标记数据 ：例如，在自然语言处理中，我们可能有少量标记的数据集，但可以从网络上轻松获得大量的相关文本。半监督学习可以利用这些未标记的文本来提高模型的性能。&#xA;适应数据的变化 ：在动态环境中，数据分布可能随时间而变化。利用半监督学习，可以定期利用新收集的未标记数据来更新模型，使其适应变化。&#xA;总之，半监督学习提供了一种在有限标记数据的情况下利用未标记数据的方法，这对于许多实际应用来说是非常有价值的。&#xA;模型 K近临 K Nearest-Neighbours是一种监督学习技术，给定一个新的观测值，KNN算法会从训练数据集中搜索出k个与其最相似的实例，然后基于这些邻居的属性来预测新观测值的标签。</description>
+    </item>
+    <item>
+      <title>环新疆摩旅</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-08-02-motorcycle-tour-around-xinjiang/</link>
+      <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-08-02-motorcycle-tour-around-xinjiang/</guid>
+      <description>环新疆摩旅 版权声明：以下图片版权归本人所有，禁止一切商用，如需商用请与本人取得联系获取授权，侵权必究！ 2023.8.2 北京&amp;ndash;巴彦淖尔临河服务区 2023.8.3 巴彦淖尔临河服务区&amp;ndash;额济纳旗 2023.8.3 额济纳旗&amp;ndash;哈密 2023.8.5 哈密-巴里坤 阿勒吞古街 哈密文化馆 哈密回王墓 天山庙 巴里坤草原 2023.8.6 巴里坤-吐鲁番-乌鲁木齐 巴里坤糊 天山无人区峡谷 吐峪沟麻扎村 2023.8.7 乌鲁木齐 2023.8.8 阿勒泰五彩湾 2023.8.9 可可托海 2023.8.10 禾木 2023.8.11-12 喀纳斯 2023.8.13 吉木乃 草原石城 吉木乃草原 松海湾 2023.8.16 塞里湖&amp;ndash;尼勒克 赛里木湖&amp;ndash;大西洋的最后一滴泪 果子沟大桥 2023.8.17 尼勒克&amp;ndash;奎屯 特克斯八卦城 2023.8.19 奎屯&amp;ndash;独库640兰萨德克服务区 安集海大峡谷 2023.8.20 独库640兰萨德克服务区&amp;ndash;天山神秘大峡谷 </description>
     </item>
     <item>
       <title>关于我</title>
@@ -63,34 +105,6 @@
       <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
       <guid>https://devon-ye.github.io/zh/page/about/</guid>
       <description>关于我</description>
-    </item>
-    <item>
-      <title>Markdown语法指南</title>
-      <link>https://devon-ye.github.io/zh/blog/markdown-syntax/</link>
-      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/zh/blog/markdown-syntax/</guid>
-      <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>数学排板</title>
-      <link>https://devon-ye.github.io/zh/blog/math-typesetting/</link>
-      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/zh/blog/math-typesetting/</guid>
-      <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>富文本</title>
-      <link>https://devon-ye.github.io/zh/blog/rich-content/</link>
-      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/zh/blog/rich-content/</guid>
-      <description>&lt;p&gt;Hugo ships with several &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Built-in Shortcodes&lt;/a&gt;&#xA; for rich content, along with a &lt;a href=&#34;https://gohugo.io/about/hugo-and-gdpr/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Privacy Config&lt;/a&gt;&#xA; and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.&lt;/p&gt;&#xA;&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;</description>
-    </item>
-    <item>
-      <title>占位符文本</title>
-      <link>https://devon-ye.github.io/zh/blog/placeholder-text/</link>
-      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/zh/blog/placeholder-text/</guid>
-      <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
