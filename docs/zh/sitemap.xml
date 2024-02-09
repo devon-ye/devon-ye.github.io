@@ -4,16 +4,6 @@
   <url>
     <loc>https://www.devean.cn/zh/tags/architecture/</loc>
     <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/tags/architecture/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/tags/architecture/"
-                />
   </url><url>
     <loc>https://www.devean.cn/zh/categories/</loc>
     <lastmod>2024-01-11T00:00:00+00:00</lastmod>
@@ -85,16 +75,6 @@
   </url><url>
     <loc>https://www.devean.cn/zh/tags/tracing/</loc>
     <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/tags/tracing/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/tags/tracing/"
-                />
   </url><url>
     <loc>https://www.devean.cn/zh/blog/</loc>
     <lastmod>2024-01-11T00:00:00+00:00</lastmod>

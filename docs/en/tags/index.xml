@@ -9,17 +9,17 @@
     <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.devean.cn/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Architecture </title>
-      <link>https://www.devean.cn/en/tags/architecture/</link>
+      <title>Distributed Architecture </title>
+      <link>https://www.devean.cn/en/tags/distributed-architecture/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.devean.cn/en/tags/architecture/</guid>
+      <guid>https://www.devean.cn/en/tags/distributed-architecture/</guid>
       <description></description>
     </item>
     <item>
-      <title>Tracing</title>
-      <link>https://www.devean.cn/en/tags/tracing/</link>
+      <title>Distributed Tracing</title>
+      <link>https://www.devean.cn/en/tags/distributed-tracing/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.devean.cn/en/tags/tracing/</guid>
+      <guid>https://www.devean.cn/en/tags/distributed-tracing/</guid>
       <description></description>
     </item>
     <item>

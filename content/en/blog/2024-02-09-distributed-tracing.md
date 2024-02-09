@@ -1,9 +1,9 @@
 ---
 title:       "Distributed Tracing"
-description: "Tracing 核心概念、java进程内、进程间实现方法"
+description: "Tracing core concepts, java in-process, inter-process implementation methods"
 date:        2024-01-11
 author:      "Devean"
-tags:        ["Tracing","Architecture "]
+tags:        ["Distributed Tracing","Distributed Architecture "]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/blog/tracing2.png"
