@@ -1,6 +1,6 @@
 baseurl = "https://www.devean.cn/"
 metaDataFormat = "yaml"
-title = "Deve"
+title = "Devean"
 theme = "blist"
 
 DefaultContentLanguage = "zh"
@@ -113,6 +113,15 @@ DefaultContentLanguageInSubdir = true
   # This setting can also be in page's markdown file
   hidePageThumbnail = false
 
+  # Baidu Analytics
+  ba_track_id = "1ae0b78ddcca3b07f0cf346c87ee7585"
+
+  # algolia site search
+  algolia_search = true
+  algolia_appId = "HSQWDBMC2T"
+  algolia_indexName = "DeveanBlog"
+  algolia_apiKey = "e6f3dbe435f1b262622db4ca6d2fbebb"
+
 # Comments system
 [params.comments]
   # Supports disqus, giscus and utterances
@@ -140,61 +149,63 @@ DefaultContentLanguageInSubdir = true
   # Global params common for both languages
   title = "关注我"
   description = ""
-
   [[params.homepage.social.icons]]
-    website = "twitter"
-    url = "https://twitter.com/"
+    website = "zhihu"
+    url = "https://www.zhihu.com/people/devonaha"
   [[params.homepage.social.icons]]
-    website = "linkedin"
-    url = "https://linkedin.com/in/"
-  [[params.homepage.social.icons]]
-    website = "xing"
-    url = "https://www.xing.com/profile/"
-  [[params.homepage.social.icons]]
-    website = "telegram"
-    url = "https://t.me/"
-  [[params.homepage.social.icons]]
-    website = "github"
-    url = "https://github.com/"
-  [[params.homepage.social.icons]]
-    website = "buymeacoffee"
-    url = "https://www.buymeacoffee.com/"
-  [[params.homepage.social.icons]]
-    website = "medium"
-    url = "https://medium.com/"
-  [[params.homepage.social.icons]]
-    website = "reddit"
-    url = "https://reddit.com/"
-  [[params.homepage.social.icons]]
-    website = "dribbble"
-    url = "https://dribbble.com/"
+    website = "email"
+    url = "devean.ye@gmail.com"
   [[params.homepage.social.icons]]
     website = "stackoverflow"
-    url = "https://stackoverflow.com/"
+    url = "https://stackoverflow.com/users/7220519"
+#  [[params.homepage.social.icons]]
+#    website = "linkedin"
+#    url = "https://linkedin.com/in/"
   [[params.homepage.social.icons]]
-    website = "xda"
-    url = "https://forum.xda-developers.com/"
+    website = "wechat"
+    url = "img/wechat-QRCode.png"
+#  [[params.homepage.social.icons]]
+#    website = "telegram"
+#    url = "https://t.me/"
   [[params.homepage.social.icons]]
-    website = "tiktok"
-    url = "https://tiktok.com"
-  [[params.homepage.social.icons]]
-    website = "googlescholar"
-    url = "https://scholar.google.com/"
-  [[params.homepage.social.icons]]
-    website = "mastodon"
-    url = "https://joinmastodon.org"
+    website = "github"
+    url = "https://github.com/devon-ye"
+#  [[params.homepage.social.icons]]
+#    website = "buymeacoffee"
+#    url = "https://www.buymeacoffee.com/"
+#  [[params.homepage.social.icons]]
+#    website = "medium"
+#    url = "https://medium.com/"
+#  [[params.homepage.social.icons]]
+#    website = "reddit"
+#    url = "https://reddit.com/"
+#  [[params.homepage.social.icons]]
+#    website = "dribbble"
+#    url = "https://dribbble.com/"
+#  [[params.homepage.social.icons]]
+#    website = "xda"
+#    url = "https://forum.xda-developers.com/"
+#  [[params.homepage.social.icons]]
+#    website = "tiktok"
+#    url = "https://tiktok.com"
+#  [[params.homepage.social.icons]]
+#    website = "googlescholar"
+#    url = "https://scholar.google.com/"
+#  [[params.homepage.social.icons]]
+#    website = "mastodon"
+#    url = "https://joinmastodon.org"
   [[params.homepage.social.icons]]
     website = "youtube"
-    url = "https://youtube.com"
-  [[params.homepage.social.icons]]
-    website = "instagram"
-    url = "https://instagram.com"
-  [[params.homepage.social.icons]]
-    website = "facebook"
-    url = "https://facebook.com"
-  [[params.homepage.social.icons]]
-    website = "behance"
-    url = "https://behance.net"
+    url = "https://www.youtube.com/@yedevean"
+#  [[params.homepage.social.icons]]
+#    website = "instagram"
+#    url = "https://instagram.com"
+#  [[params.homepage.social.icons]]
+#    website = "facebook"
+#    url = "https://facebook.com"
+#  [[params.homepage.social.icons]]
+#    website = "behance"
+#    url = "https://behance.net"
 
 [[menu.main]]
   name = "About"
