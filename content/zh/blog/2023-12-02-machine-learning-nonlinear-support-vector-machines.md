@@ -9,7 +9,7 @@ tags:        ["Machine Learning"]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/ml/svm12.webp"
-
+keywords: ["非线性支持向量机","支持向量机","机器学习"]
 ---
 
 

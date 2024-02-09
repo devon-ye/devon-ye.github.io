@@ -1,13 +1,14 @@
 ---
-title:       "Motorcycle Tour Around Xinjiang"
+title:       "Motorcycle Travel Around Xinjiang"
 subtitle:    ""
 description: ""
 date:        2023-08-02
-author:      "Devean"
+author:    "Devean"
 image:       ""
 tags: ["Travel"]
 categories:  [ Life ]
 thumbnail: "/img/202308/2023081101.jpg"
+keywords: ["Motorcycle travel","Motorcycle Travel Around Xinjiang","Xinjiang"]
 ---
 
 ## Motorcycle Tour Around Xinjiang

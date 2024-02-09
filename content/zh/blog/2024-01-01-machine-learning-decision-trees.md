@@ -8,6 +8,7 @@ tags:        ["Machine Learning"]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/ml/decision-trees.webp"
+keyword: ["决策树","机器学习"]
 ---
 
 

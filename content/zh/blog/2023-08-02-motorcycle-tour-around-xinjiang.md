@@ -8,7 +8,7 @@ image:       ""
 tags: ["Travel"]
 categories:  [ Life ]
 thumbnail: "/img/202308/2023080601.jpg"
-
+keywords: ["摩旅","环新疆摩旅","新疆"]
 ---
 
 ## 环新疆摩旅

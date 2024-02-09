@@ -7,6 +7,7 @@ tags:        ["Distributed Tracing","Distributed Architecture "]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/blog/tracing2.png"
+keywords: ["Distributed Tracing","Distributed"]
 ---
 
 

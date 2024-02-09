@@ -8,6 +8,7 @@ tags:        ["Machine Learning"]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/ml/NN3.webp"
+keyword: ["神经网络","机器学习"]
 ---
 
 

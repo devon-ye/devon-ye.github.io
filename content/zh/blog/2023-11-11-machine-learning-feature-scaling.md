@@ -5,12 +5,11 @@ description: "特征缩放(Feature Scaling)概念、目的、常用特征缩放�
 date:        2023-11-11
 author:      "Devean"
 image:       ""
-tags:
-   - Machine Learning
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/svm1.png"
 tags:        ["Machine Learning"]
+keywords: ["特征缩放","特征工程","机器学习"]
 ---
 
 > 本文从特征缩放概念、目的、常用特征缩放方法：最小-最大缩放、标准缩放、鲁棒缩放、L2 Normalization、L1 Normalization、Power Transformer的公式讲解、Python缩放数据可视化对比诠释了特征缩放

@@ -8,7 +8,7 @@ image:       ""
 tags: ["Machine Learning"]
 math: true
 categories:  ["Tech" ]
-
+keywords: ["监督","特征工程","机器学习"]
 ---
 
 >  本文从机器学习与传统建模区别、机器学习分类：监督、非监督、半监督、强化，基础算法：K临近(KNN)、K均值(KMC)、朴素贝叶斯(NBC)、支持向量机(SVM)、回归、自组织映射、神经网络原理(NLP)

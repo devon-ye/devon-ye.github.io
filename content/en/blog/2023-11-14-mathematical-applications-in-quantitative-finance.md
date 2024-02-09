@@ -6,6 +6,8 @@ author:      "Devean"
 tags:        ["Quantitative Finance"]
 categories:  [ "Finance" ]
 thumbnail: "/img/202308/2023080601.jpg"
+
+keywords: ["Quantitative Finance"]
 ---
 
 

@@ -6,8 +6,10 @@ date:        2023-12-11
 author:      ""
 image:       ""
 tags:        ["CA"]
-categories:  ["Tech" ]
+categories:  ["Tech"]
+keywords: []
 thumbnail: "/img/blog/CA.png"
+keyword: ["CA证书","SSL证书"]
 ---
 
 

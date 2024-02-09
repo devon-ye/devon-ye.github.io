@@ -9,6 +9,7 @@ tags:        ["Machine Learning"]
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/svm8.jpeg"
+keywords: ["支持线性可分向量机","支持向量机","机器学习"]
 ---
 
 

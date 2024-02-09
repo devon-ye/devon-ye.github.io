@@ -9,6 +9,8 @@ math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/svm1.png"
 tags:        ["Machine Learning"]
+
+keywords: ["K临近","K近临","KNN","机器学习"]
 ---
 
 > 本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法。
