@@ -9,6 +9,13 @@
     <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.devean.cn/zh/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Distributed Tracing</title>
+      <link>https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/</link>
+      <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/</guid>
+      <description>分布式追踪 什么是分布式追踪？ 分布式追踪也叫分布式请求跟踪，是一种针对分布式服务概要分析和监控的方法，特别对于故障发生未知及性能下降原因&#xA;核心概念 traceId:标识一次用户请求生成的唯一ID spanId:标识本次调用在调用链中的位置 为什么需要分布式追踪？ 随着业务量增长，单体服务已经无法满足需求，因此SOA服务化和微服务，且每个服务多实例部署，导致排查故障及性能问题的难度加大&#xA;我们能用分布式追踪能做什么？ 故障定位 日志聚合 性能分析 服务依赖拓扑图查看 分布式追踪的实现原理 夸线程:ThreadLocal传递traceId等信息 跨进程:通过封装RPC、HTTP、MQ 协议的header传递traceId等信息&#xA;实现方法: 业界中间件SDK封装，在需要的地方手动处理 编译器字节码插装 好处:业务无感知，开箱即用&#xA;GlobalTracing public class GlobalTracing { private static final ThreadLocal&amp;lt;String&amp;gt; TRACE_ID_LOCAL = new ThreadLocal&amp;lt;&amp;gt;(); public static final String TRACE_ID = &amp;#34;trace_id&amp;#34;; private GlobalTracing() { } public static void setTraceId(String traceId) { TRACE_ID_LOCAL.set(traceId); LogUtils.setTraceId(traceId); } public static String getTraceId() { return TRACE_ID_LOCAL.get(); } public static void remove() { TRACE_ID_LOCAL.remove(); } } BaseProcessor @Override public Response execute0(RstMsgType rmt, GeneratedMessageV3 req) { try { GlobalTracing.</description>
+    </item>
+    <item>
       <title>神经网络 | 机器学习</title>
       <link>https://www.devean.cn/zh/blog/2024-01-11-machine-learning-neural-networks/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>

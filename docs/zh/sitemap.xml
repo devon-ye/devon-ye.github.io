@@ -2,6 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.devean.cn/zh/tags/architecture/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/tags/architecture/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/tags/architecture/"
+                />
+  </url><url>
     <loc>https://www.devean.cn/zh/categories/</loc>
     <lastmod>2024-01-11T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -26,6 +39,19 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://www.devean.cn/zh/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/blog/2024-02-09-distributed-tracing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/"
                 />
   </url><url>
     <loc>https://www.devean.cn/zh/tags/machine-learning/</loc>
@@ -55,6 +81,19 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://www.devean.cn/zh/categories/tech/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/zh/tags/tracing/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/tags/tracing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/tags/tracing/"
                 />
   </url><url>
     <loc>https://www.devean.cn/zh/blog/</loc>

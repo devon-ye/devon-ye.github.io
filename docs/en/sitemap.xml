@@ -2,8 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.devean.cn/en/tags/architecture/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/tags/architecture/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/tags/architecture/"
+                />
+  </url><url>
     <loc>https://www.devean.cn/en/blog/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -13,6 +26,84 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.devean.cn/en/blog/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/en/categories/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/categories/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/en/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/en/blog/2024-02-09-distributed-tracing/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/blog/2024-02-09-distributed-tracing/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/en/tags/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/tags/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/en/categories/tech/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/categories/tech/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/categories/tech/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/en/tags/tracing/</loc>
+    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/tags/tracing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/tags/tracing/"
                 />
   </url><url>
     <loc>https://www.devean.cn/en/tags/ca/</loc>
@@ -28,32 +119,6 @@
                 href="https://www.devean.cn/en/tags/ca/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/categories/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/categories/"
-                />
-  </url><url>
-    <loc>https://www.devean.cn/en/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/"
-                />
-  </url><url>
     <loc>https://www.devean.cn/en/blog/2023-12-11-free-ca-certificate-configuration/</loc>
     <lastmod>2023-12-11T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -65,32 +130,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.devean.cn/en/blog/2023-12-11-free-ca-certificate-configuration/"
-                />
-  </url><url>
-    <loc>https://www.devean.cn/en/tags/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/tags/"
-                />
-  </url><url>
-    <loc>https://www.devean.cn/en/categories/tech/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/categories/tech/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/categories/tech/"
                 />
   </url><url>
     <loc>https://www.devean.cn/en/categories/finance/</loc>
