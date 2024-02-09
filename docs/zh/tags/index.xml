@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Deve</title>
-    <link>https://devon-ye.github.io/zh/tags/</link>
+    <link>https://www.devean.cn/zh/tags/</link>
     <description>Recent content in Tags on Deve</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://devon-ye.github.io/zh/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.devean.cn/zh/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning</title>
-      <link>https://devon-ye.github.io/zh/tags/machine-learning/</link>
+      <link>https://www.devean.cn/zh/tags/machine-learning/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/zh/tags/machine-learning/</guid>
+      <guid>https://www.devean.cn/zh/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>CA</title>
-      <link>https://devon-ye.github.io/zh/tags/ca/</link>
+      <link>https://www.devean.cn/zh/tags/ca/</link>
       <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/zh/tags/ca/</guid>
+      <guid>https://www.devean.cn/zh/tags/ca/</guid>
       <description></description>
     </item>
     <item>
       <title>Quantitative Finance</title>
-      <link>https://devon-ye.github.io/zh/tags/quantitative-finance/</link>
+      <link>https://www.devean.cn/zh/tags/quantitative-finance/</link>
       <pubDate>Wed, 15 Nov 2023 22:59:31 +0800</pubDate>
-      <guid>https://devon-ye.github.io/zh/tags/quantitative-finance/</guid>
+      <guid>https://www.devean.cn/zh/tags/quantitative-finance/</guid>
       <description></description>
     </item>
     <item>
       <title>Travel</title>
-      <link>https://devon-ye.github.io/zh/tags/travel/</link>
+      <link>https://www.devean.cn/zh/tags/travel/</link>
       <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://devon-ye.github.io/zh/tags/travel/</guid>
+      <guid>https://www.devean.cn/zh/tags/travel/</guid>
       <description></description>
     </item>
   </channel>
