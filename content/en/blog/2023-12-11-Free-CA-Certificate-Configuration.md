@@ -6,6 +6,7 @@ author:      ""
 image:       ""
 tags:        ["CA"]
 categories:  ["Tech" ]
+thumbnail: "/img/blog/CA.png"
 ---
 
 
