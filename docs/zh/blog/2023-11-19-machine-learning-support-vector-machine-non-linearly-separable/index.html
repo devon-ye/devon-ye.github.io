@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="zh" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg">
+
+  <title>
+  机器学习 | 支持向量机线性不可分 - Deve
+  </title>
+  <meta name="description" content="支持向量机线性不可分、软间隔、松弛变量、目标函数、约束条件、超参数 C,实际应用场景判别线性是否可分等几方面讲概述了支持向量机线性不可分" />
+  <meta name="author" content="     &#34;&#34;" />
+  <meta name="generator" content="Hugo 0.121.1"><link
+    rel="stylesheet"
+    href="https://devon-ye.github.io/css/styles.min.958adf2ce972e27b4badb533af76e7ecd2098df25d11f7f75987145e1214d915.css"
+    integrity="sha256-lYrfLOly4ntLrbUzr3bn7NIJjfJdEff3WYcUXhIU2RU="
+  />
+  
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+  
+
+  <meta property="og:title" content="机器学习 | 支持向量机线性不可分" />
+<meta property="og:description" content="支持向量机线性不可分、软间隔、松弛变量、目标函数、约束条件、超参数 C,实际应用场景判别线性是否可分等几方面讲概述了支持向量机线性不可分" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://devon-ye.github.io/zh/blog/2023-11-19-machine-learning-support-vector-machine-non-linearly-separable/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-11-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-11-19T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="机器学习 | 支持向量机线性不可分"/>
+<meta name="twitter:description" content="支持向量机线性不可分、软间隔、松弛变量、目标函数、约束条件、超参数 C,实际应用场景判别线性是否可分等几方面讲概述了支持向量机线性不可分"/>
+
+  <meta itemprop="name" content="机器学习 | 支持向量机线性不可分">
+<meta itemprop="description" content="支持向量机线性不可分、软间隔、松弛变量、目标函数、约束条件、超参数 C,实际应用场景判别线性是否可分等几方面讲概述了支持向量机线性不可分"><meta itemprop="datePublished" content="2023-11-19T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-11-19T00:00:00+00:00" />
+<meta itemprop="wordCount" content="305">
+<meta itemprop="keywords" content="Machine Learning," />
+
+  
+  <meta name="lang" content="zh" />
+  
+</head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
+  <a href="https://devon-ye.github.io/zh/" class="capitalize font-extrabold text-2xl">
+    
+    <img src="/favicon.svg" alt="Deve" class="h-8 max-w-full" />
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute z-10 px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/zh/blog">博客</a></li>
+    
+    <li><a href="/zh/page/about/">关于</a></li>
+    
+    <li><a href="/zh/tags">标签</a></li>
+    
+    <li><a href="/zh/blog/2024-01-11-machine-learning-neural-networks/">顶部文章</a></li>
+    
+
+    
+    
+    <li class="flex items-center">
+      
+      
+      
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="12" r="9" />
+        <line x1="3.6" y1="9" x2="20.4" y2="9" />
+        <line x1="3.6" y1="15" x2="20.4" y2="15" />
+        <path d="M11.5 3a17 17 0 0 0 0 18" />
+        <path d="M12.5 3a17 17 0 0 1 0 18" />
+      </svg>
+      <a href="/en" lang="en">English</a>
+      
+      
+    </li>
+    
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="/img/ml/svm8.jpeg" class="rounded-lg shadow-sm w-full object-contain" />
+    
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    November 19, 2023
+  
+
+
+    </div>
+    
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">机器学习 | 支持向量机线性不可分</h1>
+    
+    <h5 class="text-sm flex items-center flex-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      发布 
+  
+    November 19, 2023
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      2&nbsp;分钟
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      305&nbsp;字
+      
+        
+      
+    </h5>
+    
+
+    <details id="TableOfContents" class="px-4 mt-4 bg-gray-100 dark:bg-gray-700 rounded toc">
+    <summary class="flex items-center font-bold py-2 px-4 cursor-pointer justify-between select-none text-black dark:text-white">
+      <span>Table of contents</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <polyline points="6 9 12 15 18 9"></polyline>
+     </svg>
+    </summary>
+
+    <ul class="mt-2 pb-4">
+        
+
+        
+        <li>
+        <a href="#%e7%ba%bf%e6%80%a7%e4%b8%8d%e5%8f%af%e5%88%86-svm">线性不可分 SVM</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%bc%95%e5%85%a5%e6%9d%be%e5%bc%9b%e5%8f%98%e9%87%8f">引入松弛变量</a>
+        
+
+        
+        </li><li>
+        <a href="#%e7%ba%a6%e6%9d%9f%e6%9d%a1%e4%bb%b6%e8%b0%83%e6%95%b4">约束条件调整</a>
+        
+
+        
+        </li><li>
+        <a href="#%e8%b6%85%e5%8f%82%e6%95%b0%e8%b0%83%e6%95%b4">超参数调整</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8">实际应用</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e5%88%a4%e6%96%ad%e6%98%af%e5%90%a6%e5%ae%8c%e5%85%a8%e7%ba%bf%e6%80%a7%e5%8f%af%e5%88%86">判断是否完全线性可分</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%86%b3%e5%ae%9a%e6%98%af%e5%90%a6%e5%bc%95%e5%85%a5%e5%8f%82%e6%95%b0-c">决定是否引入参数 C</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e5%ae%9e%e6%88%98">实战</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e6%95%b0%e6%8d%ae%e5%8a%a0%e8%bd%bd%e9%a2%84%e5%a4%84%e7%90%86">数据加载预处理</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e5%be%80%e6%9c%9f%e6%8e%a8%e8%8d%90">往期推荐</a>
+        </li></ul>
+  </details>
+
+    <blockquote>
+<p>本文从支持向量机线性不可分、软间隔、松弛变量、目标函数、约束条件、超参数 C,实际应用场景判别线性是否可分等几方面讲概述了支持向量机线性不可分</p>
+</blockquote>
+<h2 id="线性不可分-svm">线性不可分 SVM</h2>
+<p>有些时候数据本身存在噪点或异常值、在这种场景下,支持向量机又会如何处理呢,看下图</p>
+<p><img src="/img/ml/svm8.jpeg" alt=""></p>
+<p>在这里，我们在红球的边界中有一个蓝球。那么 SVM 是如何对数据进行分类的呢？这很简单！红色球边界中的蓝色球是蓝色球的异常值。SVM 算法具有忽略异常值并找到使边际最大化的最佳超平面的特点。SVM 对异常值具有鲁棒性。</p>
+<p><img src="/img/ml/svm7.jpeg" alt=""></p>
+<p>在这种类型的数据点中，SVM 所做的就是像之前的数据集一样找到最大边距，并在每次点跨越边距时添加惩罚。因此，此类情况下的边距称为软边距。当数据集存在软边距时，SVM 会尝试最小化(1/margin+∧(Σpenalty))。</p>
+<h2 id="引入松弛变量">引入松弛变量</h2>
+<p>首先，引入松弛变量（Slack Variables），这些变量表示数据点到超平面的距离。对于每个数据点，引入一个对应的松弛变量 $\xi_i$，表示第 $i$ 个数据点允许的错误。</p>
+<p><strong>目标函数修改</strong>
+软间隔的目标函数通过调整传统硬间隔的目标函数，以考虑错误和松弛变量。新的目标函数可以表示为：</p>
+<p>$
+\min_{w, b, \xi} \frac{1}{2}||w||^2 + C \sum_{i=1}^{N} \xi_i
+$</p>
+<p>其中：</p>
+<p>$||w||^2$ 表示模型复杂度，即超平面的法向量的范数。
+$\sum_{i=1}^{N} \xi_i$ 表示所有松弛变量的总和。
+$C$ 是一个用户定义的超参数，用于平衡最小化模型复杂度和最小化分类错误的目标。</p>
+<h2 id="约束条件调整">约束条件调整</h2>
+<p>随着引入了松弛变量，约束条件也需要相应的调整。约束条件现在变为：</p>
+<p>$
+y_i(w \cdot x_i + b) \geq 1 - \xi_i, \quad \text{for } i = 1, 2, \ldots, N
+$</p>
+<p>这确保了即使数据点落在错误的一侧，它们的函数间隔仍然至少为 $1 - \xi_i$。</p>
+<h2 id="超参数调整">超参数调整</h2>
+<p>软间隔的效果受到超参数 $C$ 的影响， $C$ 的选择取决于对模型性能的需求。较大的 $C$ 值会更强调正确分类，但可能导致过拟合，而较小的 $C$ 值会更注重找到更大间隔，但可能容忍更多的错误分类。通过在实际问题中调整 $C$ 的值，可以根据具体情况平衡模型的复杂性和对错误的容忍度。这种灵活性使得软间隔成为处理线性不可分数据的有力工具。</p>
+<h2 id="实际应用">实际应用</h2>
+<p>在实际数据集上应用软间隔 SVM 时，通常需要通过试验来确定最佳的超参数 $C$。这可能需要使用网格搜索或随机搜索等技术。
+软间隔 SVM 特别适用于那些数据本身就包含噪声或异常值的情况。它通过牺牲一些训练准确性，增加了模型对未见数据的泛化能力。</p>
+<h3 id="判断是否完全线性可分">判断是否完全线性可分</h3>
+<p><strong>可视化数据</strong>：如果数据维度较低（如二维或三维），可以通过可视化来初步判断数据是否可能线性可分。</p>
+<p><strong>尝试线性模型</strong>：在不考虑松弛变量的情况下，使用线性 SVM 或其他线性模型对数据进行拟合。如果模型表现良好，这可能表明数据是线性可分的。</p>
+<p><strong>评估模型性能</strong>：使用交叉验证等方法来评估线性模型的性能。如果线性模型的性能不佳，可能意味着数据不是完全线性可分的。</p>
+<p><strong>分析误差类型</strong>：查看模型的误差类型，如是否存在系统性误差，这可能表明数据结构的非线性特性。</p>
+<h3 id="决定是否引入参数-c">决定是否引入参数 C</h3>
+<p><strong>处理不完全线性可分的数据</strong>：如果数据不是完全线性可分的，引入 C 是必要的。这有助于控制模型对于误分类的惩罚强度。</p>
+<p><strong>防止过拟合</strong>：参数 C 可以帮助控制模型的复杂度，从而防止过拟合。特别是在数据量不是很大的情况下，合适的 C 值尤为重要。</p>
+<p><strong>模型调优</strong>：通过网格搜索、随机搜索或基于模型的搜索方法（如贝叶斯优化）来找到最优的 C 值。这通常是通过交叉验证完成的。</p>
+<p><strong>实验和验证</strong>：不同的 C 值可能会导致模型性能显著不同。实验不同的 C 值，并通过验证集或测试集来评估模型性能。</p>
+<p><strong>平衡偏差和方差</strong>：选择 C 值是平衡模型偏差和方差的一个重要步骤。较小的 C 值可能导致高偏差（欠拟合），而较大的 C 值可能导致高方差（过拟合）。</p>
+<h2 id="实战">实战</h2>
+<h3 id="数据加载预处理">数据加载预处理</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># 导入所需的库</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.datasets <span style="color:#ff79c6">import</span> make_moons
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.preprocessing <span style="color:#ff79c6">import</span> StandardScaler
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.svm <span style="color:#ff79c6">import</span> SVC
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.model_selection <span style="color:#ff79c6">import</span> train_test_split, GridSearchCV
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.metrics <span style="color:#ff79c6">import</span> classification_report, confusion_matrix
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> seaborn <span style="color:#ff79c6">as</span> sns
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 1. 数据加载</span>
+</span></span><span style="display:flex;"><span>X, y <span style="color:#ff79c6">=</span> make_moons(n_samples<span style="color:#ff79c6">=</span><span style="color:#bd93f9">300</span>, noise<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.2</span>, random_state<span style="color:#ff79c6">=</span><span style="color:#bd93f9">42</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 2. 特征工程 - 标准化处理</span>
+</span></span><span style="display:flex;"><span>scaler <span style="color:#ff79c6">=</span> StandardScaler()
+</span></span><span style="display:flex;"><span>X_scaled <span style="color:#ff79c6">=</span> scaler<span style="color:#ff79c6">.</span>fit_transform(X)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 3. 探索性数据分析（EDA）</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>scatter(X[:, <span style="color:#bd93f9">0</span>], X[:, <span style="color:#bd93f9">1</span>], c<span style="color:#ff79c6">=</span>y, cmap<span style="color:#ff79c6">=</span>plt<span style="color:#ff79c6">.</span>cm<span style="color:#ff79c6">.</span>RdYlBu)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#34;EDA - Moon Dataset&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#34;Feature 1&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#34;Feature 2&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 4. 模型训练和评估</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 划分训练集和测试集</span>
+</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#ff79c6">=</span> train_test_split(X_scaled, y, test_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.3</span>, random_state<span style="color:#ff79c6">=</span><span style="color:#bd93f9">42</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 创建 SVM 模型</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> SVC(kernel<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;rbf&#39;</span>, C<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>, gamma<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 训练模型</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#ff79c6">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 预测和评估</span>
+</span></span><span style="display:flex;"><span>y_pred <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>predict(X_test)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(classification_report(y_test, y_pred))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 5. 参数调优 - 使用网格搜索</span>
+</span></span><span style="display:flex;"><span>param_grid <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#39;C&#39;</span>: [<span style="color:#bd93f9">0.1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">100</span>], <span style="color:#f1fa8c">&#39;gamma&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0.1</span>, <span style="color:#bd93f9">0.01</span>, <span style="color:#bd93f9">0.001</span>]}
+</span></span><span style="display:flex;"><span>grid <span style="color:#ff79c6">=</span> GridSearchCV(SVC(), param_grid, refit<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, verbose<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span>grid<span style="color:#ff79c6">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 输出最佳参数</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Best Parameters:&#34;</span>, grid<span style="color:#ff79c6">.</span>best_params_)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 6. 可视化模型性能</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 绘制混淆矩阵</span>
+</span></span><span style="display:flex;"><span>cm <span style="color:#ff79c6">=</span> confusion_matrix(y_test, grid<span style="color:#ff79c6">.</span>predict(X_test))
+</span></span><span style="display:flex;"><span>sns<span style="color:#ff79c6">.</span>heatmap(cm, annot<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, fmt<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;g&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#34;Confusion Matrix&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#34;Predicted label&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#34;True label&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p><img src="/img/ml/svm-cf.png" alt=""></p>
+<h2 id="往期推荐">往期推荐</h2>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484391&amp;idx=1&amp;sn=716e299395f39c6ee2af72227f34b255&amp;chksm=fb41f3f2cc367ae4f2f89dd7ed47de8378c35abc5904241b7d247e87cd707668b1bb09129a7b#rd" target="_blank" rel="noopener">一文看懂机器学习</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484401&amp;idx=1&amp;sn=0b67c4ad3e7608009ae920571f2fd308&amp;chksm=fb41f3e4cc367af2f41d9b17f6f2a8310d5cb299bfa355618907f4e0202522d9e2b3e19d5c91#rd" target="_blank" rel="noopener">机器学习-房价预测建模</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484401&amp;idx=1&amp;sn=0b67c4ad3e7608009ae920571f2fd308&amp;chksm=fb41f3e4cc367af2f41d9b17f6f2a8310d5cb299bfa355618907f4e0202522d9e2b3e19d5c91#rd" target="_blank" rel="noopener">机器学习 | 基础术语与符号</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484510&amp;idx=1&amp;sn=bb7cf6117c620aae01064f1051730c29&amp;chksm=fb41f44bcc367d5d223dd7a8d445e92d97e2e993a49d122e019f80a1555b0b651567f5056060#rd" target="_blank" rel="noopener">机器学习 | 特征缩放</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484572&amp;idx=1&amp;sn=e8fed49378732bd5c40f6130dd42ec7c&amp;chksm=fb41f489cc367d9fa1483192ace36bad08a49c546a1b8e19c2350e14e6d2693cf39fd27dabf5#rd" target="_blank" rel="noopener">机器学习| K 近临(K Nearest-Neighbours)</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484576&amp;idx=1&amp;sn=272c2f834eb92197d382ca7164a097a1&amp;chksm=fb41f4b5cc367da36d40622bbc097cb19e9cccad76062c33c49d494205ce2473720318e6a914#rd" target="_blank" rel="noopener">机器学习| K邻近疾病预测演示</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484610&amp;idx=1&amp;sn=e5ddd983cd1f32b52524a8ae846c36f1&amp;chksm=fb41f4d7cc367dc10d15fecadaa82ef74b5ab5c71704fb869fd1c62ad0da6e17cb037a31ca66#rd" target="_blank" rel="noopener">机器学习 | K均值聚类(K-means Clustering)</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484764&amp;idx=1&amp;sn=08ec391ef9a85c25d8205a3574b4a636&amp;chksm=fb41f549cc367c5f1fb90a3f9735831576334566afd7d409f063cd329e8af81a79a797f9104f#rd" target="_blank" rel="noopener">机器学习 | 朴素贝叶斯原理实战</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484791&amp;idx=1&amp;sn=5fb140a07fe30805d785303d55307b14&amp;chksm=fb41f562cc367c74b5ae84e05093062b79a8827a505de7b858f2c76414a29ea9d94e08aaaaa5#rd" target="_blank" rel="noopener">机器学习 | 线性回归</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0ODMzMzk0Ng==&amp;mid=2247484831&amp;idx=1&amp;sn=e052655aa3d5e383192c7ad1d03d170c&amp;chksm=fb41f58acc367c9c16b8879137ff4dcd9a3bbf3610d6ebdba62d699fd6ac1f18a2b0eb9b93e0#rd" target="_blank" rel="noopener">机器学习 | 支持向量机线性可分</a>
+</li>
+</ul>
+<blockquote>
+<p>欢迎扫码关注公众号，订阅更多文章!</p>
+</blockquote>
+<p><img src="/img/public-plantform-qr.png" alt="欢迎扫"></p>
+
+  </article><div class="bg-blue-100 dark:bg-gray-900">
+  <div class="container px-4 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2">关注我</div>
+      <p class="opacity-60">I work on everything coding and tweet developer memes</p>
+    </div>
+
+    <ul class="flex justify-center gap-x-3 flex-wrap gap-y-2">
+      
+
+      
+      <li>
+        <a
+          href="https://twitter.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Twitter"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"
+            />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://linkedin.com/in/"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <line x1="8" y1="11" x2="8" y2="16" />
+            <line x1="8" y1="8" x2="8" y2="8.01" />
+            <line x1="12" y1="16" x2="12" y2="11" />
+            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://www.xing.com/profile/"
+          target="_blank"
+          rel="noopener"
+          aria-label="xing"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M14.48736,22.8L9.65664,14.33208L17.154,1.2H22.2L14.70288,14.33208L19.53384,22.8H14.48736z M6.55728,16.26888l3.74808-6.17064l-2.81088-4.9512 H2.73696l2.81112,4.9512L1.8,16.26888H6.55728z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://t.me/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Telegram"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+           <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-telegram"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://github.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://www.buymeacoffee.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Buy Me A Coffee"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M20.216 6.415l-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.196-.366-.231-.572-.065-.378-.125-.756-.192-1.133-.057-.325-.102-.69-.25-.987-.195-.4-.597-.634-.996-.788a5.723 5.723 0 00-.626-.194c-1-.263-2.05-.36-3.077-.416a25.834 25.834 0 00-3.7.062c-.915.083-1.88.184-2.75.5-.318.116-.646.256-.888.501-.297.302-.393.77-.177 1.146.154.267.415.456.692.58.36.162.737.284 1.123.366 1.075.238 2.189.331 3.287.37 1.218.05 2.437.01 3.65-.118.299-.033.598-.073.896-.119.352-.054.578-.513.474-.834-.124-.383-.457-.531-.834-.473-.466.074-.96.108-1.382.146-1.177.08-2.358.082-3.536.006a22.228 22.228 0 01-1.157-.107c-.086-.01-.18-.025-.258-.036-.243-.036-.484-.08-.724-.13-.111-.027-.111-.185 0-.212h.005c.277-.06.557-.108.838-.147h.002c.131-.009.263-.032.394-.048a25.076 25.076 0 013.426-.12c.674.019 1.347.067 2.017.144l.228.031c.267.04.533.088.798.145.392.085.895.113 1.07.542.055.137.08.288.111.431l.319 1.484a.237.237 0 01-.199.284h-.003c-.037.006-.075.01-.112.015a36.704 36.704 0 01-4.743.295 37.059 37.059 0 01-4.699-.304c-.14-.017-.293-.042-.417-.06-.326-.048-.649-.108-.973-.161-.393-.065-.768-.032-1.123.161-.29.16-.527.404-.675.701-.154.316-.199.66-.267 1-.069.34-.176.707-.135 1.056.087.753.613 1.365 1.37 1.502a39.69 39.69 0 0011.343.376.483.483 0 01.535.53l-.071.697-1.018 9.907c-.041.41-.047.832-.125 1.237-.122.637-.553 1.028-1.182 1.171-.577.131-1.165.2-1.756.205-.656.004-1.31-.025-1.966-.022-.699.004-1.556-.06-2.095-.58-.475-.458-.54-1.174-.605-1.793l-.731-7.013-.322-3.094c-.037-.351-.286-.695-.678-.678-.336.015-.718.3-.678.679l.228 2.185.949 9.112c.147 1.344 1.174 2.068 2.446 2.272.742.12 1.503.144 2.257.156.966.016 1.942.053 2.892-.122 1.408-.258 2.465-1.198 2.616-2.657.34-3.332.683-6.663 1.024-9.995l.215-2.087a.484.484 0 01.39-.426c.402-.078.787-.212 1.074-.518.455-.488.546-1.124.385-1.766zm-1.478.772c-.145.137-.363.201-.578.233-2.416.359-4.866.54-7.308.46-1.748-.06-3.477-.254-5.207-.498-.17-.024-.353-.055-.47-.18-.22-.236-.111-.71-.054-.995.052-.26.152-.609.463-.646.484-.057 1.046.148 1.526.22.577.088 1.156.159 1.737.212 2.48.226 5.002.19 7.472-.14.45-.06.899-.13 1.345-.21.399-.072.84-.206 1.08.206.166.281.188.657.162.974a.544.544 0 01-.169.364zm-6.159 3.9c-.862.37-1.84.788-3.109.788a5.884 5.884 0 01-1.569-.217l.877 9.004c.065.78.717 1.38 1.5 1.38 0 0 1.243.065 1.658.065.447 0 1.786-.065 1.786-.065.783 0 1.434-.6 1.499-1.38l.94-9.95a3.996 3.996 0 00-1.322-.238c-.826 0-1.491.284-2.26.613z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://medium.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M8 9h1l3 3l3 -3h1" />
+            <line x1="8" y1="15" x2="10" y2="15" />
+            <line x1="14" y1="15" x2="16" y2="15" />
+            <line x1="9" y1="9" x2="9" y2="15" />
+            <line x1="15" y1="9" x2="15" y2="15" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://reddit.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M12 8c2.648 0 5.028 .826 6.675 2.14a2.5 2.5 0 0 1 2.326 4.36c0 3.59 -4.03 6.5 -9 6.5c-4.875 0 -8.845 -2.8 -9 -6.294l-1 -.206a2.5 2.5 0 0 1 2.326 -4.36c1.646 -1.313 4.026 -2.14 6.674 -2.14z"
+            />
+            <path d="M12 8l1 -5l6 1" />
+            <circle cx="19" cy="4" r="1" />
+            <circle cx="9" cy="13" r=".5" fill="currentColor" />
+            <circle cx="15" cy="13" r=".5" fill="currentColor" />
+            <path d="M10 17c.667 .333 1.333 .5 2 .5s1.333 -.167 2 -.5" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://dribbble.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Dribbble"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-dribbble"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9 3.6c5 6 7 10.5 7.5 16.2" />
+            <path d="M6.4 19c3.5 -3.5 6 -6.5 14.5 -6.4" />
+            <path d="M3.1 10.75c5 0 9.814 -.38 15.314 -5" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://stackoverflow.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="stackoverflow"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-brand-stackoverflow"
+              width="23"
+              height="23"
+              viewBox="-135 22 32 38"
+              stroke-width="0.2"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+          >
+            <polygon points="-108.5,56.2 -108.5,46.3 -105.2,46.3 -105.2,59.5 -135,59.5 -135,46.3 -131.7,46.3 -131.7,56.2       "/>
+            <path d="M-128,45.4l16.2,3.4l0.7-3.2l-16.2-3.4L-128,45.4z M-125.9,37.6l15,7l1.4-3l-15-7L-125.9,37.6z     M-121.7,30.2l12.7,10.6l2.1-2.5l-12.7-10.6L-121.7,30.2z M-113.5,22.4l-2.7,2l9.9,13.3l2.7-2L-113.5,22.4z M-128.4,52.9h16.6    v-3.3h-16.6V52.9z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://forum.xda-developers.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="XDA"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+           <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-xda"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M13.84 3.052V0h7.843v17.583H13.84v-3.024h4.591V3.052zM5.569 14.53V3.024h4.592V0H2.318v17.583H6.98L10.16 24v-9.483z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://tiktok.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="Tiktok"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-brand-tiktok"
+              width="23"
+              height="23"
+              viewBox="0 0 448 512"
+              stroke-width="30"
+              stroke="currentColor"
+              fill="none">
+            <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://scholar.google.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Google Scholar"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-brand-googlescholar"
+              width="22"
+              height="23"
+              viewBox="0 0 24 24"
+              stroke-width="1.4"
+              stroke="currentColor"
+              fill="none">
+            <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://joinmastodon.org"
+          target="_blank"
+          rel="noopener"
+          aria-label="Mastodon"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          stroke-width="1.5" 
+          stroke="currentColor" 
+          fill="none" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M18.648 15.254c-1.816 1.763 -6.648 1.626 -6.648 1.626a18.262 18.262 0 0 1 -3.288 -.256c1.127 1.985 4.12 2.81 8.982 2.475c-1.945 2.013 -13.598 5.257 -13.668 -7.636l-.026 -1.154c0 -3.036 .023 -4.115 1.352 -5.633c1.671 -1.91 6.648 -1.666 6.648 -1.666s4.977 -.243 6.648 1.667c1.329 1.518 1.352 2.597 1.352 5.633s-.456 4.074 -1.352 4.944z"></path>
+          <path d="M12 11.204v-2.926c0 -1.258 -.895 -2.278 -2 -2.278s-2 1.02 -2 2.278v4.722m4 -4.722c0 -1.258 .895 -2.278 2 -2.278s2 1.02 2 2.278v4.722"></path>
+       </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://youtube.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="YouTube"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-youtube"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M10 9l5 3l-5 3z" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-instagram"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M10 9l5 3l-5 3z" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://behance.net"
+          target="_blank"
+          rel="noopener"
+          aria-label="Behance"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-behance" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M3 18v-12h4.5a3 3 0 0 1 0 6a3 3 0 0 1 0 6h-4.5"></path>
+            <line x1="3" y1="12" x2="7.5" y2="12"></line>
+            <path d="M14 13h7a3.5 3.5 0 0 0 -7 0v2a3.5 3.5 0 0 0 6.64 1"></path>
+            <line x1="16" y1="6" x2="19" y2="6"></line>
+        </svg>
+        </a>
+      </li>
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Copyright © 2021 - xxx
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+</footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://devon-ye.github.io/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const darkStorage = localStorage.getItem('darkmode');
+  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (!darkStorage && isBrowserDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  if (darkStorage && darkStorage === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script>
+</body>
+</html>
