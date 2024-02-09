@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="zh" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg">
+
+  <title>
+  机器学习 | 基础概念 - Deve
+  </title>
+  <meta name="description" content="机器学习与传统建模区别、机器学习分类：监督、非监督、半监督、强化，基础算法：K临近、K均值、朴素贝叶斯、支持向量机、回归、自组织映射、神经网络原理" />
+  <meta name="author" content="     &#34;Devean&#34;" />
+  <meta name="generator" content="Hugo 0.121.1"><link
+    rel="stylesheet"
+    href="https://devon-ye.github.io/css/styles.min.30768f305045b9da80054790735a8dab82d9f83a3716f2cc4dc7d7b0456f10bc.css"
+    integrity="sha256-MHaPMFBFudqABUeQc1qNq4LZ+Do3FvLMTcfXsEVvELw="
+  />
+  
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+  
+
+  <meta property="og:title" content="机器学习 | 基础概念" />
+<meta property="og:description" content="机器学习与传统建模区别、机器学习分类：监督、非监督、半监督、强化，基础算法：K临近、K均值、朴素贝叶斯、支持向量机、回归、自组织映射、神经网络原理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://devon-ye.github.io/zh/blog/2023-09-08-machine-learning-basic-concepts/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-09-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-08T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="机器学习 | 基础概念"/>
+<meta name="twitter:description" content="机器学习与传统建模区别、机器学习分类：监督、非监督、半监督、强化，基础算法：K临近、K均值、朴素贝叶斯、支持向量机、回归、自组织映射、神经网络原理"/>
+
+  <meta itemprop="name" content="机器学习 | 基础概念">
+<meta itemprop="description" content="机器学习与传统建模区别、机器学习分类：监督、非监督、半监督、强化，基础算法：K临近、K均值、朴素贝叶斯、支持向量机、回归、自组织映射、神经网络原理"><meta itemprop="datePublished" content="2023-09-08T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-09-08T00:00:00+00:00" />
+<meta itemprop="wordCount" content="172">
+<meta itemprop="keywords" content="Machine Learning," />
+
+  
+  <meta name="lang" content="zh" />
+  
+</head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
+  <a href="https://devon-ye.github.io/zh/" class="capitalize font-extrabold text-2xl">
+    
+    <img src="/favicon.svg" alt="Deve" class="h-8 max-w-full" />
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute z-10 px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/zh/blog">博客</a></li>
+    
+    <li><a href="/zh/page/about/">关于</a></li>
+    
+    <li><a href="/zh/tags">标签</a></li>
+    
+    <li><a href="/zh/blog/2024-01-11-machine-learning-neural-networks/">顶部文章</a></li>
+    
+
+    
+    
+    <li class="flex items-center">
+      
+      
+      
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="12" r="9" />
+        <line x1="3.6" y1="9" x2="20.4" y2="9" />
+        <line x1="3.6" y1="15" x2="20.4" y2="15" />
+        <path d="M11.5 3a17 17 0 0 0 0 18" />
+        <path d="M12.5 3a17 17 0 0 1 0 18" />
+      </svg>
+      <a href="/en" lang="en">English</a>
+      
+      
+    </li>
+    
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">机器学习 | 基础概念</h1>
+    
+    <h5 class="text-sm flex items-center flex-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      发布 
+  
+    September 8, 2023
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      1&nbsp;分钟
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      172&nbsp;字
+      
+        
+      
+    </h5>
+    
+
+    <details id="TableOfContents" class="px-4 mt-4 bg-gray-100 dark:bg-gray-700 rounded toc">
+    <summary class="flex items-center font-bold py-2 px-4 cursor-pointer justify-between select-none text-black dark:text-white">
+      <span>Table of contents</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <polyline points="6 9 12 15 18 9"></polyline>
+     </svg>
+    </summary>
+
+    <ul class="mt-2 pb-4">
+        
+
+        
+        <li>
+        <a href="#%e4%bb%80%e4%b9%88%e6%98%af%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0">什么是机器学习</a>
+        
+
+        
+        </li><li>
+        <a href="#%e4%bc%a0%e7%bb%9f%e6%95%b0%e5%ad%a6-vs-%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0">传统数学 vs 机器学习</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e7%9b%b8%e5%90%8c%e7%82%b9">相同点</a>
+        
+
+        
+        </li><li>
+        <a href="#%e4%b8%8d%e5%90%8c%e7%82%b9">不同点</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e4%b8%bb%e8%a6%81%e7%b1%bb%e5%88%ab">主要类别</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e7%9b%91%e7%9d%a3%e5%ad%a6%e4%b9%a0">监督学习</a>
+        
+
+        
+        </li><li>
+        <a href="#%e9%9d%9e%e7%9b%91%e7%9d%a3%e5%ad%a6%e4%b9%a0">非监督学习</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%bc%ba%e5%8c%96%e5%ad%a6%e4%b9%a0">强化学习</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%8d%8a%e7%9b%91%e7%9d%a3%e5%ad%a6%e4%b9%a0">半监督学习</a>
+        
+
+        
+        </li><li>
+        <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bc%9a%e7%94%a8%e5%8d%8a%e7%9b%91%e7%9d%a3%e5%ad%a6%e4%b9%a0">为什么会用半监督学习</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e6%a8%a1%e5%9e%8b">模型</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#k%e8%bf%91%e4%b8%b4">K近临</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%8e%9f%e7%90%86">原理</a>
+        
+
+        
+        </li><li>
+        <a href="#k%e5%9d%87%e5%80%bc">K均值</a>
+        
+
+        
+        </li><li>
+        <a href="#%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af">朴素贝叶斯</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%9b%9e%e5%bd%92%e6%96%b9%e6%b3%95">回归方法</a>
+        
+
+        
+        </li><li>
+        <a href="#%e6%94%af%e6%8c%81%e5%90%91%e9%87%8f%e6%9c%ba">支持向量机</a>
+        
+
+        
+        </li><li>
+        <a href="#%e8%87%aa%e7%bb%84%e7%bb%87%e6%98%a0%e5%b0%84">自组织映射</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%86%b3%e7%ad%96%e6%a0%91">决策树</a>
+        
+
+        
+        </li><li>
+        <a href="#%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c">神经网络</a>
+        </li></ul>
+    </li></ul>
+  </details>
+
+    <blockquote>
+<p>本文从机器学习与传统建模区别、机器学习分类：监督、非监督、半监督、强化，基础算法：K临近(KNN)、K均值(KMC)、朴素贝叶斯(NBC)、支持向量机(SVM)、回归、自组织映射、神经网络原理(NLP)</p>
+</blockquote>
+<h3 id="什么是机器学习">什么是机器学习</h3>
+<p>机器学习是人工智能的一个分支,它让计算机从数据中自动“学”到知识,并用这些知识做决策或预测,而不需要我们一步步明确地告诉它怎么做。</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696885427440.png" alt="1696885427440"></p>
+<h3 id="传统数学-vs-机器学习">传统数学 vs 机器学习</h3>
+<ul>
+<li>数学建模</li>
+</ul>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696886421687.png" alt="1696886421687"></p>
+<ul>
+<li>机器学习</li>
+</ul>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696886519537.png" alt="1696886519537"></p>
+<h4 id="相同点">相同点</h4>
+<ul>
+<li>
+<p><strong>数据驱动:</strong> 两者都利用数据来构建和验证模型。</p>
+</li>
+<li>
+<p><strong>预测和推断:</strong> 数学建模和机器学习都可以用于预测未知的输出或解释数据中的模式。</p>
+</li>
+<li>
+<p><strong>优化问题:</strong> 在某些情况下，两者都可能涉及到优化问题，例如，寻找最小化误差的参数。</p>
+</li>
+</ul>
+<h4 id="不同点">不同点</h4>
+<ol>
+<li><strong>目的</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：旨在用数学的形式来描述现实世界中的现象或问题，往往为了理解其背后的机制或原理。</p>
+</li>
+<li>
+<p>主要关注的是预测和泛化。机器学习模型可能不太关心背后的机制，而是关心在未知数据上的性能。</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>模型构建</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：模型的形式通常基于对现象的物理、生物或经济学的理解。例如，描述人口增长的模型可能基于出生率和死亡率的估计。</p>
+</li>
+<li>
+<p>机器学习：模型的形式主要基于数据。使用的模型可能没有明确的现实意义，例如深度学习模型。</p>
+</li>
+</ul>
+<ol start="3">
+<li><strong>验证</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：模型的验证通常基于其是否与现实世界的观察相符合，以及其是否可以提供洞察力。</p>
+</li>
+<li>
+<p>机器学习：验证通常基于模型在独立测试集上的性能。</p>
+</li>
+</ul>
+<ol start="4">
+<li><strong>模型的解释性</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：模型往往更具解释性，因为它们是基于现象的某些已知原理或规律构建的。</p>
+</li>
+<li>
+<p>机器学习：尤其是某些复杂的模型，如深度神经网络，可能难以解释。尽管如此，机器学习领域也有许多工作在努力提高模型的可解释性。</p>
+</li>
+</ul>
+<ol start="5">
+<li><strong>应用</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：常应用于工程、物理学、经济学等领域，以帮助专家了解和控制系统。</p>
+</li>
+<li>
+<p>机器学习：广泛应用于计算机视觉、自然语言处理、推荐系统等领域，主要关注自动化和预测。</p>
+</li>
+</ul>
+<ol start="6">
+<li><strong>模型复杂性</strong></li>
+</ol>
+<ul>
+<li>
+<p>数学建模：往往倾向于使用更简单的、基于物理学或其他学科原理的模型。</p>
+</li>
+<li>
+<p>机器学习：可能使用非常复杂的模型，特别是当数据量大且复杂度高时。</p>
+</li>
+</ul>
+<p>总的来说，数学建模和机器学习都是理解、解释和预测现象的工具，但它们的关注点、方法和应用有所不同。</p>
+<h3 id="主要类别">主要类别</h3>
+<p>机器学习主要分为三大类：监督学习、非监督学习、强化学习，而监督学习和非监督学习中又衍生出半监督学习。</p>
+<h4 id="监督学习">监督学习</h4>
+<p>Supervised Learning是机器学习的一种方法，其模型是通过输入-输出(有标签的数据)对进行训练，目标是从给定的数据中学习一个映射函数,以便在给定新的输入时，模型可以预测相应的输出 。训练过程涉及到输入数据和其相应的标签，并尝试找到这两者之间的关系。一旦模型被训练，它可以用来预测新、未标签数据的输出。</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918697490.png" alt="1696918697490"></p>
+<h4 id="非监督学习">非监督学习</h4>
+<p>Unsupervised Learning模型被训练在没有标签的数据上。它的目的是学习数据的底层结构、分布或表示，而不是预测标签。与监督学习不同，非监督学习的目标并不是预测一个输出。相反，它试图通过某种方式学习数据的结构，这可以是通过聚类、降维或生成模型等方式来实现的。</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918812954.png" alt="1696918812954"></p>
+<h4 id="强化学习">强化学习</h4>
+<p>Reinforcement Learning是通过与环境交互来学习如何行动，从而最大化某种定义的长期回报。与传统的监督学习不同，强化学习通常涉及决策问题，其中每个行动都会影响未来的回报。</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696922019053.png" alt="1696922019053"></p>
+<h4 id="半监督学习">半监督学习</h4>
+<p>Semi-supervised Learning是介于两个极端之间(监督式是指整个数据集被标记，而非监督式是指没有标记)。半监督学习任务具有一个标记和一个未标记的数据集。它使用未标记的数据来获得对数据结构的更多理解。通常，SSL使用小的带标签数据集和较大的未带标签数据集来进行学习。)学习正如其名称所示，介于两个极端之间(监督式是指整个数据集被标记，而非监督式是指没有标记)。半监督学习任务具有一个标记和一个未标记的数据集。它使用未标记的数据来获得对数据结构的更多理解。通常，SSL使用小的带标签数据集和较大的未带标签数据集来进行学习。</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918942278.png" alt="1696918942278"></p>
+<h4 id="为什么会用半监督学习">为什么会用半监督学习</h4>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696942056582.png" alt="1696942056582"></p>
+<p>半监督学习位于监督学习和非监督学习之间，利用少量的标记数据和大量的未标记数据进行学习。以下是为什么要使用半监督学习的原因：</p>
+<ul>
+<li>
+<p><strong>数据标注成本高</strong> ：在很多应用中，收集大量数据是相对容易的，但为这些数据打标签则既昂贵又耗时。例如，在医学图像领域，一个专家可能需要花费大量时间来手动标注图像中的特定结构或病变。利用半监督学习，可以用少量的标注数据和大量的未标注数据共同训练模型。</p>
+</li>
+<li>
+<p><strong>利用数据的完整潜力</strong> ：未标记的数据包含有关数据分布的有用信息。半监督学习方法尝试利用这些信息来改善模型的性能。</p>
+</li>
+<li>
+<p><strong>提高泛化能力</strong> ：在某些情况下，利用大量的未标记数据可以帮助模型更好地泛化到新的、未见过的数据。</p>
+</li>
+<li>
+<p><strong>数据标注可能存在误差</strong> ：在某些场景中，即使数据被标注，标签也可能存在噪音或误差。在这种情况下，使用半监督学习方法，结合大量的未标记数据，可能会提供一个更稳健的学习策略。</p>
+</li>
+<li>
+<p><strong>在某些任务中，有很多相关的未标记数据</strong> ：例如，在自然语言处理中，我们可能有少量标记的数据集，但可以从网络上轻松获得大量的相关文本。半监督学习可以利用这些未标记的文本来提高模型的性能。</p>
+</li>
+<li>
+<p><strong>适应数据的变化</strong> ：在动态环境中，数据分布可能随时间而变化。利用半监督学习，可以定期利用新收集的未标记数据来更新模型，使其适应变化。</p>
+</li>
+</ul>
+<p>总之，半监督学习提供了一种在有限标记数据的情况下利用未标记数据的方法，这对于许多实际应用来说是非常有价值的。</p>
+<h3 id="模型">模型</h3>
+<h4 id="k近临">K近临</h4>
+<p>K Nearest-Neighbours是一种监督学习技术，给定一个新的观测值，KNN算法会从训练数据集中搜索出k个与其最相似的实例，然后基于这些邻居的属性来预测新观测值的标签。</p>
+<h4 id="原理">原理</h4>
+<ul>
+<li>
+<p><strong>距离计算</strong> ：对于给定的新数据点，计算它与训练数据集中每个点的距离。</p>
+</li>
+<li>
+<p><strong>选取K个邻居</strong> ：从训练数据集中选取距离最近的K个点。</p>
+</li>
+<li>
+<p><strong>投票 (对于分类)</strong> ：对于K个邻居，看哪个类别最为常见，并将其指定为新数据点的类别。</p>
+</li>
+<li>
+<p><strong>平均 (对于回归)</strong> ：对于K个邻居，计算其属性的平均值，并将其指定为新数据点的值。</p>
+</li>
+</ul>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696922323938.png" alt="1696922323938"></p>
+<h4 id="k均值">K均值</h4>
+<p>K-Means Clustering是一种无监督的聚类算法，其目的是将n个数据点分为k个聚类。每个聚类都有一个中心，这些中心最小化了其内部数据点与中心之间的距离。</p>
+<h5 id="原理-1">原理</h5>
+<ul>
+<li>
+<p><strong>初始化：</strong> 随机选择k个数据点作为初始聚类中心。</p>
+</li>
+<li>
+<p><strong>分配：</strong> 为每个数据点分配最近的聚类中心。</p>
+</li>
+<li>
+<p><strong>更新：</strong> 计算每个聚类的平均值，并将平均值设为新的聚类中心。</p>
+</li>
+<li>
+<p><strong>重复：</strong> 重复步骤2和3，直到聚类中心不再显著变化。</p>
+</li>
+</ul>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696918922617.png" alt="1696918922617"></p>
+<h4 id="朴素贝叶斯">朴素贝叶斯</h4>
+<p>Naive Bayes Classifier监督学习技术是基于贝叶斯定理的一种简单概率分类器。它假设特征之间是独立的（这就是“朴素”一词的来源），即一个特征的出现不会影响另一个特征的出现。</p>
+<h5 id="原理-2">原理</h5>
+<p>给定一个类别 <code>C</code> 和一个特定的特 <code>x</code> ，贝叶斯定理表示为：</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696938714805.png" alt="1696938714805"></p>
+<p>其中</p>
+<ul>
+<li>
+<p><code>P(C|x)</code> 是在给定特征 x 的情况下类别 C 的后验概率。</p>
+</li>
+<li>
+<p><code>P(x|C)</code> 是在类别 C 的情况下观察到特征 x 的概率。</p>
+</li>
+<li>
+<p><code>P(C)</code> 是类别 C 的先验概率。</p>
+</li>
+<li>
+<p><code>P(x)</code> 是观察到特征 x 的概率。</p>
+</li>
+</ul>
+<p>对于分类问题，我们可以忽略分母（因为它对所有的类别都是相同的）并计算每个类别的$P(C)×P(x∣C)$。我们将数据点分类为给出最大值的类别。</p>
+<h4 id="回归方法">回归方法</h4>
+<p>Regression Methods是一种预测性监督学习技术，它研究的是因变量(目标)和自变量(预测器)之间的关系。 这种技术通常用于预测分析，时间序列模型以及发现变量之间的因果关系。</p>
+<h4 id="支持向量机">支持向量机</h4>
+<p>Support Vector Machines, SVM）是一种在分类和回归分析中使用的监督学习模型，基本思想是找到一个超平面，使得两个类别之间的边界最大化。对于线性可分的数据，这意味着超平面可以完美地分隔两个类别，并且最大化与最近的训练数据点（即支持向量）之间的距离。SVM使用所谓的核方法进行扩展。核方法的思想是将数据映射到一个更高维度的空间，使其在新的空间中变得线性可分。</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696929242825.png" alt="1696929242825"></p>
+<h4 id="自组织映射">自组织映射</h4>
+<p>Self-Organizing Maps，简称SOM是一种无监督学习的神经网络，SOM是一种将高维数据映射到通常是二维（有时是三维）的网格结构上的方法。与其他神经网络不同，SOM没有激活函数，它根据输入特征的相似性将相似的输入向量组合在一起。</p>
+<h5 id="原理-3">原理</h5>
+<ul>
+<li>
+<p><strong>初始化</strong> ：为每个节点（或称为神经元）随机初始化一个权重向量。</p>
+</li>
+<li>
+<p><strong>竞争</strong> ：对于每个输入样本，找到与其最相似（即欧几里得距离最近）的权重向量的节点，这个节点被称为胜者节点（winning node）。</p>
+</li>
+<li>
+<p><strong>适应</strong> ：更新胜者节点和其邻居节点的权重向量，使它们更接近当前输入样本。邻居节点的定义和更新的幅度都随时间逐渐减少。</p>
+</li>
+<li>
+<p><strong>迭代</strong> ：对于大量的迭代，重复上述步骤，直到模型收敛。</p>
+</li>
+</ul>
+<h4 id="决策树">决策树</h4>
+<p>Decision Trees是一种监督学习模型、主要用于分类和回归任务，决策树是一个树形结构，其中每个内部节点表示一个特征属性上的测试，每个分支代表一个测试结果，每个叶节点代表一个类别（在分类任务中）或连续的值（在回归任务中）。</p>
+<h5 id="原理-4">原理</h5>
+<p>决策树通过一系列基于特征值的测试，将输入数据点分配到叶节点中的一个，从而完成分类或预测任务。</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696930200188.png" alt="1696930200188"></p>
+<h4 id="神经网络">神经网络</h4>
+<p>Neural Networks是一种模仿生物神经网络结构和功能的计算模型。</p>
+<h5 id="基本结构"><strong>基本结构</strong></h5>
+<ul>
+<li>
+<p><strong>神经元（Neuron）</strong> : 神经网络的基本单元。每个神经元接收一个或多个输入，加权处理这些输入，然后产生一个输出。</p>
+</li>
+<li>
+<p><strong>层（Layer）</strong> ：神经网络由多层神经元组成。主要有三种类型的层：</p>
+<ul>
+<li>
+<p><strong>输入层（Input Layer）</strong> ：接收外部数据的层。</p>
+</li>
+<li>
+<p><strong>隐藏层（Hidden Layers）</strong> ：在输入层和输出层之间的层，可以有多个。</p>
+</li>
+<li>
+<p><strong>输出层（Output Layer）</strong> ：产生最终预测或分类的层。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="工作原理"><strong>工作原理</strong></h5>
+<p>每个神经元的输入都与一个权重相乘，所有加权输入的总和加上一个偏置，然后传递给激活函数。激活函数的输出是该神经元的输出。</p>
+<p><img src="https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696933327363.png" alt="1696933327363"></p>
+<blockquote>
+<p>欢迎扫码关注公众号，订阅更多文章!</p>
+</blockquote>
+<p><img src="/img/public-plantform-qr.png" alt=""></p>
+
+  </article><div class="bg-blue-100 dark:bg-gray-900">
+  <div class="container px-4 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2">关注我</div>
+      <p class="opacity-60"></p>
+    </div>
+
+    <ul class="flex justify-center gap-x-3 flex-wrap gap-y-2">
+      
+
+      
+      <li>
+        <a
+          href="https://twitter.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Twitter"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"
+            />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://linkedin.com/in/"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <line x1="8" y1="11" x2="8" y2="16" />
+            <line x1="8" y1="8" x2="8" y2="8.01" />
+            <line x1="12" y1="16" x2="12" y2="11" />
+            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://www.xing.com/profile/"
+          target="_blank"
+          rel="noopener"
+          aria-label="xing"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M14.48736,22.8L9.65664,14.33208L17.154,1.2H22.2L14.70288,14.33208L19.53384,22.8H14.48736z M6.55728,16.26888l3.74808-6.17064l-2.81088-4.9512 H2.73696l2.81112,4.9512L1.8,16.26888H6.55728z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://t.me/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Telegram"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+           <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-telegram"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://github.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://www.buymeacoffee.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Buy Me A Coffee"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M20.216 6.415l-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.196-.366-.231-.572-.065-.378-.125-.756-.192-1.133-.057-.325-.102-.69-.25-.987-.195-.4-.597-.634-.996-.788a5.723 5.723 0 00-.626-.194c-1-.263-2.05-.36-3.077-.416a25.834 25.834 0 00-3.7.062c-.915.083-1.88.184-2.75.5-.318.116-.646.256-.888.501-.297.302-.393.77-.177 1.146.154.267.415.456.692.58.36.162.737.284 1.123.366 1.075.238 2.189.331 3.287.37 1.218.05 2.437.01 3.65-.118.299-.033.598-.073.896-.119.352-.054.578-.513.474-.834-.124-.383-.457-.531-.834-.473-.466.074-.96.108-1.382.146-1.177.08-2.358.082-3.536.006a22.228 22.228 0 01-1.157-.107c-.086-.01-.18-.025-.258-.036-.243-.036-.484-.08-.724-.13-.111-.027-.111-.185 0-.212h.005c.277-.06.557-.108.838-.147h.002c.131-.009.263-.032.394-.048a25.076 25.076 0 013.426-.12c.674.019 1.347.067 2.017.144l.228.031c.267.04.533.088.798.145.392.085.895.113 1.07.542.055.137.08.288.111.431l.319 1.484a.237.237 0 01-.199.284h-.003c-.037.006-.075.01-.112.015a36.704 36.704 0 01-4.743.295 37.059 37.059 0 01-4.699-.304c-.14-.017-.293-.042-.417-.06-.326-.048-.649-.108-.973-.161-.393-.065-.768-.032-1.123.161-.29.16-.527.404-.675.701-.154.316-.199.66-.267 1-.069.34-.176.707-.135 1.056.087.753.613 1.365 1.37 1.502a39.69 39.69 0 0011.343.376.483.483 0 01.535.53l-.071.697-1.018 9.907c-.041.41-.047.832-.125 1.237-.122.637-.553 1.028-1.182 1.171-.577.131-1.165.2-1.756.205-.656.004-1.31-.025-1.966-.022-.699.004-1.556-.06-2.095-.58-.475-.458-.54-1.174-.605-1.793l-.731-7.013-.322-3.094c-.037-.351-.286-.695-.678-.678-.336.015-.718.3-.678.679l.228 2.185.949 9.112c.147 1.344 1.174 2.068 2.446 2.272.742.12 1.503.144 2.257.156.966.016 1.942.053 2.892-.122 1.408-.258 2.465-1.198 2.616-2.657.34-3.332.683-6.663 1.024-9.995l.215-2.087a.484.484 0 01.39-.426c.402-.078.787-.212 1.074-.518.455-.488.546-1.124.385-1.766zm-1.478.772c-.145.137-.363.201-.578.233-2.416.359-4.866.54-7.308.46-1.748-.06-3.477-.254-5.207-.498-.17-.024-.353-.055-.47-.18-.22-.236-.111-.71-.054-.995.052-.26.152-.609.463-.646.484-.057 1.046.148 1.526.22.577.088 1.156.159 1.737.212 2.48.226 5.002.19 7.472-.14.45-.06.899-.13 1.345-.21.399-.072.84-.206 1.08.206.166.281.188.657.162.974a.544.544 0 01-.169.364zm-6.159 3.9c-.862.37-1.84.788-3.109.788a5.884 5.884 0 01-1.569-.217l.877 9.004c.065.78.717 1.38 1.5 1.38 0 0 1.243.065 1.658.065.447 0 1.786-.065 1.786-.065.783 0 1.434-.6 1.499-1.38l.94-9.95a3.996 3.996 0 00-1.322-.238c-.826 0-1.491.284-2.26.613z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://medium.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M8 9h1l3 3l3 -3h1" />
+            <line x1="8" y1="15" x2="10" y2="15" />
+            <line x1="14" y1="15" x2="16" y2="15" />
+            <line x1="9" y1="9" x2="9" y2="15" />
+            <line x1="15" y1="9" x2="15" y2="15" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://reddit.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M12 8c2.648 0 5.028 .826 6.675 2.14a2.5 2.5 0 0 1 2.326 4.36c0 3.59 -4.03 6.5 -9 6.5c-4.875 0 -8.845 -2.8 -9 -6.294l-1 -.206a2.5 2.5 0 0 1 2.326 -4.36c1.646 -1.313 4.026 -2.14 6.674 -2.14z"
+            />
+            <path d="M12 8l1 -5l6 1" />
+            <circle cx="19" cy="4" r="1" />
+            <circle cx="9" cy="13" r=".5" fill="currentColor" />
+            <circle cx="15" cy="13" r=".5" fill="currentColor" />
+            <path d="M10 17c.667 .333 1.333 .5 2 .5s1.333 -.167 2 -.5" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://dribbble.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Dribbble"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-dribbble"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9 3.6c5 6 7 10.5 7.5 16.2" />
+            <path d="M6.4 19c3.5 -3.5 6 -6.5 14.5 -6.4" />
+            <path d="M3.1 10.75c5 0 9.814 -.38 15.314 -5" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://stackoverflow.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="stackoverflow"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-brand-stackoverflow"
+              width="23"
+              height="23"
+              viewBox="-135 22 32 38"
+              stroke-width="0.2"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+          >
+            <polygon points="-108.5,56.2 -108.5,46.3 -105.2,46.3 -105.2,59.5 -135,59.5 -135,46.3 -131.7,46.3 -131.7,56.2       "/>
+            <path d="M-128,45.4l16.2,3.4l0.7-3.2l-16.2-3.4L-128,45.4z M-125.9,37.6l15,7l1.4-3l-15-7L-125.9,37.6z     M-121.7,30.2l12.7,10.6l2.1-2.5l-12.7-10.6L-121.7,30.2z M-113.5,22.4l-2.7,2l9.9,13.3l2.7-2L-113.5,22.4z M-128.4,52.9h16.6    v-3.3h-16.6V52.9z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://forum.xda-developers.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="XDA"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+           <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-xda"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M13.84 3.052V0h7.843v17.583H13.84v-3.024h4.591V3.052zM5.569 14.53V3.024h4.592V0H2.318v17.583H6.98L10.16 24v-9.483z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://tiktok.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="Tiktok"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-brand-tiktok"
+              width="23"
+              height="23"
+              viewBox="0 0 448 512"
+              stroke-width="30"
+              stroke="currentColor"
+              fill="none">
+            <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://scholar.google.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Google Scholar"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-brand-googlescholar"
+              width="22"
+              height="23"
+              viewBox="0 0 24 24"
+              stroke-width="1.4"
+              stroke="currentColor"
+              fill="none">
+            <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://joinmastodon.org"
+          target="_blank"
+          rel="noopener"
+          aria-label="Mastodon"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          stroke-width="1.5" 
+          stroke="currentColor" 
+          fill="none" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M18.648 15.254c-1.816 1.763 -6.648 1.626 -6.648 1.626a18.262 18.262 0 0 1 -3.288 -.256c1.127 1.985 4.12 2.81 8.982 2.475c-1.945 2.013 -13.598 5.257 -13.668 -7.636l-.026 -1.154c0 -3.036 .023 -4.115 1.352 -5.633c1.671 -1.91 6.648 -1.666 6.648 -1.666s4.977 -.243 6.648 1.667c1.329 1.518 1.352 2.597 1.352 5.633s-.456 4.074 -1.352 4.944z"></path>
+          <path d="M12 11.204v-2.926c0 -1.258 -.895 -2.278 -2 -2.278s-2 1.02 -2 2.278v4.722m4 -4.722c0 -1.258 .895 -2.278 2 -2.278s2 1.02 2 2.278v4.722"></path>
+       </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://youtube.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="YouTube"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-youtube"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M10 9l5 3l-5 3z" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-instagram"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M10 9l5 3l-5 3z" />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://behance.net"
+          target="_blank"
+          rel="noopener"
+          aria-label="Behance"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-behance" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M3 18v-12h4.5a3 3 0 0 1 0 6a3 3 0 0 1 0 6h-4.5"></path>
+            <line x1="3" y1="12" x2="7.5" y2="12"></line>
+            <path d="M14 13h7a3.5 3.5 0 0 0 -7 0v2a3.5 3.5 0 0 0 6.64 1"></path>
+            <line x1="16" y1="6" x2="19" y2="6"></line>
+        </svg>
+        </a>
+      </li>
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Copyright © 2021 - xxx
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+</footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://devon-ye.github.io/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const darkStorage = localStorage.getItem('darkmode');
+  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (!darkStorage && isBrowserDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  if (darkStorage && darkStorage === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script>
+</body>
+</html>

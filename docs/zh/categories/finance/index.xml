@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Finance on Deve</title>
+    <link>https://devon-ye.github.io/zh/categories/finance/</link>
+    <description>Recent content in Finance on Deve</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 15 Nov 2023 22:59:31 +0800</lastBuildDate>
+    <atom:link href="https://devon-ye.github.io/zh/categories/finance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>什么是套利 | 翻译</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-11-15-what-is-arbitrage/</link>
+      <pubDate>Wed, 15 Nov 2023 22:59:31 +0800</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-11-15-what-is-arbitrage/</guid>
+      <description>本文简单科普了什么是套利、有哪些套利方法、套利失效的原因。&#xA;什么是套利 套利是指在无风险回报率之外获得确定的利润。 用量化金融的语言来说，我们 可以说套利机会是今天价值为零但未来价值为正的投资组合 的概率，并且未来为负值的概率为零。&#xA;市场上不存在套利机会的假设是经典金融理论的基础。这个想法是俗话说“天下没有免费的午餐”。&#xA;现在我们可以看到，我们可以想到几种套利方式。以下是最重要的几种套利的列表和说明。&#xA;静态套利是一种无需重新平衡正向持仓的套利。 动态套利是一种需要在未来进行交易的价差套利策略，通常取决于市场状况。 统计套利并非套利，而只是根据过去的统计数据预测，可能获得超过无风险收益的利润（甚至可能根据承担的风险进行适当调整）。 模型无关套利是一种不依赖于任何金融工具数学模型而发挥作用的套利。例如，可利用的对看跌期权平价的违反或对债券与掉期之间关系的违反 依赖于模型的套利需要一个模型。例如，由于不正确的波动率估计，期权定价错误。为了从套利中获利，你需要delta对冲，这需要一个模型。 这有几个套利失效的原因&#xA;报价错误或不可交易 期权价格和股票价格没有同步报价 存在您未计算在内的竞价价差 你的模型是错误的，或者存在你没有考虑到的风险因素 [1] Wilmott，M 2009 Frequently Asked Questions In Quantitative Finance, second edition. John Wiley &amp;amp; Sons,Ltd.&#xA;欢迎扫码关注公众号，订阅更多文章!</description>
+    </item>
+    <item>
+      <title>量化金融中的数学应用 | 翻译</title>
+      <link>https://devon-ye.github.io/zh/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</link>
+      <pubDate>Tue, 14 Nov 2023 22:59:31 +0800</pubDate>
+      <guid>https://devon-ye.github.io/zh/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</guid>
+      <description>本文量从量化金融中数学的应用、常见的建模方法、常见的数学工具普及了量化金融中的应用。&#xA;量化金融中有哪些不同类型的数学？ 在数量金融中使用最多的数学领域是概率论和微分方程。当然，通常需要数值方法来生成数字。&#xA;这里列出了各种建模方法和一些有用的工具。“建模方法”和“工具”之间的区别将开始变得清晰。&#xA;建模方法&#xA;概率模型 决策模型 离散：差分方程 连续：微分方程 实用工具&#xA;模拟 离散化方法 近似值 渐进分析 级数解 格林函数 虽然这些清单并非完全是任意列出的，但可以接受一些批评或补充。让我们先来看看建模方法。&#xA;[1] Wilmott，M 2009 Frequently Asked Questions In Quantitative Finance, second edition. John Wiley &amp;amp; Sons,Ltd.</description>
+    </item>
+  </channel>
+</rss>
