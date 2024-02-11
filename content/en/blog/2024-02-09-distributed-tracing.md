@@ -1,7 +1,7 @@
 ---
 title:       "Distributed Tracing"
 description: "Tracing core concepts, java in-process, inter-process implementation methods"
-date:        2024-01-11
+date:        2024-02-09
 author:      "Devean"
 tags:        ["Distributed Tracing","Distributed Architecture "]
 categories:  ["Tech" ]
