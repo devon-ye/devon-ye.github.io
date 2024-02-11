@@ -7,7 +7,7 @@ tags:       ["Service Discovery"]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/blog/service-zk.png"
-keywords: ["Service Discovery","Service Register","Service Health Check"]
+keywords: ["服务发现","服务注册","健康检查"]
 ---
 
 
