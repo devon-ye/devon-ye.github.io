@@ -4,8 +4,8 @@ description: "A brief generalization of what arbitrage is, what arbitrage method
 author:      "Devean"
 date: 2023-11-15T22:59:31+08:00
 tags:        ["Quantitative Finance"]
-categories:  [ "Finance" ]
-thumbnail: "/img/202308/2023080506.jpg"
+categories:  [ "Finance"]
+thumbnail: "/img/blog/bean-meal-spread.png"
 keywords: ["Arbitrage","Quantitative Finance"]
 ---
 

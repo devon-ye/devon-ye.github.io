@@ -6,6 +6,7 @@ date: 2023-11-15T22:59:31+08:00
 tags:        ["Quantitative Finance"]
 categories:  [ "Finance" ]
 keywords: [套利,量化金融,Arbitrage]
+thumbnail: "/img/blog/bean-meal-spread.png"
 ---
 
 > 本文简单科普了什么是套利、有哪些套利方法、套利失效的原因。
