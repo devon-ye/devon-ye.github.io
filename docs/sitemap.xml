@@ -1,90 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://www.devean.cn/categories/</loc>
-    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/tags/machine-learning/</loc>
-    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/</loc>
-    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/tags/</loc>
-    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/categories/tech/</loc>
-    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/</loc>
-    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2024-01-11-machine-learning-neural-networks/</loc>
-    <lastmod>2024-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2024-01-01-machine-learning-decision-trees/</loc>
-    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-12-19-machine-learning-self-organnizing-maps/</loc>
-    <lastmod>2023-12-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-12-02-machine-learning-nonlinear-support-vector-machines/</loc>
-    <lastmod>2023-12-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-11-19-machine-learning-support-vector-machine-non-linearly-separable/</loc>
-    <lastmod>2023-11-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-11-18-machine-learning-support-vector-machine-linearly-separable/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/categories/finance/</loc>
-    <lastmod>2023-11-15T22:59:31+08:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/tags/quantitative-finance/</loc>
-    <lastmod>2023-11-15T22:59:31+08:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-11-15-what-is-arbitrage/</loc>
-    <lastmod>2023-11-15T22:59:31+08:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-11-14-mathematical-applications-in-quantitative-finance/</loc>
-    <lastmod>2023-11-14T22:59:31+08:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-11-11-machine-learning-feature-scaling/</loc>
-    <lastmod>2023-11-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-11-12-machine-learning-k-nearest-neighbours/</loc>
-    <lastmod>2023-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-09-08-machine-learning-basic-concepts/</loc>
-    <lastmod>2023-09-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/categories/life/</loc>
-    <lastmod>2023-08-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/tags/travel/</loc>
-    <lastmod>2023-08-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-08-02-motorcycle-tour-around-xinjiang/</loc>
-    <lastmod>2023-08-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/post/2023-12-11-nginx%E9%83%A8%E7%BD%B2web%E6%9C%8D%E5%8A%A1%E5%8F%8A%E5%9F%9F%E5%90%8D%E5%85%8D%E8%B4%B9ca%E8%AE%A4%E8%AF%81%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/</loc>
-    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/tags/tag1/</loc>
-    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/tags/tag2/</loc>
-    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/about/</loc>
-  </url><url>
-    <loc>https://www.devean.cn/notes/</loc>
-  </url><url>
-    <loc>https://www.devean.cn/search/</loc>
-  </url><url>
-    <loc>https://www.devean.cn/archive/</loc>
-  </url><url>
-    <loc>https://www.devean.cn/search/search/</loc>
-  </url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://www.devean.cn/zh/sitemap.xml</loc>
+    
+      <lastmod>2024-02-11T00:00:00+00:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://www.devean.cn/en/sitemap.xml</loc>
+    
+      <lastmod>2024-02-09T00:00:00+00:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>

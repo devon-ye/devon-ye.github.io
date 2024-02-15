@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CA on Devean</title>
+    <link>https://www.devean.cn/en/tags/ca/</link>
+    <description>Recent content in CA on Devean</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.devean.cn/en/tags/ca/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Free CA certification details process</title>
+      <link>https://www.devean.cn/en/blog/2023-12-11-free-ca-certificate-configuration/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/en/blog/2023-12-11-free-ca-certificate-configuration/</guid>
+      <description>Free CA Certificate Configuration install certbot yum install certbot Manual certificate-only installation certbot run -a manual -i nginx -d domain.com,www.domain.com Saving debug log to /var/log/letsencrypt/letsencrypt.log Requesting a certificate for www.domain.com - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Create a file containing just this data: I7Sl7-xakxMT9dCS67OrHmzn_tFiBx-64g58jlkj9FM.</description>
+    </item>
+  </channel>
+</rss>
