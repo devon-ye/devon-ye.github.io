@@ -14,7 +14,11 @@
     data-emit-metadata="{{ default "0" .Site.Params.comments.emitmetadata }}"
     data-input-position="{{ default "bottom" .Site.Params.comments.inputposition }}"
     data-theme="{{ default "preferred_color_scheme" .Site.Params.comments.theme }}"
-    data-lang="{{ default "en" $.Site.Language.Lang }}"
+    {{ if eq .Site.Language.Lang "zh" }}
+        data-lang="zh-CN"
+    {{ else }}
+        data-lang="en"
+    {{ end }}
     crossorigin="anonymous"
     async>
   </script>
