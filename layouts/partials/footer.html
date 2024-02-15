@@ -13,6 +13,17 @@
       <path d="M18 15l-6 -6l-6 6h12" />
     </svg>
   </span>
+  <!-- busuanzi -->
+  {{ if .Site.Params.Busuanzi.enable -}}
+  <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    总访问量:<span id="busuanzi_value_site_pv"></span>次
+  </span>
+    <span id="busuanzi_container_site_uv">
+    总访客数:<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+  </div>
+  {{- end -}}
 </footer>
 
 {{ if .Site.Params.enableSearch }}
@@ -111,6 +122,6 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   })();
-
 </script>
 {{ end }}
+
