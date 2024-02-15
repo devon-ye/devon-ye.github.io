@@ -1,7 +1,8 @@
-<header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
-  <a href="{{ .Site.Home.Permalink }}" class="capitalize font-extrabold text-2xl">
+<header class="container flex justify-between md:justify-between gap-10 flex-wrap p-8 mx-auto relative">
+  <a href="{{ .Site.Home.Permalink }}" class="capitalize font-extrabold text-2xl brand">
     {{ if .Site.Params.logo }}
     <img src="{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" class="h-8 max-w-full" />
+    <span class="brand-title">{{ .Site.Title }}</span>
     {{ else }}
     {{ .Site.Title }}
     {{ end }}

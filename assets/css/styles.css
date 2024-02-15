@@ -53,3 +53,15 @@
     display: none;
   }
 }
+.brand {
+  display:flex;
+   justify-content: center;
+}
+.brand-title {
+    margin-left:10px;
+}
+.header-color{
+  background-color: #FFF;
+  width: 100%;
+}
+

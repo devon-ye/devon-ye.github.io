@@ -64,6 +64,8 @@ DefaultContentLanguageInSubdir = true
         weight = 4
 
 [params]
+   logo= "/favicon.svg"
+
   # Enable the darkmode toggle in header
   darkModeToggle = true
   
