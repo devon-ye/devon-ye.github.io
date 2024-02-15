@@ -124,6 +124,7 @@ DefaultContentLanguageInSubdir = true
 
 # Comments system
 [params.comments]
+  enable=true
   # Supports disqus, giscus and utterances
   # Check hugo docs for setting up disqus
   system = "giscus"
