@@ -124,6 +124,7 @@ DefaultContentLanguageInSubdir = true
   algolia_indexName = "DeveanBlog"
   algolia_apiKey = "e6f3dbe435f1b262622db4ca6d2fbebb"
 
+
 [params.busuanzi]
     enable = false
 
