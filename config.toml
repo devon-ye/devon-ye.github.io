@@ -124,21 +124,22 @@ DefaultContentLanguageInSubdir = true
 
 # Comments system
 [params.comments]
+  enable=true
   # Supports disqus, giscus and utterances
   # Check hugo docs for setting up disqus
-  #system = "giscus"
+  system = "giscus"
 
   # Options for giscus, exclude hyphens
-  repo = ""
-  repoid = ""
-  category = ""
-  categoryid = ""
-  mapping = ""
-  strict = ""
-  reactionsenabled = ""
-  emitmetadata = ""
-  inputposition = ""
-  theme = ""
+  repo = "devon-ye/devon-ye.github.io"
+  repoid = "R_kgDOKsihIw"
+  category = "Announcements"
+  categoryid = "DIC_kwDOKsihI84CdO_B"
+  mapping = "pathname"
+  strict = "0"
+  reactionsenabled = "1"
+  emitmetadata = "0"
+  inputposition = "bottom"
+  theme = "light"
 
   # Options for utterances, exclude hyphens
   # repo = ""
