@@ -8,7 +8,7 @@ image:       ""
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/KMC1.png"
-tags:        ["Machine Learning"]
+tags:        ["机器学习"]
 
 keywords: ["K均值聚类","KMC","机器学习"]
 ---

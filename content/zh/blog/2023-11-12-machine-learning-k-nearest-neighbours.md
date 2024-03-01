@@ -8,7 +8,7 @@ image:       ""
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/svm1.png"
-tags:        ["Machine Learning"]
+tags:        ["机器学习"]
 
 keywords: ["K临近","K近临","KNN","机器学习"]
 ---

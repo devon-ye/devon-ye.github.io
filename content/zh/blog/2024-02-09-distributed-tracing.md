@@ -3,7 +3,7 @@ title:       "全链路追踪"
 description: "Tracing 核心概念、java进程内、进程间实现方法"
 date:        2024-02-09
 author:      "Devean"
-tags:        ["Tracing","Architecture "]
+tags:        ["系统设计 "]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/blog/tracing2.png"

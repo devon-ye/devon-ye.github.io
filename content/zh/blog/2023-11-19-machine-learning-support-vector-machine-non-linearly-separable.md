@@ -5,7 +5,7 @@ description: "支持向量机线性不可分、软间隔、松弛变量、目标
 date:        2023-11-19
 author:      ""
 image:       ""
-tags:        ["Machine Learning"]
+tags:        ["机器学习"]
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/svm8.jpeg"

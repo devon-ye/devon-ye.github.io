@@ -4,7 +4,7 @@ subtitle:    "Machine Learning Decision Trees"
 description: "机器学习领域中，决策树是一种强大的算法，被广泛应用于分类和回归问题。本文将深入探讨决策树的概念、原理、流程、工业应用场景，并通过代码实践展示其实现。"
 date:        2024-01-01
 author:      "Devean"
-tags:        ["Machine Learning"]
+tags:        ["机器学习"]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/ml/decision-trees.webp"

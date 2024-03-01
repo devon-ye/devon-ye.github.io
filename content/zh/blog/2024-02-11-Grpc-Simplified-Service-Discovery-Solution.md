@@ -3,7 +3,7 @@ title:       "GRPC简化版服务发现方案"
 description: "GRPC、spring-boot、zookeeper实现轻量化服务发现"
 date:        2024-02-11
 author:   "Devean"
-tags:       ["Service Discovery"]
+tags:       ["系统设计"]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/blog/service-zk.png"

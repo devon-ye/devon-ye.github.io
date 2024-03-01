@@ -5,7 +5,7 @@ description: "机器学习与传统建模区别、机器学习分类：监督、
 date:        2023-09-08
 author:      "Devean"
 image:       ""
-tags: ["Machine Learning"]
+tags: ["机器学习"]
 math: true
 categories:  ["Tech" ]
 keywords: ["监督","特征工程","机器学习"]

@@ -7,7 +7,7 @@ image:       ""
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/blog/QPTrade1.png"
-tags:        ["System Design"]
+tags:        ["系统设计"]
 
 keywords: ["低延迟","高并发","高可用","系统设计"]
 ---

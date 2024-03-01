@@ -5,8 +5,7 @@ description: "在机器学习的广阔领域中，自组织映射（Self-Organiz
 date:        2023-12-19
 author:      "Devean"
 image:       ""
-tags:        
-- Machine Learning
+tags:        ["机器学习"]
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/som4.png"

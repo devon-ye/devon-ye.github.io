@@ -5,7 +5,7 @@ description: "非线性支持向量机的核技巧、核函数、决策函数，
 date:        2023-12-02
 author:      "Devean"
 image:       "/img/ml/svm13.png"
-tags:        ["Machine Learning"]
+tags:        ["机器学习"]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/ml/svm12.webp"

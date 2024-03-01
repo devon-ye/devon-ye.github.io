@@ -8,7 +8,7 @@ image:       ""
 math: true
 categories:  ["Tech" ]
 thumbnail: "/img/ml/svm1.png"
-tags:        ["Machine Learning"]
+tags:        ["机器学习"]
 keywords: ["支持向量机","机器学习"]
 ---
 
