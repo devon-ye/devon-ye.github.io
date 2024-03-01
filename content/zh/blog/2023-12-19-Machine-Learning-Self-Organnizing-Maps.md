@@ -1,7 +1,7 @@
 ---
 title:       "自组织映射 | 机器学习"
 subtitle:    "Machine Learning Self-Organnizing Maps"
-description: "在机器学习的广阔领域中，自组织映射（Self-Organizing Map，SOM）占据了一席之地。它是一种无监督学习的人工神经网络，用于数据的降维和可视化。今天，我们将深入探讨SOM的概念、定理、原理，并通过Python示例展示其在实际问题中的应用"
+description: "自组织映射（Self-Organizing Map，SOM）是一种无监督学习的人工神经网络，用于数据的降维和可视化。本文从概念、定理、原理，并通过Python示例展示其在实际问题中的应用"
 date:        2023-12-19
 author:      "Devean"
 image:       ""
