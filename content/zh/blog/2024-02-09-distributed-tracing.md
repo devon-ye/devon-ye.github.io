@@ -1,5 +1,5 @@
 ---
-title:       "Distributed Tracing"
+title:       "全链路追踪"
 description: "Tracing 核心概念、java进程内、进程间实现方法"
 date:        2024-02-09
 author:      "Devean"
@@ -30,8 +30,8 @@ keywords: ["分布式追踪","分布式架构","Tracing"]
 
 ## 我们能用分布式追踪能做什么？
 +  故障定位
-+  日志聚合
-+  性能分析
++  跨系统全链路日志聚合
++  跨系统全链路性能分析
 +  服务依赖拓扑图查看
 
 ## 分布式追踪的实现原理
@@ -71,21 +71,7 @@ keywords: ["分布式追踪","分布式架构","Tracing"]
     }
 }
 ```
-
-#### BaseProcessor
-
- ```java
-  @Override
-    public Response execute0(RstMsgType rmt, GeneratedMessageV3 req) {
-        try {
-            GlobalTracing.setTraceId(getMessage().getTraceId());
-            return this.execute((T) req);
-        }finally {
-            GlobalTracing.remove();
-        }
-    }
-
-```
+### 跨进程
 
 #### Grpc Client
 
@@ -153,7 +139,7 @@ public class FeignTraceInterceptor implements RequestInterceptor {
 }
 ```
 
-####
+###
 
 ```java
 public class TraceHystrixConcurrencyStrategy extends HystrixConcurrencyStrategy {
@@ -172,9 +158,9 @@ public class TraceHystrixConcurrencyStrategy extends HystrixConcurrencyStrategy 
 
 ```
 
-#### 进程内跨线程
+### 进程内跨线程
 
-###### Runnnable接口代理封装
+#### Runnnable接口代理封装
 
 ```java
 
@@ -201,7 +187,7 @@ public class TraceHystrixConcurrencyStrategy extends HystrixConcurrencyStrategy 
 
 ```
 
-##### ExcutorService代理封装
+#### ExcutorService代理封装
 
 ```java
 
@@ -226,7 +212,7 @@ public class TracingExecutorServiceImpl implements ExecutorService {
     }
 }
 ```
-##### 代理ExecutorService
+#### 代理ExecutorService
 
 ```java
 
@@ -238,7 +224,7 @@ public final class ConcurrentUtils {
             .build()));
     
 ```
-##### Spring的TaskDecorator的实现
+#### Spring的TaskDecorator的实现
 ```java
 public class TraceTaskDecorator implements TaskDecorator {
     @Override
