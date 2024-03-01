@@ -86,6 +86,13 @@
       <description>本文量从量化金融中数学的应用、常见的建模方法、常见的数学工具普及了量化金融中的应用。&#xA;量化金融中有哪些不同类型的数学？ 在数量金融中使用最多的数学领域是概率论和微分方程。当然，通常需要数值方法来生成数字。&#xA;这里列出了各种建模方法和一些有用的工具。“建模方法”和“工具”之间的区别将开始变得清晰。&#xA;建模方法&#xA;概率模型 决策模型 离散：差分方程 连续：微分方程 实用工具&#xA;模拟 离散化方法 近似值 渐进分析 级数解 格林函数 虽然这些清单并非完全是任意列出的，但可以接受一些批评或补充。让我们先来看看建模方法。&#xA;[1] Wilmott，M 2009 Frequently Asked Questions In Quantitative Finance, second edition. John Wiley &amp;amp; Sons,Ltd.</description>
     </item>
     <item>
+      <title>K均值聚类(KMC) | 机器学习</title>
+      <link>https://www.devean.cn/zh/blog/202311/machine-learning-k-means-clustering/</link>
+      <pubDate>Mon, 13 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/202311/machine-learning-k-means-clustering/</guid>
+      <description>本文从概念、应用场景、原理、工作流程、优缺点、应用实践、代码、可视化等几方面诠释 K 均值聚类模型&#xA;概述 K-Means 是一种无监督的聚类算法，其目的是将 n 个数据点分为 k 个聚类。每个聚类都有一个质心，这些质心最小化了其内部数据点与质心之间的距离。&#xA;它能做什么 市场细分: 识别具有相似属性的潜在客户群体。 图像分析: 图像压缩和图像分割中的像素聚类。 异常检测: 通过标识不符合标准集群特征的观测结果来检测异常。 基因表达数据分析: 对基因进行聚类以识别具有相似表达模式的基因家族。 原理 初始化： 随机选择 k 个数据点作为初始聚类中心，这些可以是数据集中实际存在的点，也可以是随机生成的点。&#xA;K-Means++: 为了避免随机初始化可能导致的不良结果，K-Means++ 策略通过特别选择远离其他中心的起始中心来优化初始聚类中心的位置。 分配： 遍历样本数据集，计算每个数据点到每个质心的距离，找出数据点距离最近的质心，将数据点分配给该聚类。&#xA;公式&#xA;设 $c_i$ 是第 i 个集群， $ \mu_i$ 是第 i 个集群的中心，目标是最小化所有数据点和其所在集群中心之间的平方距离之和： $ D = \sum_{i=1}^{K} \sum_{x \in c_i} ||x - \mu_i||^2 $&#xA;$d(p, q) = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + \cdots + (p_n - q_n)^2}$&#xA;更新： 计算每个聚类内的平均值，并将平均值设为新的聚类中心。</description>
+    </item>
+    <item>
       <title>机器学习 | 特征缩放</title>
       <link>https://www.devean.cn/zh/blog/2023-11-11-machine-learning-feature-scaling/</link>
       <pubDate>Sat, 11 Nov 2023 00:00:00 +0000</pubDate>
@@ -119,6 +126,13 @@
       <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
       <guid>https://www.devean.cn/zh/page/about/</guid>
       <description>关于我</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://www.devean.cn/zh/blog/202402/qptrade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/202402/qptrade/</guid>
+      <description>承兑服务设计方案 难点 夸系统低延迟交易订单同步及状态同步 高并发下的基于三个换币基础核心功能完成 服务部署或者容器化部署换币补偿动作丢失状态 要点 Canal 同步订单表 + 基于订单id+status扫描同步+幂等入库 Disruptor 多线程并发完成三步换币接口调用 三个补偿任务解决 同步异常丢失+ 重启订单状态异常 核心逻辑 </description>
     </item>
     <item>
       <title></title>

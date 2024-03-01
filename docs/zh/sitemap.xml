@@ -191,6 +191,9 @@
                 href="https://www.devean.cn/zh/blog/2023-11-14-mathematical-applications-in-quantitative-finance/"
                 />
   </url><url>
+    <loc>https://www.devean.cn/zh/blog/202311/machine-learning-k-means-clustering/</loc>
+    <lastmod>2023-11-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.devean.cn/zh/blog/2023-11-11-machine-learning-feature-scaling/</loc>
     <lastmod>2023-11-11T00:00:00+00:00</lastmod>
   </url><url>
@@ -264,6 +267,8 @@
                 hreflang="zh"
                 href="https://www.devean.cn/zh/page/about/"
                 />
+  </url><url>
+    <loc>https://www.devean.cn/zh/blog/202402/qptrade/</loc>
   </url><url>
     <loc>https://www.devean.cn/zh/page/my-first-post/</loc>
   </url>
