@@ -8,6 +8,8 @@ image:       ""
 tags: ["机器学习"]
 math: true
 categories:  ["Tech" ]
+thumbnail: "https://miaoshu-1253346366.cos.ap-beijing-1.myqcloud.com/user/94960/images/1696885427440.png"
+
 keywords: ["监督","特征工程","机器学习"]
 ---
 

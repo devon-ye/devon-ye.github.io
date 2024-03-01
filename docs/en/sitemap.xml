@@ -47,7 +47,7 @@
     <loc>https://www.devean.cn/en/tags/distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/blog/202402/distributed-tracing/</loc>
+    <loc>https://www.devean.cn/en/blog/2024/distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/en/tags/</loc>
@@ -102,10 +102,10 @@
                 href="https://www.devean.cn/en/tags/quantitative-finance/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/blog/202311/what-is-arbitrage/</loc>
+    <loc>https://www.devean.cn/en/blog/2023/what-is-arbitrage/</loc>
     <lastmod>2023-11-15T22:59:31+08:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/blog/202311/mathematical-applications-in-quantitative-finance/</loc>
+    <loc>https://www.devean.cn/en/blog/2023/mathematical-applications-in-quantitative-finance/</loc>
     <lastmod>2023-11-14T22:59:31+08:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/en/categories/life/</loc>
@@ -121,8 +121,18 @@
                 href="https://www.devean.cn/en/categories/life/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/blog/202308/motorcycle-tour-around-xinjiang/</loc>
+    <loc>https://www.devean.cn/en/blog/2023/motorcycle-tour-around-xinjiang/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/blog/2023/motorcycle-tour-around-xinjiang/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/blog/2023/motorcycle-tour-around-xinjiang/"
+                />
   </url><url>
     <loc>https://www.devean.cn/en/tags/travel/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>
