@@ -47,18 +47,8 @@
     <loc>https://www.devean.cn/en/tags/distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/blog/2024-02-09-distributed-tracing/</loc>
+    <loc>https://www.devean.cn/en/blog/202402/distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/blog/2024-02-09-distributed-tracing/"
-                />
   </url><url>
     <loc>https://www.devean.cn/en/tags/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
@@ -84,32 +74,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.devean.cn/en/categories/tech/"
-                />
-  </url><url>
-    <loc>https://www.devean.cn/en/tags/ca/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/tags/ca/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/tags/ca/"
-                />
-  </url><url>
-    <loc>https://www.devean.cn/en/blog/2023-12-11-free-ca-certificate-configuration/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/blog/2023-12-11-free-ca-certificate-configuration/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/blog/2023-12-11-free-ca-certificate-configuration/"
                 />
   </url><url>
     <loc>https://www.devean.cn/en/categories/finance/</loc>
@@ -138,31 +102,11 @@
                 href="https://www.devean.cn/en/tags/quantitative-finance/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/blog/2023-11-15-what-is-arbitrage/</loc>
+    <loc>https://www.devean.cn/en/blog/202311/what-is-arbitrage/</loc>
     <lastmod>2023-11-15T22:59:31+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/blog/2023-11-15-what-is-arbitrage/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/blog/2023-11-15-what-is-arbitrage/"
-                />
   </url><url>
-    <loc>https://www.devean.cn/en/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</loc>
+    <loc>https://www.devean.cn/en/blog/202311/mathematical-applications-in-quantitative-finance/</loc>
     <lastmod>2023-11-14T22:59:31+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/blog/2023-11-14-mathematical-applications-in-quantitative-finance/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/blog/2023-11-14-mathematical-applications-in-quantitative-finance/"
-                />
   </url><url>
     <loc>https://www.devean.cn/en/categories/life/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>
@@ -177,18 +121,8 @@
                 href="https://www.devean.cn/en/categories/life/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/blog/2023-08-02-motorcycle-tour-around-xinjiang/</loc>
+    <loc>https://www.devean.cn/en/blog/202308/motorcycle-tour-around-xinjiang/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/blog/2023-08-02-motorcycle-tour-around-xinjiang/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/blog/2023-08-02-motorcycle-tour-around-xinjiang/"
-                />
   </url><url>
     <loc>https://www.devean.cn/en/tags/travel/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>

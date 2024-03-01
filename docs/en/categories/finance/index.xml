@@ -10,16 +10,16 @@
     <atom:link href="https://www.devean.cn/en/categories/finance/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What Is Arbitrage</title>
-      <link>https://www.devean.cn/en/blog/2023-11-15-what-is-arbitrage/</link>
+      <link>https://www.devean.cn/en/blog/202311/what-is-arbitrage/</link>
       <pubDate>Wed, 15 Nov 2023 22:59:31 +0800</pubDate>
-      <guid>https://www.devean.cn/en/blog/2023-11-15-what-is-arbitrage/</guid>
+      <guid>https://www.devean.cn/en/blog/202311/what-is-arbitrage/</guid>
       <description>This paper briefly introduces what is arbitrage, what are the arbitrage methods and the reasons why arbitrage fails.&#xA;What Is Arbitrage Arbitrage is making a sure profit in excess of the risk-free rate of return. In the language of quantitative finance we can say that an arbitrage opportunity is a portfolio of zero value today which is of positive value in the future with positive probability,and of negative value in the future with zero probability.</description>
     </item>
     <item>
       <title>Mathematical Applications in Quantitative Finance</title>
-      <link>https://www.devean.cn/en/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</link>
+      <link>https://www.devean.cn/en/blog/202311/mathematical-applications-in-quantitative-finance/</link>
       <pubDate>Tue, 14 Nov 2023 22:59:31 +0800</pubDate>
-      <guid>https://www.devean.cn/en/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</guid>
+      <guid>https://www.devean.cn/en/blog/202311/mathematical-applications-in-quantitative-finance/</guid>
       <description>This paper volume popularized the application of mathematics in quantitative finance, common modeling methods, and common mathematical tools in quantitative finance.&#xA;What are the different types of Mathematics found in quantitative finance? The field of mathematics most used in quantitative finance are those of probability theory and differential equations. And,of course, numerical methods are usually needed for producing numbers.&#xA;Here‘s a list of the various approaches to modelling and a selection of useful tools.</description>
     </item>
   </channel>
