@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>系统设计  on Devean</title>
+    <link>https://www.devean.cn/zh/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</link>
+    <description>Recent content in 系统设计  on Devean</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.devean.cn/zh/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何设计低延迟、高可用、高并发的交易服务技术方案</title>
+      <link>https://www.devean.cn/zh/blog/202403/qptrade/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/202403/qptrade/</guid>
+      <description>承兑服务设计方案 需求背景 现状： BTC、ETH简选期权只能以BTC或ETH下单，而不能以稳定币USDT下单。 功能需求 用户以USDT稳定币直接下单开仓期权。 期权平仓后将BTC、ETH直接兑换为USDT划入用户账户。 非功能性需求 低延迟(依赖交易服务市场撮合、故延迟越高、行情变化可能导致系统账户产生资损) 高可用 (即服务不可宕机、升级发布尽可能不停机，重启部署可自动完全恢复) 高并发（即交易行情到来时、多用户并发操作、用户间是并发的，不能排队处理） 业务流程 用户在页面操作简选期权下单以USDT下单模式下单BTC简选期权。 柜台报价接口传入BTC期权张数，柜台服务加上价差后调用资金账户返回所需USDT数量。 用户下单BTC开仓期权张数,柜台以资金账户报价、扣除用户账户USDT,给用户开仓BTC简选期权，用户端开仓成功。 服务端，柜台将BTC期权开仓订单记录以异步的方式同步给承兑服务、承兑服务完成后续的交易服务平账操作。 i. 承兑服务调用柜台服务接口完成换币系统账户加USDT、减BTC的操作。 ii. 承兑服务调用资金服务完成系统账户到资金账户的USDT划转。 iii. 承兑服务调用交易服务接口完成USDT换BTC的操作。 iv. 承兑服服务调用资金账户将换回的BTC划转值系统账户。 技术难点 从柜台服务库夸系统低延迟交易订单同步至承兑服务后不丢、不重，Canal、Kafka中间件集群异常需要容错处理。 柜台服务从用户账户完成减USDT、开仓BTC期权动作后,完成用户端交互。而承兑服务需要在极低延迟时间内需要完成后续平账的操作，因换币依赖于市场行情，延迟越高存在差价滑点的概率越高。 承兑服务要完成平账操作,保证以下4次接口调用顺序性依赖、且多用户执行时多用户间并发性。 i. 承兑服务调用柜台服务接口完成换币系统账户加USDT、减BTC的操作。 ii. 承兑服务调用资金服务完成系统账户到资金账户的USDT划转。 iii. 承兑服务调用交易服务接口完成USDT换BTC的操作。 iv. 承兑服服务调用资金账户将换回的BTC划转值系统账户。 服务迭代或异常重启部署、中间态的订单依旧可恢复完成剩余步骤，完成换币动作。 为了避免正常停机导致订单延迟过高产生资损,服务升级需要不停机。 解决方案 柜台服务到承兑服务订单低延迟、高可用同步 柜台服务加同步订单表、配置canal表同步，将该表同步写入kafka 承兑服务消费topic后解析Binlog、过滤非换币订单、将订单写入承兑服务同步订单表，以订单唯一id幂等校验。 承兑服务入库后提交offset。随后将该订单放入Disruptor内存队列。 服务启动后会启动定时任务，加载当前订单表每个shard最后一条记录的毫秒级时间戳、去查询柜台服务订单同步表对应的分片是存在未同步订单。 TODO 小编正在编写中&#xA;状态机架构模式换成低延迟、高并发、高可靠平账流程 服务异常或迭代重启部署不停机 </description>
+    </item>
+    <item>
+      <title>GRPC简化版服务发现方案</title>
+      <link>https://www.devean.cn/zh/blog/2024-02-11-grpc-simplified-service-discovery-solution/</link>
+      <pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/2024-02-11-grpc-simplified-service-discovery-solution/</guid>
+      <description>GRPC简化版服务发现方案 背景 目前服务配置复杂、且测试环境要保证端口不重复 server端做自动扩缩容后,client端无法消费最新的server,需要重启client端 新server服务需要在调用它的client端做大量配置 目前grpc服务心跳也无法生效，需要手动在每个server端服务端添加心跳接口实现 目前服务负载均衡基于AWS的DNS建立长链接,无法均衡 核心痛点 server服务自动扩缩容，需要重启client才能生效 服务化配置复杂，容易配置错误主机信息 需求 功能性需求 现阶段&#xA;服务发现 服务扩缩容后，可在client端实时更新，无需重启服务 服务健康检查 服务出现踢出重连 简化rpc服务配置 后期&#xA;权限控制 灰度路由 服务治理 服务预热 非功能性需求 高可用且 可拓展，具备后期拓展权限控制、限流、熔断、服务预热等治理 方案设计 服务注册流程 grpc-server启动服务注册流程 服务发现流程 具体方案 DB存储方案 DB 存储结构 cluster_name server_name own_address heat_beat instance_hash default user-center host:port timestamp 集群名+服务名+主机端口的hash 方案描述 server端启动后将服务信息写入表，并周期更新心跳, 服务启动时加载shutdownhook钩子函数,服务关闭时删除服务当前实例服务信息 client端调启动时加载服务信息列表并创建rpc链接 client端添加定时任务，根据服务名扫描服务实例信息，并做合并 优点 实现简单 维护成本低 缺点 无法实现强一致性 延迟高 后期拓展接口粒度服务注册时，不易拓展 zk存储方案 zk存储结构 方案描述 1./grpc-clusterName /serverName为实体节点 配置不同的clusterName来区分不同环境 2.主机信息节点为虚节点，以zk心跳来做服务心跳 3.grpc_client端监听serverName节点的子节点事件，处理服务上线下 4.主机节点包含主机写入时间戳 优点 低延迟 强一致 后期拓展接口粒度服务注册时，易于拓展 缺点 维护成本高 存储方案对比 DB redis zookeeper etcd Eureka Consul Nacos 一致性 弱 弱 CP CP AP CP CP+AP 健康检查 不支持 不支持 支持 支持 支持 支持 双向心跳 watcher支持 不支持 不支持 多次注册 一次注册 支持 支持 支持 自动注销 不支持 不支持 支持 支持 需调用其API或超过延迟时间下线 支持 支持 最少节点数 1 3 3 1 3 3 社区 活跃 活跃 不活跃 活跃 活跃 延迟 高 较高 低 低 较高 低 低 拓展接口注册 难度大 容易 容易 容易 容易 容易 难 语言 C++ C++ Java go Java go Java 缺点 可靠性低 当服务达到一定规模是,写入性能存在瓶颈 备注 依赖SDK 依赖SDK 与Registrator结合实现服务发现预注册 eureka1.</description>
+    </item>
+    <item>
+      <title>全链路追踪</title>
+      <link>https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/</link>
+      <pubDate>Fri, 09 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/</guid>
+      <description>分布式追踪 什么是分布式追踪？ 分布式追踪也叫分布式请求跟踪，是一种针对分布式服务概要分析和监控的方法，特别对于故障发生未知及性能下降原因&#xA;核心概念 traceId:标识一次用户请求生成的唯一ID spanId:标识本次调用在调用链中的位置 为什么需要分布式追踪？ 随着业务量增长，单体服务已经无法满足需求，因此SOA服务化和微服务，且每个服务多实例部署，导致排查故障及性能问题的难度加大&#xA;我们能用分布式追踪能做什么？ 故障定位 跨系统全链路日志聚合 跨系统全链路性能分析 服务依赖拓扑图查看 分布式追踪的实现原理 夸线程:ThreadLocal传递traceId等信息 跨进程:通过封装RPC、HTTP、MQ 协议的header传递traceId等信息&#xA;实现方法: 业界中间件SDK封装，在需要的地方手动处理 编译器字节码插装 好处:业务无感知，开箱即用&#xA;GlobalTracing public class GlobalTracing { private static final ThreadLocal&amp;lt;String&amp;gt; TRACE_ID_LOCAL = new ThreadLocal&amp;lt;&amp;gt;(); public static final String TRACE_ID = &amp;#34;trace_id&amp;#34;; private GlobalTracing() { } public static void setTraceId(String traceId) { TRACE_ID_LOCAL.set(traceId); LogUtils.setTraceId(traceId); } public static String getTraceId() { return TRACE_ID_LOCAL.get(); } public static void remove() { TRACE_ID_LOCAL.remove(); } } 跨进程 Grpc Client public class TracingClientInterceptor implements ClientInterceptor { private static final Metadata.</description>
+    </item>
+  </channel>
+</rss>

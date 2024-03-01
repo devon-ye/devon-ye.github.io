@@ -28,9 +28,6 @@
                 href="https://www.devean.cn/zh/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/zh/tags/system-design/</loc>
-    <lastmod>2024-03-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.devean.cn/zh/tags/</loc>
     <lastmod>2024-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -73,17 +70,11 @@
     <loc>https://www.devean.cn/zh/blog/202403/qptrade/</loc>
     <lastmod>2024-03-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://www.devean.cn/zh/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</loc>
+    <lastmod>2024-03-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.devean.cn/zh/blog/2024-02-11-grpc-simplified-service-discovery-solution/</loc>
     <lastmod>2024-02-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/zh/tags/service-discovery/</loc>
-    <lastmod>2024-02-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/zh/tags/architecture/</loc>
-    <lastmod>2024-02-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/zh/tags/tracing/</loc>
-    <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
@@ -98,7 +89,7 @@
                 href="https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/zh/tags/machine-learning/</loc>
+    <loc>https://www.devean.cn/zh/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2024-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/zh/blog/2024-01-11-machine-learning-neural-networks/</loc>
