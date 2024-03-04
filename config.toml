@@ -155,9 +155,7 @@ DefaultContentLanguageInSubdir = true
   # Global params common for both languages
   title = ""
   description = ""
-  [[params.homepage.social.icons]]
-    website = "zhihu"
-    url = "https://www.zhihu.com/people/devonaha"
+
   [[params.homepage.social.icons]]
     website = "email"
     url = "devean.ye@gmail.com"
@@ -176,6 +174,9 @@ DefaultContentLanguageInSubdir = true
   [[params.homepage.social.icons]]
     website = "github"
     url = "https://github.com/devon-ye"
+  [[params.homepage.social.icons]]
+    website = "zhihu"
+    url = "https://www.zhihu.com/people/devonaha"
 #  [[params.homepage.social.icons]]
 #    website = "buymeacoffee"
 #    url = "https://www.buymeacoffee.com/"
