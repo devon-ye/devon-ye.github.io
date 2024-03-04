@@ -29,10 +29,10 @@ DefaultContentLanguageInSubdir = true
         name = "标签"
         url = "tags"
         weight = 3
-#    [[languages.zh.menu.main]]
-#        name = "顶部文章"
-#        url = "/zh/blog/2024-01-11-machine-learning-neural-networks/"
-#        weight = 4
+    [[languages.zh.menu.main]]
+        name = "AI 知识库"
+        url = "https://ai.devean.cn/"
+        weight = 4
   [languages.en]
     contentDir = "content/en" #English
     weight = 2
@@ -57,10 +57,10 @@ DefaultContentLanguageInSubdir = true
         url = "tags"
         weight = 3
 
-#    [[languages.en.menu.main]]
-#        name = "Top Post"
-#        url = "/en/blog/2023-08-02-motorcycle-tour-around-xinjiang/"
-#        weight = 4
+    [[languages.en.menu.main]]
+        name = "AI Know Hub"
+        url = "https://ai.devean.cn/"
+        weight = 4
 
 [params]
    logo= "/favicon.svg"
