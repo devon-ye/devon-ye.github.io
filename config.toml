@@ -59,7 +59,7 @@ DefaultContentLanguageInSubdir = true
 
     [[languages.en.menu.main]]
         name = "AI Know Hub"
-        url = "https://ai.devean.cn/"
+        url = "https://ai.devean.cn/en/"
         weight = 4
 
 [params]
