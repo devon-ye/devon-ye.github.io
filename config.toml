@@ -29,17 +29,16 @@ DefaultContentLanguageInSubdir = true
         name = "标签"
         url = "tags"
         weight = 3
-
-    [[languages.zh.menu.main]]
-        name = "顶部文章"
-        url = "/zh/blog/2024-01-11-machine-learning-neural-networks/"
-        weight = 4
+#    [[languages.zh.menu.main]]
+#        name = "顶部文章"
+#        url = "/zh/blog/2024-01-11-machine-learning-neural-networks/"
+#        weight = 4
   [languages.en]
     contentDir = "content/en" #English
     weight = 2
     languageName = "English"
     [languages.en.params]
-      introTitle = "The road is under our feet, while our hearts are set on the distant horizon."
+      introTitle = "The road is under feet, while heart is in the distance"
       introSubtitle = ""
       introPhoto = "/img/bj/ladder-sky-bg.jpg"
       logo = "/favicon.svg"
@@ -58,10 +57,10 @@ DefaultContentLanguageInSubdir = true
         url = "tags"
         weight = 3
 
-    [[languages.en.menu.main]]
-        name = "Top Post"
-        url = "/en/blog/2023-08-02-motorcycle-tour-around-xinjiang/"
-        weight = 4
+#    [[languages.en.menu.main]]
+#        name = "Top Post"
+#        url = "/en/blog/2023-08-02-motorcycle-tour-around-xinjiang/"
+#        weight = 4
 
 [params]
    logo= "/favicon.svg"
@@ -154,7 +153,7 @@ DefaultContentLanguageInSubdir = true
 
 [params.homepage.social]
   # Global params common for both languages
-  title = "关注我"
+  title = ""
   description = ""
   [[params.homepage.social.icons]]
     website = "zhihu"
