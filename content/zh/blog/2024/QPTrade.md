@@ -74,13 +74,13 @@ public class DisruptorAutoConfiguration {
    public final Integer CORE_SIZE = Runtime.getRuntime().availableProcessors();
 
    @Bean("steptOneRingBuffer")
-   public RingBuffer<EventWrapper<BizEvent>> createSystemAccountAddRingBuffer(StepOneHandler stepOneHandler) {
+   public RingBuffer<EventWrapper<BizEvent>> createStepOneRingBuffer(StepOneHandler stepOneHandler) {
       Disruptor<EventWrapper<BizEvent>> disruptor = createDisruptor((WorkHandler<EventWrapper<BizEvent>>) stepOneHandler, "stepOneHandler");
       return disruptor.getRingBuffer();
    }
    
    @Bean("stepTwoRingBuffer")
-   public RingBuffer<EventWrapper<BizEvent>> createTransferToQpRingBuffer(StepTwoHandler stepTwoHandler) {
+   public RingBuffer<EventWrapper<BizEvent>> createStepTwoRingBuffer(StepTwoHandler stepTwoHandler) {
       Disruptor<EventWrapper<BizEvent>> disruptor = createDisruptor(stepTwoHandler, "stepTwoHandler");
       return disruptor.getRingBuffer();
    }
