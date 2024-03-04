@@ -61,7 +61,7 @@
   <meta itemprop="name" content="如何设计低延迟、高可用、高并发的交易服务技术方案">
 <meta itemprop="description" content="基于Disruptor、kafka、canal、mysql、zookeeper、spring-boot技术栈实现低延迟、高并发写、高可用的、交易服务状态机架构模式系统"><meta itemprop="datePublished" content="2024-03-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-03-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="49">
+<meta itemprop="wordCount" content="193">
 <meta itemprop="keywords" content="系统设计," />
 
   
@@ -223,7 +223,7 @@
         <line x1="12" y1="6" x2="12" y2="19" />
         <line x1="21" y1="6" x2="21" y2="19" />
       </svg>
-      49&nbsp;字
+      193&nbsp;字
       
         
       
@@ -294,6 +294,11 @@
         
         </li><li>
         <a href="#%e5%ae%b9%e9%94%99%e5%a4%84%e7%90%86">容错处理</a>
+        
+
+        
+        </li><li>
+        <a href="#%e4%b8%bb%e5%a4%87%e5%88%87%e6%8d%a2">主备切换</a>
         </li></ul>
     </li></ul>
     </li></ul>
@@ -357,7 +362,93 @@
 <li>定时任务每隔3秒检查一次，去查询柜台服务同步订单表,是否存在延迟或未同步订单直接以接口拉取最新为同步订单</li>
 </ol>
 <h3 id="状态机架构模式换成低延迟高并发高可靠平账流程">状态机架构模式换成低延迟、高并发、高可靠平账流程</h3>
+<ol>
+<li>实现四个顺序依赖的接口完全异步、多线程并发执行，即基于Disruptor的EventHandler、WorkHandler两个接口实现多线程异步执行。</li>
+</ol>
+<ul>
+<li>配置多层多步线程</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Configuration
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">DisruptorAutoConfiguration</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   @Autowired
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">private</span> BizExceptionHandler bizExceptionHandler;
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> Integer RING_BUFFER_SIZE <span style="color:#ff79c6">=</span> 1024 <span style="color:#ff79c6">*</span> 2;
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> Integer CORE_SIZE <span style="color:#ff79c6">=</span> Runtime.<span style="color:#50fa7b">getRuntime</span>().<span style="color:#50fa7b">availableProcessors</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   @Bean(<span style="color:#f1fa8c">&#34;steptOneRingBuffer&#34;</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">public</span> RingBuffer<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span> <span style="color:#50fa7b">createSystemAccountAddRingBuffer</span>(StepOneHandler stepOneHandler) {
+</span></span><span style="display:flex;"><span>      Disruptor<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span> disruptor <span style="color:#ff79c6">=</span> createDisruptor((WorkHandler<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span>) stepOneHandler, <span style="color:#f1fa8c">&#34;stepOneHandler&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> disruptor.<span style="color:#50fa7b">getRingBuffer</span>();
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   @Bean(<span style="color:#f1fa8c">&#34;stepTwoRingBuffer&#34;</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">public</span> RingBuffer<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span> <span style="color:#50fa7b">createTransferToQpRingBuffer</span>(StepTwoHandler stepTwoHandler) {
+</span></span><span style="display:flex;"><span>      Disruptor<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span> disruptor <span style="color:#ff79c6">=</span> createDisruptor(stepTwoHandler, <span style="color:#f1fa8c">&#34;stepTwoHandler&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> disruptor.<span style="color:#50fa7b">getRingBuffer</span>();
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">private</span> Disruptor<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span> <span style="color:#50fa7b">createDisruptor</span>(WorkHandler<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span> workHandler, String workPrefix) {
+</span></span><span style="display:flex;"><span>      WorkHandler<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;[]</span> workHandlers <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> WorkHandler<span style="color:#ff79c6">[</span>CORE_SIZE<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>      Arrays.<span style="color:#50fa7b">fill</span>(workHandlers, workHandler);
+</span></span><span style="display:flex;"><span>      Disruptor<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span> disruptor <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Disruptor<span style="color:#ff79c6">&lt;&gt;</span>(EventWrapper::<span style="color:#ff79c6">new</span>, RING_BUFFER_SIZE, <span style="color:#ff79c6">new</span> DefaultThreadFactory(workPrefix), ProducerType.<span style="color:#50fa7b">MULTI</span>, <span style="color:#ff79c6">new</span> BlockingWaitStrategy());
+</span></span><span style="display:flex;"><span>      disruptor.<span style="color:#50fa7b">handleEventsWithWorkerPool</span>(workHandlers);
+</span></span><span style="display:flex;"><span>      disruptor.<span style="color:#50fa7b">setDefaultExceptionHandler</span>(bizExceptionHandler);
+</span></span><span style="display:flex;"><span>      disruptor.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> disruptor;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>顺序依赖并发处理</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">StepOneHandler</span> <span style="color:#8be9fd;font-style:italic">implements</span> EventHandler<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&gt;</span>, WorkHandler<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">private</span> RingBuffer<span style="color:#ff79c6">&lt;</span>EventWrapper<span style="color:#ff79c6">&lt;</span>BizEvent<span style="color:#ff79c6">&gt;&gt;</span> stepTwoRingBuffer;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   @Override
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">onEvent</span>(EventWrapper eventWrapper) <span style="color:#8be9fd;font-style:italic">throws</span> Exception {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">//TODO BUSSINESS</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">//  TODO call thirtyPartyService</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      stepTwoRingBuffer.<span style="color:#50fa7b">publishEvent</span>((event, sequence, arg0) <span style="color:#ff79c6">-&gt;</span> event.<span style="color:#50fa7b">setEvent</span>(arg0), eventWrapper.<span style="color:#50fa7b">getEvent</span>());
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   @Override
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">onEvent</span>(EventWrapper eventWrapper, <span style="color:#8be9fd">long</span> l, <span style="color:#8be9fd">boolean</span> b) <span style="color:#8be9fd;font-style:italic">throws</span> Exception {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">onEvent</span>(eventWrapper);
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>2.基于库表存储持久化每一步状态，保证服务重启后可恢复执行剩余步骤。</p>
 <h3 id="容错处理">容错处理</h3>
+<ul>
+<li>
+<p>重启恢复处理</p>
+<ul>
+<li>服务重启后，异常恢复任务会加载状态表中处于中间态的记录，并将其放入Disruptor内存队列，接着执行剩余步骤。</li>
+</ul>
+</li>
+<li>
+<p>三方服务异常处理</p>
+</li>
+<li>
+<p>当三方接口调用异常，将异常结果写入状态表，根据返回错误码，区分是可重试或不可重试的错误,写入状态表，定时任务会定时检查状态表中的异常记录，根据错误码进行多次重试或人工介入处理。</p>
+</li>
+<li>
+<p>中间件异常处理</p>
+<ul>
+<li>Canal、Kafka集群异常，订单无法实时同步至承兑服务时，外部异常补偿任务会扫描交易服务的订单表，将未同步的订单重新同步至承兑服务。</li>
+</ul>
+</li>
+</ul>
+<h3 id="主备切换">主备切换</h3>
+<p>基于zookeeper的主备切换，保证服务不可宕机，升级发不停机，重启部署可自动完全恢复。</p>
+<ol>
+<li>服务启动时，注册临时节点至zookeeper，给父节点注册监听事件，监听子节点的删除事件。</li>
+<li>当触发子节点监听事件，即服务宕机，zookeeper会将服务的临时节点删除，触发父节点的监听事件，父节点会重新选举新的主备节点，更新主备机器、服务的状态。</li>
+</ol>
 
   </article>
 <div class="px-2 mb-2">
