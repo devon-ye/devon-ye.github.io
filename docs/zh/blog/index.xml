@@ -121,6 +121,13 @@
       <description>环新疆摩旅 版权声明：以下图片版权归本人所有，禁止一切商用，如需商用请与本人取得联系获取授权，侵权必究！ 2023.8.2 北京&amp;ndash;巴彦淖尔临河服务区 2023.8.3 巴彦淖尔临河服务区&amp;ndash;额济纳旗 2023.8.3 额济纳旗&amp;ndash;哈密 2023.8.5 哈密-巴里坤 阿勒吞古街 哈密文化馆 哈密回王墓 天山庙 巴里坤草原 2023.8.6 巴里坤-吐鲁番-乌鲁木齐 巴里坤糊 天山无人区峡谷 吐峪沟麻扎村 2023.8.7 乌鲁木齐 2023.8.8 阿勒泰五彩湾 2023.8.9 可可托海 2023.8.10 禾木 2023.8.11-12 喀纳斯 2023.8.13 吉木乃 草原石城 吉木乃草原 松海湾 2023.8.16 塞里湖&amp;ndash;尼勒克 赛里木湖&amp;ndash;大西洋的最后一滴泪 果子沟大桥 2023.8.17 尼勒克&amp;ndash;奎屯 特克斯八卦城 2023.8.19 奎屯&amp;ndash;独库640兰萨德克服务区 安集海大峡谷 2023.8.20 独库640兰萨德克服务区&amp;ndash;天山神秘大峡谷 </description>
     </item>
     <item>
+      <title>并发与多线程</title>
+      <link>https://www.devean.cn/zh/blog/2019/concurrency-and-multithread/</link>
+      <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/2019/concurrency-and-multithread/</guid>
+      <description>并发与多线程 1 常见概念 1.1 操作系统线程运行状态 NEW RUNNABLE RUNNING BLOCKED 1.2 Java虚拟机线程实际运行状态 public enum State { NEW 尚未开始的线程处于此状态，即刚创建线程对象，未调用start()方法 RUNNABLE 新建线程调用start()方法后，在Java虚拟机中执行的线程处于此状态，但它可能正在等待来自操作系统的其他资源（如处理器）。 BLOCKED 处于阻塞状态的线程正在等待监视器锁定进入同步块或同步方法，或者重入锁进入同步块或同步方法 后调用Object.wait()方法 WAITING 由于调用以下方法之一，线程处于等待状态 Object.wait(); 无超时 Thread.join(); 无超时 LockSupport.park(); 例如，a.在对象上调用Object.wait（）的线程正在等待另一个线程调用Object.notify（）或Object.notifyAll（）在该对象。 b.一个名为Thread.join（的线程正在等待指定的线程终止。 TIMED_WAITING 由于调用一个线程，线程处于定时等待状态,使线程处于定时等待状态可调用方法如下： Thread.sleep(long); Object.wait(long) Thread.join(long); LockSupport.parkNanos(long); LockSupport.parkUntil(long); TERMINATED 终止线程的线程状态。 即线程已完成当前任务的执行。 } 1.3 重入锁 概念： 一个线程试图获得它自己持有的锁，那么这个请求就会成功 实现原理： 1.为每个锁绑定所有者和计数值,每重入一次该计数值自增1，而当线程每退出一次计数值递减，直到计数值为零才释放锁。 常用实现 1.4 sychroinzed 概述： 在JDK1.6之前被称为重量级锁，然后在JDK1.6中为了减少获得和释放锁所带来的性能消耗引入了偏量锁和轻量级锁 实现原理： 互斥同步原理，JVM规范中都是给予进入和对出Monitor对象来实现方法同步和代码块同步的，但两者的实现细节不同: 代码块同步是使用monitorenter和monitorexit指令实现的 使用分类 按目标分类：类锁和对象锁&#xA;按范围分类：方法和代码块&#xA;使用形式： 普通方法+syncronized 锁是当前实例对象&#xA;public class InstanceObjectSyncronizedTest{ private Integer num = 5; public syncronized Integer getNum(){ num++ return num; } } 静态方法+syncronized 锁是当前类的Class对象</description>
+    </item>
+    <item>
       <title>负载均衡</title>
       <link>https://www.devean.cn/zh/blog/2019/load-balance/</link>
       <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>

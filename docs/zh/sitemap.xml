@@ -199,6 +199,9 @@
                 href="https://www.devean.cn/zh/page/about/"
                 />
   </url><url>
+    <loc>https://www.devean.cn/zh/blog/2019/concurrency-and-multithread/</loc>
+    <lastmod>2019-09-17T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.devean.cn/zh/blog/2019/load-balance/</loc>
     <lastmod>2019-08-23T00:00:00+00:00</lastmod>
   </url><url>
