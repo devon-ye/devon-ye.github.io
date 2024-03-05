@@ -15,7 +15,6 @@ keywords: ["架构设计","方案选型","系统设计"]
 
 # 架构设计
 
-![imges](/img/blog/arch-design.png)
 [架构设计ProcessOn](https://www.processon.com/mindmap/5c918057e4b0afc744183dc5)
 
 ## 三原则

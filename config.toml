@@ -86,7 +86,7 @@ DefaultContentLanguageInSubdir = true
   ]
 
   # Custom copyright - optional
-  copyright = "Devean©2023-Now"
+  copyright = "Devean©2019-Now"
   favicon = "/favicon.svg"
 
   # Color for the intro details and social links block, not applicable for dark mode
