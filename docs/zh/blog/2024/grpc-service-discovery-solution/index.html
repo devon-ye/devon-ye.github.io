@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="zh" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg">
+
+  <title>
+  GRPC服务发现方案 - Devean
+  </title>
+  <meta name="description" content="GRPC、spring-boot、zookeeper实现轻量化服务发现" />
+  <meta name="keywords" content="服务发现,服务注册,健康检查" />
+  
+  <meta name="author" content="Devean" />
+  
+  
+  <meta name="baidu-site-verification" content="codeva-aKGHHixfLv" />
+  
+  <meta name="google-site-verification" content="5YbYjVsLhmXRSCU2u_xrAegZCOyvI296GhQyr-o9L9c" />
+  <meta name="google-adsense-account" content="ca-pub-1062383921426856"/>
+
+  <meta name="generator" content="Hugo 0.121.1"><link
+    rel="stylesheet"
+    href="https://www.devean.cn/css/styles.min.4791ba89238dfa05e265259d42df4f79601c64ec413a63e1700938a1e4317c1b.css"
+    integrity="sha256-R5G6iSON+gXiZSWdQt9PeWAcZOxBOmPhcAk4oeQxfBs="
+  />
+  
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+  
+
+  <meta property="og:title" content="GRPC服务发现方案" />
+<meta property="og:description" content="GRPC、spring-boot、zookeeper实现轻量化服务发现" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devean.cn/zh/blog/2024/grpc-service-discovery-solution/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-02-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-02-11T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="GRPC服务发现方案"/>
+<meta name="twitter:description" content="GRPC、spring-boot、zookeeper实现轻量化服务发现"/>
+
+  <meta itemprop="name" content="GRPC服务发现方案">
+<meta itemprop="description" content="GRPC、spring-boot、zookeeper实现轻量化服务发现"><meta itemprop="datePublished" content="2024-02-11T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-02-11T00:00:00+00:00" />
+<meta itemprop="wordCount" content="170">
+<meta itemprop="keywords" content="系统设计," />
+
+  
+  <meta name="lang" content="zh" />
+  
+
+  
+  
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"
+          crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "jr52ezl3v8");
+  </script>
+  <script async src="https://fundingchoicesmessages.google.com/i/pub-1062383921426856?ers=1" nonce="NfGRs7DCS-JUraZJwqXtEA"></script>
+  <script nonce="NfGRs7DCS-JUraZJwqXtEA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+  </head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-10 flex-wrap p-8 mx-auto relative">
+  <a href="https://www.devean.cn/zh/" class="capitalize font-extrabold text-2xl brand">
+    
+    <img src="/favicon.svg" alt="Devean" class="h-8 max-w-full" />
+    <span class="brand-title">Devean</span>
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute z-10 px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/zh/blog">博客</a></li>
+    
+    <li><a href="/zh/page/about/">关于</a></li>
+    
+    <li><a href="/zh/tags">标签</a></li>
+    
+    <li><a href="https://ai.devean.cn/">AI 知识库</a></li>
+    
+
+    
+    
+    <li class="flex items-center">
+      
+      
+      
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="12" r="9" />
+        <line x1="3.6" y1="9" x2="20.4" y2="9" />
+        <line x1="3.6" y1="15" x2="20.4" y2="15" />
+        <path d="M11.5 3a17 17 0 0 0 0 18" />
+        <path d="M12.5 3a17 17 0 0 1 0 18" />
+      </svg>
+      <a href="/en" lang="en">English</a>
+      
+      
+    </li>
+    
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="/img/blog/service-zk.png" class="rounded-lg shadow-sm w-full object-contain" />
+    
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    February 11, 2024
+  
+
+
+    </div>
+    
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">GRPC服务发现方案</h1>
+    
+    <h5 class="text-sm flex items-center flex-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      发布 
+  
+    February 11, 2024
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      1&nbsp;分钟
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      170&nbsp;字
+      
+        
+      
+    </h5>
+    
+
+    <details id="TableOfContents" class="px-4 mt-4 bg-gray-100 dark:bg-gray-700 rounded toc">
+    <summary class="flex items-center font-bold py-2 px-4 cursor-pointer justify-between select-none text-black dark:text-white">
+      <span>Table of contents</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <polyline points="6 9 12 15 18 9"></polyline>
+     </svg>
+    </summary>
+
+    <ul class="mt-2 pb-4">
+        
+
+        
+        <li>
+        <a href="#grpc%e6%9c%8d%e5%8a%a1%e5%8f%91%e7%8e%b0%e6%96%b9%e6%a1%88">GRPC服务发现方案</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e8%83%8c%e6%99%af">背景</a>
+        
+
+        
+        </li><li>
+        <a href="#%e6%a0%b8%e5%bf%83%e7%97%9b%e7%82%b9">核心痛点</a>
+        
+
+        
+        </li><li>
+        <a href="#%e9%9c%80%e6%b1%82">需求</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e5%8a%9f%e8%83%bd%e6%80%a7%e9%9c%80%e6%b1%82">功能性需求</a>
+        
+
+        
+        </li><li>
+        <a href="#%e9%9d%9e%e5%8a%9f%e8%83%bd%e6%80%a7%e9%9c%80%e6%b1%82">非功能性需求</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e6%96%b9%e6%a1%88%e8%ae%be%e8%ae%a1">方案设计</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e6%9c%8d%e5%8a%a1%e6%b3%a8%e5%86%8c%e6%b5%81%e7%a8%8b">服务注册流程</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#grpc-server%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1%e6%b3%a8%e5%86%8c%e6%b5%81%e7%a8%8b">grpc-server启动服务注册流程</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e6%9c%8d%e5%8a%a1%e5%8f%91%e7%8e%b0%e6%b5%81%e7%a8%8b">服务发现流程</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%85%b7%e4%bd%93%e6%96%b9%e6%a1%88">具体方案</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#db%e5%ad%98%e5%82%a8%e6%96%b9%e6%a1%88">DB存储方案</a>
+        
+
+        
+        </li><li>
+        <a href="#zk%e5%ad%98%e5%82%a8%e6%96%b9%e6%a1%88">zk存储方案</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e5%ad%98%e5%82%a8%e6%96%b9%e6%a1%88%e5%af%b9%e6%af%94">存储方案对比</a>
+        
+
+        
+        </li><li>
+        <a href="#%e7%bb%93%e8%ae%ba">结论</a>
+        </li></ul>
+    </li></ul>
+    </li></ul>
+  </details>
+
+    <blockquote>
+<p>基于GRPC、spring-boot、zookeeper实现轻量化服务发现</p>
+</blockquote>
+<h1 id="grpc服务发现方案">GRPC服务发现方案</h1>
+<h2 id="背景">背景</h2>
+<ul>
+<li>目前服务配置复杂、且测试环境要保证端口不重复</li>
+<li>server端做自动扩缩容后,client端无法消费最新的server,需要重启client端</li>
+<li>新server服务需要在调用它的client端做大量配置</li>
+<li>目前grpc服务心跳也无法生效，需要手动在每个server端服务端添加心跳接口实现</li>
+<li>目前服务负载均衡基于AWS的DNS建立长链接,无法均衡</li>
+</ul>
+<h2 id="核心痛点">核心痛点</h2>
+<ul>
+<li>server服务自动扩缩容，需要重启client才能生效</li>
+<li>服务化配置复杂，容易配置错误主机信息</li>
+</ul>
+<h2 id="需求">需求</h2>
+<h3 id="功能性需求">功能性需求</h3>
+<ul>
+<li>
+<p>现阶段</p>
+<ul>
+<li>服务发现
+<ul>
+<li>服务扩缩容后，可在client端实时更新，无需重启服务</li>
+</ul>
+</li>
+<li>服务健康检查
+<ul>
+<li>服务出现踢出重连</li>
+</ul>
+</li>
+<li>简化rpc服务配置</li>
+</ul>
+</li>
+<li>
+<p>后期</p>
+<ul>
+<li>权限控制</li>
+<li>灰度路由</li>
+<li>服务治理</li>
+<li>服务预热</li>
+</ul>
+</li>
+</ul>
+<h3 id="非功能性需求">非功能性需求</h3>
+<ul>
+<li>高可用且</li>
+<li>可拓展，具备后期拓展权限控制、限流、熔断、服务预热等治理</li>
+</ul>
+<h2 id="方案设计">方案设计</h2>
+<h3 id="服务注册流程">服务注册流程</h3>
+<h4 id="grpc-server启动服务注册流程">grpc-server启动服务注册流程</h4>
+<p><img src="/img/blog/service-register.png" alt=""></p>
+<h3 id="服务发现流程">服务发现流程</h3>
+<p><img src="/img/blog/service-discovery.png" alt=""></p>
+<h3 id="具体方案">具体方案</h3>
+<h4 id="db存储方案">DB存储方案</h4>
+<ul>
+<li>DB 存储结构</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>cluster_name</th>
+<th>server_name</th>
+<th>own_address</th>
+<th>heat_beat</th>
+<th>instance_hash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>user-center</td>
+<td>host:port</td>
+<td>timestamp</td>
+<td>集群名+服务名+主机端口的hash</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>方案描述</li>
+</ul>
+<ol>
+<li>server端启动后将服务信息写入表，并周期更新心跳,</li>
+<li>服务启动时加载shutdownhook钩子函数,服务关闭时删除服务当前实例服务信息</li>
+<li>client端调启动时加载服务信息列表并创建rpc链接</li>
+<li>client端添加定时任务，根据服务名扫描服务实例信息，并做合并</li>
+</ol>
+<ul>
+<li>优点
+<ul>
+<li>实现简单</li>
+<li>维护成本低</li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>无法实现强一致性</li>
+<li>延迟高</li>
+<li>后期拓展接口粒度服务注册时，不易拓展</li>
+</ul>
+</li>
+</ul>
+<h4 id="zk存储方案">zk存储方案</h4>
+<ul>
+<li>zk存储结构</li>
+</ul>
+<p><img src="/img/blog/service-zk.png" alt=""></p>
+<ul>
+<li>方案描述
+1./grpc-clusterName /serverName为实体节点 配置不同的clusterName来区分不同环境
+2.主机信息节点为虚节点，以zk心跳来做服务心跳
+3.grpc_client端监听serverName节点的子节点事件，处理服务上线下
+4.主机节点包含主机写入时间戳</li>
+</ul>
+<ul>
+<li>优点
+低延迟
+强一致
+后期拓展接口粒度服务注册时，易于拓展</li>
+<li>缺点
+维护成本高</li>
+</ul>
+<h3 id="存储方案对比">存储方案对比</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>DB</th>
+<th>redis</th>
+<th>zookeeper</th>
+<th>etcd</th>
+<th>Eureka</th>
+<th>Consul</th>
+<th>Nacos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一致性</td>
+<td>弱</td>
+<td>弱</td>
+<td>CP</td>
+<td>CP</td>
+<td>AP</td>
+<td>CP</td>
+<td>CP+AP</td>
+</tr>
+<tr>
+<td>健康检查</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>双向心跳</td>
+</tr>
+<tr>
+<td>watcher支持</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>多次注册</td>
+<td>一次注册</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>自动注销</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>需调用其API或超过延迟时间下线</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>最少节点数</td>
+<td>1</td>
+<td></td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>社区</td>
+<td></td>
+<td></td>
+<td>活跃</td>
+<td>活跃</td>
+<td>不活跃</td>
+<td>活跃</td>
+<td>活跃</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>高</td>
+<td>较高</td>
+<td>低</td>
+<td>低</td>
+<td>较高</td>
+<td>低</td>
+<td>低</td>
+</tr>
+<tr>
+<td>拓展接口注册</td>
+<td>难度大</td>
+<td>容易</td>
+<td>容易</td>
+<td>容易</td>
+<td>容易</td>
+<td>容易</td>
+<td>难</td>
+</tr>
+<tr>
+<td>语言</td>
+<td>C++</td>
+<td>C++</td>
+<td>Java</td>
+<td>go</td>
+<td>Java</td>
+<td>go</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td></td>
+<td>可靠性低</td>
+<td>当服务达到一定规模是,写入性能存在瓶颈</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>备注</td>
+<td></td>
+<td>依赖SDK</td>
+<td>依赖SDK</td>
+<td>与Registrator结合实现服务发现预注册</td>
+<td>eureka1.x停止维护 ,2.x闭源</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="结论">结论</h3>
+<ul>
+<li>基于强一致性和健康检查、监听机制
+包括zookeeper、etcd、Consul、Nacos</li>
+<li>易拓展原则
+包括zookeeper、etcd、Consul</li>
+<li>简单原则
+包括zookeeper、etcd、Consul</li>
+<li>适合原则
+zookeeper 团队内大家都不熟悉go</li>
+<li>演化原则
+zookeeper</li>
+</ul>
+
+  </article>
+<div class="px-2 mb-2">
+  
+  <script src="https://giscus.app/client.js"
+    data-repo="devon-ye/devon-ye.github.io"
+    data-repo-id="R_kgDOKsihIw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOKsihI84CdO_B"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    
+        data-lang="zh-CN"
+    
+    crossorigin="anonymous"
+    async>
+  </script>
+  
+</div>
+<div class="bg-blue-100 dark:bg-gray-900">
+  <div class="container px-4 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2"></div>
+      <p class="opacity-60"></p>
+    </div>
+
+    <ul class="flex justify-center gap-x-3 flex-wrap gap-y-2">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://stackoverflow.com/users/7220519"
+          target="_blank"
+          rel="noopener"
+          aria-label="stackoverflow"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-brand-stackoverflow"
+              width="23"
+              height="23"
+              viewBox="-135 22 32 38"
+              stroke-width="0.2"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+          >
+            <polygon points="-108.5,56.2 -108.5,46.3 -105.2,46.3 -105.2,59.5 -135,59.5 -135,46.3 -131.7,46.3 -131.7,56.2       "/>
+            <path d="M-128,45.4l16.2,3.4l0.7-3.2l-16.2-3.4L-128,45.4z M-125.9,37.6l15,7l1.4-3l-15-7L-125.9,37.6z     M-121.7,30.2l12.7,10.6l2.1-2.5l-12.7-10.6L-121.7,30.2z M-113.5,22.4l-2.7,2l9.9,13.3l2.7-2L-113.5,22.4z M-128.4,52.9h16.6    v-3.3h-16.6V52.9z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.processon.com/u/593ac0e9e4b0815a28c1f7b4"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709657114808" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4242" width="24" height="24"><path d="M848 64h-672C114.752 64 64 114.752 64 176v672C64 909.248 114.752 960 176 960h672c61.248 0 112-50.752 112-112v-672C960 114.752 909.248 64 848 64M461.248 687.008C429.76 720.256 384.256 736 323.008 736s-106.752-15.744-138.24-48.992C141.024 646.752 120 587.264 120 512c0-76.992 20.992-136.512 64.768-175.008C216.256 303.744 261.76 288 323.008 288s106.752 15.744 138.24 48.992c43.744 38.496 64.736 98.016 64.736 175.008 0 75.232-20.992 134.752-64.736 175.008m-138.24-323.776c-35.008 0-63.008 12.256-84 38.496s-31.488 63.008-31.488 110.24c0 47.232 10.496 84 31.488 110.24S288 660.704 323.008 660.704s63.008-12.256 84-38.496c19.264-26.24 29.76-63.008 29.76-110.24s-10.496-84-29.76-110.24c-20.992-26.24-48.992-38.496-84-38.496m547.744 360.512h-84v-190.752c0-15.744-1.76-28-7.008-36.736-8.768-15.744-22.752-24.512-45.504-24.512-28 0-47.264 12.256-57.76 35.008-5.248 12.256-7.008 28-7.008 47.232v169.76h-82.24v-311.488h78.752v45.504c10.496-15.744 20.992-28 29.76-35.008 17.504-12.256 38.496-19.264 64.736-19.264 31.488 0 57.76 8.768 78.752 26.24 20.992 15.744 31.488 43.744 31.488 84v210.016" fill="#1296db" p-id="4243"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://github.com/devon-ye"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.zhihu.com/people/devonaha"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709522158383" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4208" width="24" height="24">
+            <path d="M544.949 561.422s0-71.387-34.779-75.050c-34.779-3.663-142.775 0-142.775 0v-219.654h161.078s-1.83-73.219-32.949-73.219h-261.755l43.93-117.148s-65.897 3.663-89.692 45.761-98.844 252.604-98.844 252.604 25.627 10.983 67.726-20.134c42.101-31.116 56.743-86.033 56.743-86.033l76.879-3.663 1.83 223.316s-133.621-1.83-161.078 0c-27.457 1.83-42.101 75.050-42.101 75.050h203.182s-18.307 124.47-69.557 214.164c-53.085 89.692-151.929 161.078-151.929 161.078s71.387 29.287 140.947-10.983c69.557-42.101 120.811-223.316 120.811-223.316l162.912 203.182s14.643-97.013-1.83-124.47c-18.307-27.457-113.49-137.283-113.49-137.283l-42.101 36.607 29.287-120.811h177.552zM587.050 188.010l-1.83 660.793h65.897l23.795 82.37 115.321-82.37h162.912v-660.793h-366.091zM879.92 775.584h-76.879l-97.013 75.050-21.965-75.050h-20.134v-512.527h215.991v512.527z" fill="#8a8a8a" p-id="4209">
+
+            </path>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.cnblogs.com/Devonmusa"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709522581597" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5302" width="24" height="24"><path d="M851.40363594 172.59636406c-187.46181844-187.46181844-491.34545437-187.46181844-678.80727188 0-187.46181844 187.46181844-187.46181844 491.34545437 0 678.80727188 187.46181844 187.46181844 491.34545437 187.46181844 678.80727188 0 187.46181844-187.46181844 187.46181844-491.34545437 0-678.80727188zM387.33090875 728.08727281a47.08363594 47.08363594 0 1 1-66.63272719-66.50181843 47.08363594 47.08363594 0 0 1 66.63272719 66.50181843z m205.52727281 1.39636313a38.74909125 38.74909125 0 0 1-76.62545437-11.52h-0.04363594a6.54545437 6.54545437 0 0 0-0.04363688 0.30545531v-0.34909125c0.30545438-2.61818156 2.05090875-20.72727281-2.96727281-44.98909125a174.24 174.24 0 0 0-48.56727281-89.28 172.10181844 172.10181844 0 0 0-88.8-48.30545438 156.69818156 156.69818156 0 0 0-42.45818156-2.92363593 38.66181844 38.66181844 0 0 1-35.38909125-65.32363688 38.61818156 38.61818156 0 0 1 21.12-10.8218175v-0.2181825c4.45090875-0.74181844 111.14181844-16.45090875 200.33454562 72.74181844 89.01818156 89.01818156 74.18181844 196.14545438 73.44 200.72727281z m175.2 7.59272812a38.74909125 38.74909125 0 0 1-65.67272719 21.3818175 39.49090875 39.49090875 0 0 1-11.65090875-33.73090875c0.08727281-0.34909125 5.10545437-37.48363594-5.06181843-88.97454562-13.30909125-67.37454562-45.29454563-126.89454563-94.95272719-176.90181844-50.00727281-49.70181844-109.52727281-81.64363594-176.94545438-94.95272719-51.49090875-10.16727281-88.58181844-5.19272719-89.01818156-5.14909031h0.21818156-0.04363687a39.92727281 39.92727281 0 0 1-44.68363594-32.90181844 38.83636406 38.83636406 0 0 1 32.20363594-44.37818156c1.92-0.30545438 47.86909125-7.33090875 111.27272719 4.36363594a411.75272719 411.75272719 0 0 1 106.25454562 34.95272718 425.76 425.76 0 0 1 114.63272719 82.25454563l0.91636406 0.96 0.96 0.87272719a425.89090875 425.89090875 0 0 1 82.25454563 114.72c16.40727281 33.6 28.14545437 69.29454562 34.99636312 106.21090875 11.65090875 63.40363594 4.66909125 109.35272719 4.32 111.27272812z" fill="#515151" p-id="5303"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Devean©2023-Now
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+  
+  </footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://www.devean.cn/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const darkStorage = localStorage.getItem('darkmode');
+  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (!darkStorage && isBrowserDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  if (darkStorage && darkStorage === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script>
+
+
+
+<script>
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+
+</script>
+
+
+<script>
+  
+  var _baId = '1ae0b78ddcca3b07f0cf346c87ee7585';
+
+  
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?" + _baId;
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+</body>
+</html>

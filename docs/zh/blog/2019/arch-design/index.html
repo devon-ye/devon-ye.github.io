@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="zh" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg">
+
+  <title>
+  架构设计 - Devean
+  </title>
+  <meta name="description" content="本文从架构设计的原则、基本问题、步骤等几个维度讲述了架构设计的方法论" />
+  <meta name="keywords" content="架构设计,方案选型,系统设计" />
+  
+  <meta name="author" content="     &#34;Devean&#34;" />
+  
+  
+  <meta name="baidu-site-verification" content="codeva-aKGHHixfLv" />
+  
+  <meta name="google-site-verification" content="5YbYjVsLhmXRSCU2u_xrAegZCOyvI296GhQyr-o9L9c" />
+  <meta name="google-adsense-account" content="ca-pub-1062383921426856"/>
+
+  <meta name="generator" content="Hugo 0.121.1"><link
+    rel="stylesheet"
+    href="https://www.devean.cn/css/styles.min.4791ba89238dfa05e265259d42df4f79601c64ec413a63e1700938a1e4317c1b.css"
+    integrity="sha256-R5G6iSON+gXiZSWdQt9PeWAcZOxBOmPhcAk4oeQxfBs="
+  />
+  
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+  
+
+  <meta property="og:title" content="架构设计" />
+<meta property="og:description" content="本文从架构设计的原则、基本问题、步骤等几个维度讲述了架构设计的方法论" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devean.cn/zh/blog/2019/arch-design/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2019-08-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-01T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="架构设计"/>
+<meta name="twitter:description" content="本文从架构设计的原则、基本问题、步骤等几个维度讲述了架构设计的方法论"/>
+
+  <meta itemprop="name" content="架构设计">
+<meta itemprop="description" content="本文从架构设计的原则、基本问题、步骤等几个维度讲述了架构设计的方法论"><meta itemprop="datePublished" content="2019-08-01T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-08-01T00:00:00+00:00" />
+<meta itemprop="wordCount" content="170">
+<meta itemprop="keywords" content="系统设计," />
+
+  
+  <meta name="lang" content="zh" />
+  
+
+  
+  
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"
+          crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "jr52ezl3v8");
+  </script>
+  <script async src="https://fundingchoicesmessages.google.com/i/pub-1062383921426856?ers=1" nonce="NfGRs7DCS-JUraZJwqXtEA"></script>
+  <script nonce="NfGRs7DCS-JUraZJwqXtEA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+  </head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-10 flex-wrap p-8 mx-auto relative">
+  <a href="https://www.devean.cn/zh/" class="capitalize font-extrabold text-2xl brand">
+    
+    <img src="/favicon.svg" alt="Devean" class="h-8 max-w-full" />
+    <span class="brand-title">Devean</span>
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute z-10 px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/zh/blog">博客</a></li>
+    
+    <li><a href="/zh/page/about/">关于</a></li>
+    
+    <li><a href="/zh/tags">标签</a></li>
+    
+    <li><a href="https://ai.devean.cn/">AI 知识库</a></li>
+    
+
+    
+    
+    <li class="flex items-center">
+      
+      
+      
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="12" r="9" />
+        <line x1="3.6" y1="9" x2="20.4" y2="9" />
+        <line x1="3.6" y1="15" x2="20.4" y2="15" />
+        <path d="M11.5 3a17 17 0 0 0 0 18" />
+        <path d="M12.5 3a17 17 0 0 1 0 18" />
+      </svg>
+      <a href="/en" lang="en">English</a>
+      
+      
+    </li>
+    
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="/img/blog/arch-design.png" class="rounded-lg shadow-sm w-full object-contain" />
+    
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    August 1, 2019
+  
+
+
+    </div>
+    
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">架构设计</h1>
+    
+    <h5 class="text-sm flex items-center flex-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      发布 
+  
+    August 1, 2019
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      1&nbsp;分钟
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      170&nbsp;字
+      
+        
+      
+    </h5>
+    
+
+    <details id="TableOfContents" class="px-4 mt-4 bg-gray-100 dark:bg-gray-700 rounded toc">
+    <summary class="flex items-center font-bold py-2 px-4 cursor-pointer justify-between select-none text-black dark:text-white">
+      <span>Table of contents</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <polyline points="6 9 12 15 18 9"></polyline>
+     </svg>
+    </summary>
+
+    <ul class="mt-2 pb-4">
+        
+
+        
+        <li>
+        <a href="#%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1">架构设计</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e4%b8%89%e5%8e%9f%e5%88%99">三原则</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e5%90%88%e9%80%82%e5%8e%9f%e5%88%99">合适原则</a>
+        
+
+        
+        </li><li>
+        <a href="#%e7%ae%80%e5%8d%95%e5%8e%9f%e5%88%99">简单原则</a>
+        
+
+        
+        </li><li>
+        <a href="#%e6%bc%94%e5%8c%96%e5%8e%9f%e5%88%99">演化原则</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e5%9f%ba%e6%9c%ac%e9%97%ae%e9%a2%98">基本问题</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e9%ab%98%e5%8f%af%e9%9d%a0">高可靠</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%8f%af%e6%8b%93%e5%b1%95">可拓展</a>
+        
+
+        
+        </li><li>
+        <a href="#%e9%ab%98%e6%80%a7%e8%83%bd">高性能</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e6%9d%a5%e6%ba%90">复杂度来源</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e9%ab%98%e6%80%a7%e8%83%bd-1">高性能</a>
+        
+
+        
+        </li><li>
+        <a href="#%e9%ab%98%e5%8f%af%e7%94%a8">高可用</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%8f%af%e6%8b%93%e5%b1%95%e6%80%a7">可拓展性</a>
+        
+
+        
+        </li><li>
+        <a href="#%e4%bd%8e%e6%88%90%e6%9c%ac">低成本</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%ae%89%e5%85%a8">安全</a>
+        
+
+        
+        </li><li>
+        <a href="#%e8%a7%84%e6%a8%a1">规模</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e6%ad%a5%e9%aa%a4">步骤</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e8%af%86%e5%88%ab%e5%a4%8d%e6%9d%82%e5%ba%a6">识别复杂度</a>
+        
+
+        
+        </li><li>
+        <a href="#%e8%ae%be%e8%ae%a1%e5%a4%87%e9%80%89%e6%96%b9%e6%a1%88">设计备选方案</a>
+        
+
+        
+        </li><li>
+        <a href="#%e8%af%84%e4%bc%b0%e5%92%8c%e9%80%89%e6%8b%a9%e5%a4%87%e9%80%89%e6%96%b9%e6%a1%88">评估和选择备选方案</a>
+        
+
+        
+        </li><li>
+        <a href="#%e8%af%a6%e7%bb%86%e6%96%b9%e6%a1%88%e8%ae%be%e8%ae%a1">详细方案设计</a>
+        </li></ul>
+    </li></ul>
+    </li></ul>
+  </details>
+
+    <h1 id="架构设计">架构设计</h1>
+<p><img src="/img/blog/arch-design.png" alt="imges">
+<a href="https://www.processon.com/mindmap/5c918057e4b0afc744183dc5" target="_blank" rel="noopener">架构设计ProcessOn</a>
+</p>
+<h2 id="三原则">三原则</h2>
+<h3 id="合适原则">合适原则</h3>
+<ul>
+<li>合适优于业界领先</li>
+</ul>
+<h3 id="简单原则">简单原则</h3>
+<ul>
+<li>简单优于复杂</li>
+</ul>
+<h3 id="演化原则">演化原则</h3>
+<ul>
+<li>演化优于一步到位</li>
+</ul>
+<h2 id="基本问题">基本问题</h2>
+<h3 id="高可靠">高可靠</h3>
+<h3 id="可拓展">可拓展</h3>
+<h3 id="高性能">高性能</h3>
+<h2 id="复杂度来源">复杂度来源</h2>
+<h3 id="高性能-1">高性能</h3>
+<ul>
+<li>
+<p>常见方案</p>
+<ul>
+<li>
+<p>水平拓展(负载均衡)</p>
+<ul>
+<li>
+<p>单个业务横向加机器水平拓展</p>
+<ul>
+<li>注意状态或竞争资源</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>垂直拓展</p>
+<ul>
+<li>
+<p>单机硬件性能提升</p>
+</li>
+<li>
+<p>业务模块垂直拆分</p>
+<ul>
+<li>
+<p>注意拆分粒度</p>
+<ul>
+<li>粒度过下会导致接口间调用指数级增长</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>衡量</p>
+<ul>
+<li>QPS</li>
+<li>TPS</li>
+</ul>
+</li>
+</ul>
+<h3 id="高可用">高可用</h3>
+<ul>
+<li>
+<p>冗余拓展</p>
+</li>
+<li>
+<p>分类</p>
+<ul>
+<li>存储高可用</li>
+<li>计算高可用</li>
+</ul>
+</li>
+<li>
+<p>状态决策</p>
+<ul>
+<li>
+<p>独裁式</p>
+<ul>
+<li>决策者收集上报者的信息然后决策</li>
+</ul>
+</li>
+<li>
+<p>协商式</p>
+<ul>
+<li>主备模式</li>
+</ul>
+</li>
+<li>
+<p>民主式</p>
+<ul>
+<li>选举模式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>常见方案</p>
+<ul>
+<li>主备方案</li>
+<li>集群方案</li>
+</ul>
+</li>
+</ul>
+<h3 id="可拓展性">可拓展性</h3>
+<ul>
+<li>预测变化</li>
+<li>应对变化</li>
+</ul>
+<h3 id="低成本">低成本</h3>
+<h3 id="安全">安全</h3>
+<h3 id="规模">规模</h3>
+<h2 id="步骤">步骤</h2>
+<h3 id="识别复杂度">识别复杂度</h3>
+<ul>
+<li>
+<p>复杂度</p>
+<ul>
+<li>高可用</li>
+<li>可拓展</li>
+<li>高性能</li>
+</ul>
+</li>
+<li>
+<p>需要解决的复杂度只可能是其中一两点</p>
+</li>
+</ul>
+<h3 id="设计备选方案">设计备选方案</h3>
+<h3 id="评估和选择备选方案">评估和选择备选方案</h3>
+<ul>
+<li>
+<p>方案质量属性</p>
+<ul>
+<li>性能</li>
+<li>可用性</li>
+<li>硬件成本</li>
+<li>项目投入</li>
+<li>复杂度</li>
+<li>安全性</li>
+<li>可拓展性</li>
+<li>版本兼容性</li>
+</ul>
+</li>
+<li>
+<p>为每个方案质量属性赋值权重</p>
+</li>
+</ul>
+<h3 id="详细方案设计">详细方案设计</h3>
+<ul>
+<li>
+<p>负载均衡方式</p>
+</li>
+<li>
+<p>库表设计</p>
+<ul>
+<li>日志表</li>
+<li>业务表</li>
+</ul>
+</li>
+<li>
+<p>mysql 数据复制方式</p>
+</li>
+<li>
+<p>SDK设计</p>
+</li>
+<li>
+<p>通信协议</p>
+</li>
+<li>
+<p>数据传输格式</p>
+<ul>
+<li>Json</li>
+<li>Protocol buffer</li>
+</ul>
+</li>
+<li>
+<p>常见架构模式确定</p>
+<ul>
+<li>
+<p>高性能架构模式</p>
+<ul>
+<li>
+<p>数据存储</p>
+<ul>
+<li>
+<p>高性能mysql集群</p>
+<ul>
+<li>
+<p>读写分离</p>
+<ul>
+<li>
+<p>本质是分散了访问压力，但无法解决存储海量数据的存储压力</p>
+</li>
+<li>
+<p>即一主多从，主写从读</p>
+</li>
+<li>
+<p>表的索引要合适，否则经常会出现主从同步宕机或主从数据不一致的问题</p>
+</li>
+<li>
+<p>复杂度点</p>
+<ul>
+<li>
+<p>复制延迟</p>
+<ul>
+<li>
+<p>可达到1秒钟左右</p>
+</li>
+<li>
+<p>常见解决方法</p>
+<ul>
+<li>1.写操作后的读操作发给主服务器</li>
+<li>2.读从机失败后再读一次主机</li>
+<li>3.关键业务读写都指向主机，非关键业务采用读写分离</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>分配机制</p>
+<ul>
+<li>
+<p>1.程序代码封装</p>
+<ul>
+<li>
+<p>即抽象一个数据访问层</p>
+</li>
+<li>
+<p>开源方案</p>
+<ul>
+<li>TDDL(Taobao Distribute Data  Layer)</li>
+</ul>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>实现简单，根据业务可定制化</li>
+<li>不支持多语言，多个语言的子系统需要重复实现</li>
+<li>故障情况下，如果主从发生切换，需要修改所有系统配置并重启</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2.中间件封装</p>
+<ul>
+<li>
+<p>即独立一套系统出来，中间件对业务提供SQL兼容的协议，业务服务器无需做读写分离</p>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>支持多种语言</li>
+<li>SQL兼容协议实现复杂度高，短期内不稳定</li>
+<li>中间件的性能要高，稳定性要高</li>
+<li>数据库主从切换对业务无感知</li>
+</ul>
+</li>
+<li>
+<p>开源方案</p>
+<ul>
+<li>MySQL Proxy</li>
+<li>Atlas</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>单台数据库服务器的存储瓶颈体现</p>
+<ul>
+<li>读写性能下降，因为随着数据量增大，索引变大</li>
+<li>数据库的备份和恢复耗时变得很长</li>
+<li>数据丢失的风险变高</li>
+</ul>
+</li>
+<li>
+<p>分库分表</p>
+<ul>
+<li>
+<p>业务分库</p>
+<ul>
+<li>
+<p>引入的问题</p>
+<ul>
+<li>1.join连接查询问题</li>
+<li>2.事务问题</li>
+<li>3.成本问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>分表</p>
+<ul>
+<li>
+<p>垂直分表</p>
+<ul>
+<li>适合将表中某些不常用且占了大量空间的列拆分出去</li>
+</ul>
+</li>
+<li>
+<p>水平分表</p>
+<ul>
+<li>
+<p>适合表行数特别大的表</p>
+<ul>
+<li>
+<p>根据表的复杂度及访问性能决定分表数据量</p>
+<ul>
+<li>1000W</li>
+<li>5000W</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>路由</p>
+<ul>
+<li>
+<p>范围路由</p>
+<ul>
+<li>
+<p>有序数据列</p>
+<ul>
+<li>ID</li>
+<li>时间戳</li>
+</ul>
+</li>
+<li>
+<p>复杂点</p>
+<ul>
+<li>分段大小的选取</li>
+<li>建议单表范围100W-2000W</li>
+<li>考虑数据增长率</li>
+</ul>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>分布不均匀</li>
+<li>随着数据量增长易于平滑增表拓展</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>hash路由</p>
+<ul>
+<li>
+<p>复杂点</p>
+<ul>
+<li>初始表数量选取</li>
+</ul>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>分布均匀</li>
+<li>随着数据量增长拓展麻烦，即增加表需要做数据迁移重新分布</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>高性能NoSQL</p>
+<ul>
+<li>
+<p>分类</p>
+<ul>
+<li>
+<p>K-V存储</p>
+<ul>
+<li>Redis</li>
+<li>解决关系数据库无法存储数据结构问题</li>
+</ul>
+</li>
+<li>
+<p>文档数据库</p>
+<ul>
+<li>Mongo</li>
+<li>解决关系数据库强schema约束问题</li>
+</ul>
+</li>
+<li>
+<p>列式数据库</p>
+<ul>
+<li>Hbase</li>
+<li>解决关系数据库大数据下的I/O问题</li>
+</ul>
+</li>
+<li>
+<p>全文搜索引擎</p>
+<ul>
+<li>ElasticSearch</li>
+<li>解决关系数据库的全文搜索性能问题</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>高可用架构模式</p>
+</li>
+<li>
+<p>可拓展性架构模式</p>
+</li>
+</ul>
+</li>
+</ul>
+
+  </article>
+<div class="px-2 mb-2">
+  
+  <script src="https://giscus.app/client.js"
+    data-repo="devon-ye/devon-ye.github.io"
+    data-repo-id="R_kgDOKsihIw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOKsihI84CdO_B"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    
+        data-lang="zh-CN"
+    
+    crossorigin="anonymous"
+    async>
+  </script>
+  
+</div>
+<div class="bg-blue-100 dark:bg-gray-900">
+  <div class="container px-4 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2"></div>
+      <p class="opacity-60"></p>
+    </div>
+
+    <ul class="flex justify-center gap-x-3 flex-wrap gap-y-2">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://stackoverflow.com/users/7220519"
+          target="_blank"
+          rel="noopener"
+          aria-label="stackoverflow"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-brand-stackoverflow"
+              width="23"
+              height="23"
+              viewBox="-135 22 32 38"
+              stroke-width="0.2"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+          >
+            <polygon points="-108.5,56.2 -108.5,46.3 -105.2,46.3 -105.2,59.5 -135,59.5 -135,46.3 -131.7,46.3 -131.7,56.2       "/>
+            <path d="M-128,45.4l16.2,3.4l0.7-3.2l-16.2-3.4L-128,45.4z M-125.9,37.6l15,7l1.4-3l-15-7L-125.9,37.6z     M-121.7,30.2l12.7,10.6l2.1-2.5l-12.7-10.6L-121.7,30.2z M-113.5,22.4l-2.7,2l9.9,13.3l2.7-2L-113.5,22.4z M-128.4,52.9h16.6    v-3.3h-16.6V52.9z"/>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.processon.com/u/593ac0e9e4b0815a28c1f7b4"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709657114808" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4242" width="24" height="24"><path d="M848 64h-672C114.752 64 64 114.752 64 176v672C64 909.248 114.752 960 176 960h672c61.248 0 112-50.752 112-112v-672C960 114.752 909.248 64 848 64M461.248 687.008C429.76 720.256 384.256 736 323.008 736s-106.752-15.744-138.24-48.992C141.024 646.752 120 587.264 120 512c0-76.992 20.992-136.512 64.768-175.008C216.256 303.744 261.76 288 323.008 288s106.752 15.744 138.24 48.992c43.744 38.496 64.736 98.016 64.736 175.008 0 75.232-20.992 134.752-64.736 175.008m-138.24-323.776c-35.008 0-63.008 12.256-84 38.496s-31.488 63.008-31.488 110.24c0 47.232 10.496 84 31.488 110.24S288 660.704 323.008 660.704s63.008-12.256 84-38.496c19.264-26.24 29.76-63.008 29.76-110.24s-10.496-84-29.76-110.24c-20.992-26.24-48.992-38.496-84-38.496m547.744 360.512h-84v-190.752c0-15.744-1.76-28-7.008-36.736-8.768-15.744-22.752-24.512-45.504-24.512-28 0-47.264 12.256-57.76 35.008-5.248 12.256-7.008 28-7.008 47.232v169.76h-82.24v-311.488h78.752v45.504c10.496-15.744 20.992-28 29.76-35.008 17.504-12.256 38.496-19.264 64.736-19.264 31.488 0 57.76 8.768 78.752 26.24 20.992 15.744 31.488 43.744 31.488 84v210.016" fill="#1296db" p-id="4243"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://github.com/devon-ye"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.zhihu.com/people/devonaha"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709522158383" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4208" width="24" height="24">
+            <path d="M544.949 561.422s0-71.387-34.779-75.050c-34.779-3.663-142.775 0-142.775 0v-219.654h161.078s-1.83-73.219-32.949-73.219h-261.755l43.93-117.148s-65.897 3.663-89.692 45.761-98.844 252.604-98.844 252.604 25.627 10.983 67.726-20.134c42.101-31.116 56.743-86.033 56.743-86.033l76.879-3.663 1.83 223.316s-133.621-1.83-161.078 0c-27.457 1.83-42.101 75.050-42.101 75.050h203.182s-18.307 124.47-69.557 214.164c-53.085 89.692-151.929 161.078-151.929 161.078s71.387 29.287 140.947-10.983c69.557-42.101 120.811-223.316 120.811-223.316l162.912 203.182s14.643-97.013-1.83-124.47c-18.307-27.457-113.49-137.283-113.49-137.283l-42.101 36.607 29.287-120.811h177.552zM587.050 188.010l-1.83 660.793h65.897l23.795 82.37 115.321-82.37h162.912v-660.793h-366.091zM879.92 775.584h-76.879l-97.013 75.050-21.965-75.050h-20.134v-512.527h215.991v512.527z" fill="#8a8a8a" p-id="4209">
+
+            </path>
+          </svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.cnblogs.com/Devonmusa"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709522581597" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5302" width="24" height="24"><path d="M851.40363594 172.59636406c-187.46181844-187.46181844-491.34545437-187.46181844-678.80727188 0-187.46181844 187.46181844-187.46181844 491.34545437 0 678.80727188 187.46181844 187.46181844 491.34545437 187.46181844 678.80727188 0 187.46181844-187.46181844 187.46181844-491.34545437 0-678.80727188zM387.33090875 728.08727281a47.08363594 47.08363594 0 1 1-66.63272719-66.50181843 47.08363594 47.08363594 0 0 1 66.63272719 66.50181843z m205.52727281 1.39636313a38.74909125 38.74909125 0 0 1-76.62545437-11.52h-0.04363594a6.54545437 6.54545437 0 0 0-0.04363688 0.30545531v-0.34909125c0.30545438-2.61818156 2.05090875-20.72727281-2.96727281-44.98909125a174.24 174.24 0 0 0-48.56727281-89.28 172.10181844 172.10181844 0 0 0-88.8-48.30545438 156.69818156 156.69818156 0 0 0-42.45818156-2.92363593 38.66181844 38.66181844 0 0 1-35.38909125-65.32363688 38.61818156 38.61818156 0 0 1 21.12-10.8218175v-0.2181825c4.45090875-0.74181844 111.14181844-16.45090875 200.33454562 72.74181844 89.01818156 89.01818156 74.18181844 196.14545438 73.44 200.72727281z m175.2 7.59272812a38.74909125 38.74909125 0 0 1-65.67272719 21.3818175 39.49090875 39.49090875 0 0 1-11.65090875-33.73090875c0.08727281-0.34909125 5.10545437-37.48363594-5.06181843-88.97454562-13.30909125-67.37454562-45.29454563-126.89454563-94.95272719-176.90181844-50.00727281-49.70181844-109.52727281-81.64363594-176.94545438-94.95272719-51.49090875-10.16727281-88.58181844-5.19272719-89.01818156-5.14909031h0.21818156-0.04363687a39.92727281 39.92727281 0 0 1-44.68363594-32.90181844 38.83636406 38.83636406 0 0 1 32.20363594-44.37818156c1.92-0.30545438 47.86909125-7.33090875 111.27272719 4.36363594a411.75272719 411.75272719 0 0 1 106.25454562 34.95272718 425.76 425.76 0 0 1 114.63272719 82.25454563l0.91636406 0.96 0.96 0.87272719a425.89090875 425.89090875 0 0 1 82.25454563 114.72c16.40727281 33.6 28.14545437 69.29454562 34.99636312 106.21090875 11.65090875 63.40363594 4.66909125 109.35272719 4.32 111.27272812z" fill="#515151" p-id="5303"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Devean©2023-Now
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+  
+  </footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://www.devean.cn/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const darkStorage = localStorage.getItem('darkmode');
+  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (!darkStorage && isBrowserDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  if (darkStorage && darkStorage === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script>
+
+
+
+<script>
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+
+</script>
+
+
+<script>
+  
+  var _baId = '1ae0b78ddcca3b07f0cf346c87ee7585';
+
+  
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?" + _baId;
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+</body>
+</html>

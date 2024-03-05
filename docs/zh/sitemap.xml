@@ -73,37 +73,31 @@
     <loc>https://www.devean.cn/zh/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2024-03-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/2024-02-11-grpc-simplified-service-discovery-solution/</loc>
+    <loc>https://www.devean.cn/zh/blog/2024/grpc-service-discovery-solution/</loc>
     <lastmod>2024-02-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/2024-02-09-distributed-tracing/</loc>
+    <loc>https://www.devean.cn/zh/blog/2024/distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/zh/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2024-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/2024-01-11-machine-learning-neural-networks/</loc>
+    <loc>https://www.devean.cn/zh/blog/2024/machine-learning-neural-networks/</loc>
     <lastmod>2024-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/2024-01-01-machine-learning-decision-trees/</loc>
+    <loc>https://www.devean.cn/zh/blog/2024/machine-learning-decision-trees/</loc>
     <lastmod>2024-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/2023-12-19-machine-learning-self-organnizing-maps/</loc>
+    <loc>https://www.devean.cn/zh/blog/2023/machine-learning-self-organnizing-maps/</loc>
     <lastmod>2023-12-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/tags/ca/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/zh/blog/2023-12-11-free-ca-certificate-configuration/</loc>
-    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.devean.cn/zh/blog/2023-12-02-machine-learning-nonlinear-support-vector-machines/</loc>
+    <loc>https://www.devean.cn/zh/blog/2023/machine-learning-nonlinear-support-vector-machines/</loc>
     <lastmod>2023-12-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/2023-11-19-machine-learning-support-vector-machine-non-linearly-separable/</loc>
+    <loc>https://www.devean.cn/zh/blog/2023/machine-learning-support-vector-machine-non-linearly-separable/</loc>
     <lastmod>2023-11-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/2023-11-18-machine-learning-support-vector-machine-linearly-separable/</loc>
+    <loc>https://www.devean.cn/zh/blog/2023/machine-learning-support-vector-machine-linearly-separable/</loc>
     <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/zh/categories/finance/</loc>
@@ -119,23 +113,13 @@
                 href="https://www.devean.cn/zh/categories/finance/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/zh/tags/quantitative-finance/</loc>
-    <lastmod>2023-11-15T22:59:31+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/tags/quantitative-finance/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/tags/quantitative-finance/"
-                />
-  </url><url>
-    <loc>https://www.devean.cn/zh/blog/2023-11-15-what-is-arbitrage/</loc>
+    <loc>https://www.devean.cn/zh/tags/%E9%87%8F%E5%8C%96%E9%87%91%E8%9E%8D/</loc>
     <lastmod>2023-11-15T22:59:31+08:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/2023-11-14-mathematical-applications-in-quantitative-finance/</loc>
+    <loc>https://www.devean.cn/zh/blog/2023/what-is-arbitrage/</loc>
+    <lastmod>2023-11-15T22:59:31+08:00</lastmod>
+  </url><url>
+    <loc>https://www.devean.cn/zh/blog/2023/mathematical-applications-in-quantitative-finance/</loc>
     <lastmod>2023-11-14T22:59:31+08:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/zh/blog/2023/machine-learning-k-means-clustering/</loc>
@@ -214,6 +198,12 @@
                 hreflang="zh"
                 href="https://www.devean.cn/zh/page/about/"
                 />
+  </url><url>
+    <loc>https://www.devean.cn/zh/blog/2019/load-balance/</loc>
+    <lastmod>2019-08-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.devean.cn/zh/blog/2019/arch-design/</loc>
+    <lastmod>2019-08-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.devean.cn/zh/page/my-first-post/</loc>
   </url>

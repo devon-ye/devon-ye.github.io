@@ -1,5 +1,5 @@
 ---
-title:       "GRPC简化版服务发现方案"
+title:       "GRPC服务发现方案"
 description: "GRPC、spring-boot、zookeeper实现轻量化服务发现"
 date:        2024-02-11
 author:   "Devean"
@@ -10,8 +10,9 @@ thumbnail: "/img/blog/service-zk.png"
 keywords: ["服务发现","服务注册","健康检查"]
 ---
 
+> 基于GRPC、spring-boot、zookeeper实现轻量化服务发现
 
-# GRPC简化版服务发现方案
+# GRPC服务发现方案
 
 ## 背景
 + 目前服务配置复杂、且测试环境要保证端口不重复

@@ -162,6 +162,9 @@ DefaultContentLanguageInSubdir = true
   [[params.homepage.social.icons]]
     website = "stackoverflow"
     url = "https://stackoverflow.com/users/7220519"
+  [[params.homepage.social.icons]]
+    website = "processsOn"
+    url = "https://www.processon.com/u/593ac0e9e4b0815a28c1f7b4"
 #  [[params.homepage.social.icons]]
 #    website = "linkedin"
 #    url = "https://linkedin.com/in/"

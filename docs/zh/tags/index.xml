@@ -9,7 +9,7 @@
     <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.devean.cn/zh/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>系统设计 </title>
+      <title>系统设计</title>
       <link>https://www.devean.cn/zh/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</link>
       <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://www.devean.cn/zh/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</guid>
@@ -23,17 +23,10 @@
       <description></description>
     </item>
     <item>
-      <title>CA</title>
-      <link>https://www.devean.cn/zh/tags/ca/</link>
-      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.devean.cn/zh/tags/ca/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Quantitative Finance</title>
-      <link>https://www.devean.cn/zh/tags/quantitative-finance/</link>
+      <title>量化金融</title>
+      <link>https://www.devean.cn/zh/tags/%E9%87%8F%E5%8C%96%E9%87%91%E8%9E%8D/</link>
       <pubDate>Wed, 15 Nov 2023 22:59:31 +0800</pubDate>
-      <guid>https://www.devean.cn/zh/tags/quantitative-finance/</guid>
+      <guid>https://www.devean.cn/zh/tags/%E9%87%8F%E5%8C%96%E9%87%91%E8%9E%8D/</guid>
       <description></description>
     </item>
     <item>
