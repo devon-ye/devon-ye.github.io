@@ -43,7 +43,3 @@ Here are several reasons for arbitrage fails
 
 [1] Wilmott，M 2009 Frequently Asked Questions In Quantitative Finance, second edition. John Wiley & Sons,Ltd.
 
-
-> Welcome to scan the code to pay attention to the public number, subscribe to more articles!
-
-![欢迎扫](/img/public-plantform-qr.png)
