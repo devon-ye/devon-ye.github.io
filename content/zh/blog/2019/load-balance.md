@@ -13,9 +13,6 @@ keywords: ["负载均衡","LoadBalance","系统设计"]
 ---
 
 
-
-# 高性能负载均衡
-
 [架构设计ProcessOn](https://www.processon.com/mindmap/5c918057e4b0afc744183dc5)
 
 ## 负载均衡分类

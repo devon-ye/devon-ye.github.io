@@ -1,5 +1,5 @@
 ---
-title:       "全链路追踪"
+title:       "分部署全链路追踪"
 description: "Tracing 核心概念、java进程内、进程间实现方法"
 date:        2024-02-09
 author:      "Devean"
@@ -7,11 +7,11 @@ tags:        ["系统设计 "]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/blog/tracing2.png"
-keywords: ["分布式追踪","分布式架构","Tracing"]
+keywords: ["分布式追踪","分部署全链路追踪","分布式架构","Tracing"]
 ---
 
 
-# 分布式追踪
+
 ## 什么是分布式追踪？
 
 分布式追踪也叫分布式请求跟踪，是一种针对分布式服务概要分析和监控的方法，特别对于故障发生未知及性能下降原因
