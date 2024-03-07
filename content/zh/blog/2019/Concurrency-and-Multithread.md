@@ -24,6 +24,7 @@ keywords: ["并发","多线程","线程安全","系统设计"]
         BLOCKED
 
 ### 1.2 Java虚拟机线程实际运行状态
+```java
          public enum State {
                 NEW
                     尚未开始的线程处于此状态，即刚创建线程对象，未调用start()方法
@@ -54,6 +55,7 @@ keywords: ["并发","多线程","线程安全","系统设计"]
                 TERMINATED
                     终止线程的线程状态。 即线程已完成当前任务的执行。
          }
+         ```
 ### 1.3 重入锁
 
 #### 概念：
@@ -161,7 +163,7 @@ public class DoubleCheckLazySingleton {
    * 拒绝策略
    
      重试策略
-   
+```java   
          public static class CallerRunsPolicy implements RejectedExecutionHandler {
             /**
              * Creates a {@code CallerRunsPolicy}.
@@ -181,9 +183,9 @@ public class DoubleCheckLazySingleton {
                 }
             }
          }
-    
+ ```   
      异常抛出策略
-      
+```java         
          /**
          * A handler for rejected tasks that throws a
          * {@code RejectedExecutionException}.
@@ -207,29 +209,32 @@ public class DoubleCheckLazySingleton {
                                                      e.toString());
             }
         }
+```  
      旧任务丢弃策略
-     
-         /**
+```java
+/**
          * A handler for rejected tasks that silently discards the
          * rejected task.
          */
-          public static class DiscardPolicy implements RejectedExecutionHandler {
-            /**
-             * Creates a {@code DiscardPolicy}.
-             */
-            public DiscardPolicy() { }
-    
-            /**
-             * Does nothing, which has the effect of discarding task r.
-             *
-             * @param r the runnable task requested to be executed
-             * @param e the executor attempting to execute this task
-             */
-            public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-            }
-          }
+public static class DiscardPolicy implements RejectedExecutionHandler {
+    /**
+     * Creates a {@code DiscardPolicy}.
+     */
+    public DiscardPolicy() {
+    }
+
+    /**
+     * Does nothing, which has the effect of discarding task r.
+     *
+     * @param r the runnable task requested to be executed
+     * @param e the executor attempting to execute this task
+     */
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+    }
+}
+```
       当前任务丢弃策略
-       
+```java
          /**
          * A handler for rejected tasks that discards the oldest unhandled
          * request and then retries {@code execute}, unless the executor
@@ -257,7 +262,7 @@ public class DoubleCheckLazySingleton {
                 }
             }
          }
- 
+ ```
  ## 2 线程安全模型
  
 ### 2.1 COW（copy on  write）
