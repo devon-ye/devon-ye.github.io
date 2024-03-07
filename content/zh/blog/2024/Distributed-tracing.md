@@ -1,5 +1,5 @@
 ---
-title:       "分部署全链路追踪"
+title:       "分布式全链路追踪"
 description: "Tracing 核心概念、java进程内、进程间实现方法"
 date:        2024-02-09
 author:      "Devean"
