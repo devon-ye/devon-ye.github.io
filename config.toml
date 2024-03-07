@@ -12,7 +12,7 @@ DefaultContentLanguageInSubdir = true
     languageName = "中文"
     [languages.zh.params]
       introTitle = "路在脚下、心在远方"
-      introSubtitle = ""
+      introSubtitle = "如同天地间的流动之歌。踏上旅程，心随风飘，行走在时光的长廊，每一步都是对未知的勇敢探索，每一次呼吸都是对生命的珍视。"
       introPhoto = "/img/bj/ladder-sky-bg.jpg"
       logo = "/favicon.svg"
     [[languages.zh.menu.main]]
