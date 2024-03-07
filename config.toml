@@ -1,6 +1,6 @@
 baseurl = "https://www.devean.cn/"
 metaDataFormat = "yaml"
-title = "Devean"
+title = "Devean 布洛克"
 theme = "blist"
 
 DefaultContentLanguage = "zh"
