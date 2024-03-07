@@ -1,5 +1,5 @@
 ---
-title:       "机器学习 | 非线性支持向量机"
+title:       "非线性支持向量机 |机器学习"
 subtitle:    "Machine Learning | Nonlinear Support Vector Machine"
 description: "非线性支持向量机的核技巧、核函数、决策函数，股价预测模型、总结支持向量机目标函数"
 date:        2023-12-02

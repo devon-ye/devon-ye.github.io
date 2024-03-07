@@ -1,5 +1,5 @@
 ---
-title:       "机器学习 | 特征缩放"
+title:       "机器学习特征缩放"
 subtitle:    "Machine Learning Feature Scaling"
 description: "特征缩放(Feature Scaling)概念、目的、常用特征缩放方法：最小-最大缩放、标准缩放、鲁棒缩放、L2 Normalization、L1 Normalization、Power Transformer的公式讲解、Python缩放数据可视化对比诠释了特征缩放"
 date:        2023-11-11

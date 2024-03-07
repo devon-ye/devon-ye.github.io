@@ -1,5 +1,5 @@
 ---
-title:       "机器学习 | 支持向量机线性可分"
+title:       "支持向量机线性可分 | 机器学习"
 subtitle:    "Machine Learning Support Vector Machine Linearly Separable"
 description: "支持向量机概念、硬间隔、软间隔和非线性的区别、原理、术语、最大间隔数学推导几个方面详细讲解线性可分的支持向量机"
 date:        2023-11-18

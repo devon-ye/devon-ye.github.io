@@ -51,21 +51,21 @@
       <description>引言 在机器学习的广阔领域中，自组织映射（Self-Organizing Map，SOM）占据了一席之地。它是一种无监督学习的人工神经网络，用于数据的降维和可视化。今天，我们将深入探讨SOM的概念、定理、原理，并通过Python示例展示其在实际问题中的应用。&#xA;历史背景 SOM的提出源于对大脑皮层处理信息的方式的启发。Kohonen教授通过模拟这种生物学上的信息处理机制，创建了一种能够揭示数据内在结构的神经网络模型。从80年代初到现在，SOM已经在许多领域得到了广泛的应用，如金融分析、生物信息学、图像处理等。&#xA;概念 自组织映射（SOM）是由芬兰教授Teuvo Kohonen在1982年提出的一种无监督学习算法。它通过训练过程自我组织，形成一个拓扑结构，能够将高维数据映射到低维空间（通常是二维），同时保持数据的拓扑关系，这使得它在数据可视化方面特别有用。&#xA;与其他机器学习技术的对比 与传统的监督学习方法如深度学习神经网络和支持向量机等相比，SOM提供了一种不同的视角来处理和理解数据。SOM不依赖于标签数据，更专注于揭示数据的内在关系和结构。此外，与主成分分析（PCA）等其他降维技术相比，SOM保留了数据的非线性关系，这在许多复杂数据集的分析中是非常重要的。&#xA;原理 SOM的基本原理是将输入向量映射到一个二维的网格上。每个网格点（神经元）都有一个与输入空间维度相同的权重向量。通过竞争学习，SOM能够调整这些权重向量，使得相似的输入被映射到相近的神经元上。&#xA;竞争阶段： 对于每个输入向量，找到与之最相似（通常是欧氏距离最小）的神经元。 调整阶段： 调整胜出神经元及其邻域内的权重向量，使它们更靠近输入向量。 流程 初始化： 随机初始化神经元的权重向量。&#xA;竞争： 对于每个输入样本，找到最相似的神经元。&#xA;合作： 确定胜出神经元的邻域。&#xA;适应： 调整胜出神经元及其邻域内神经元的权重。&#xA;重复： 重复步骤2-4，直到网络稳定。&#xA;应用场景 数据可视化：将复杂的高维数据集映射到二维空间，以直观的形式展现数据结构。 聚类分析：自动发现数据中的模式和群组。 特征提取：在降维过程中提取数据的关键特征。 异常检测：识别数据集中的异常或离群点。 实际应用案例 在金融领域，SOM被用于信用评分系统，通过分析客户的历史交易数据来预测其信用风险。在生物信息学中，SOM用于分析和分类复杂的基因表达数据。在图像处理领域，SOM用于图像压缩和特征提取，帮助提高图像识别的效率和准确性。&#xA;Python完整示例 import numpy as np import pandas as pd import seaborn as sns import matplotlib.pyplot as plt from sklearn.datasets import load_iris from sklearn.preprocessing import StandardScaler from minisom import MiniSom # 数据加载 data = load_iris() X = data.</description>
     </item>
     <item>
-      <title>机器学习 | 非线性支持向量机</title>
+      <title>非线性支持向量机 |机器学习</title>
       <link>https://www.devean.cn/zh/blog/2023/machine-learning-nonlinear-support-vector-machines/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://www.devean.cn/zh/blog/2023/machine-learning-nonlinear-support-vector-machines/</guid>
       <description>非线性支持向量机（SVM）是一种强大的监督学习算法，用于解决分类和回归问题。它通过使用核技巧将数据映射到高维空间，从而处理非线性关系。在这篇文章中，我们将探讨非线性 SVM 的工作原理、核函数的作用以及如何在实际中应用非线性 SVM。&#xA;核心概念 线性与非线性 SVM 线性 SVM 在处理线性可分数据时效果显著。然而，当数据集呈非线性分布时，线性 SVM 的性能会受限。非线性 SVM 通过核技巧解决了这个问题。&#xA;核技巧（Kernel Trick） 什么是核技巧？ 核技巧是一种通过转换将低维输入空间映射到高维特征空间的方法，它使得非线性特征组合可以被 SVM 以线性方式处理，核技巧由一些数学工具核函数实现。&#xA;核函数定义 核函数是一个数学函数，能够计算数据点在高维特征空间中的内积，而无需直接计算这些特征。换句话说，它可以让我们在原始特征空间中间接地计算在更高维特征空间的内积。&#xA;核函数的作用 维度映射： 核函数通过隐式地将数据映射到一个更高维的空间，帮助处理数据的非线性特征。 计算简化： 直接在高维空间中处理数据是复杂和计算密集的。核函数通过在原始空间中进行计算来避免这个问题，从而简化了计算过程。 处理非线性问题： 在许多实际问题中，数据集无法用线性方法分割。核函数使 SVM 能够通过在高维空间中寻找线性边界来处理这些非线性问题。 常见的核函数 高斯径向基函数（RBF）核： 最常用的核函数，适合处理没有明显特征模式的复杂数据集。 $$K(\mathbf{x}_i, \mathbf{x}_j) = \exp(-\gamma ||\mathbf{x}_i - \mathbf{x}_j||^2)$$ 其中，$\gamma$ 是缩放参数。&#xA;多项式核： 用于将数据映射到由原始特征的多项式组成的高维空间。 $$K(\mathbf{x}_i, \mathbf{x}_j) = (\gamma \mathbf{x}_i \cdot \mathbf{x}_j + r)^d$$&#xA;其中，$\gamma$ 是缩放参数，$d$ 是多项式的度数,$ r $ 是系数项。&#xA;Sigmoid 核： 类似于神经网络的激活函数。&#xA;$$K(\mathbf{x}_i, \mathbf{x}_j) = anh(\gamma \mathbf{x}_i \cdot \mathbf{x}_j + r)$$ 其中，$\gamma$ 是缩放参数，$r$ 是偏置项。</description>
     </item>
     <item>
-      <title>机器学习 | 支持向量机线性不可分</title>
+      <title>支持向量机线性不可分 | 机器学习</title>
       <link>https://www.devean.cn/zh/blog/2023/machine-learning-support-vector-machine-non-linearly-separable/</link>
       <pubDate>Sun, 19 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://www.devean.cn/zh/blog/2023/machine-learning-support-vector-machine-non-linearly-separable/</guid>
       <description>本文从支持向量机线性不可分、软间隔、松弛变量、目标函数、约束条件、超参数 C,实际应用场景判别线性是否可分等几方面讲概述了支持向量机线性不可分&#xA;线性不可分 SVM 有些时候数据本身存在噪点或异常值、在这种场景下,支持向量机又会如何处理呢,看下图&#xA;在这里，我们在红球的边界中有一个蓝球。那么 SVM 是如何对数据进行分类的呢？这很简单！红色球边界中的蓝色球是蓝色球的异常值。SVM 算法具有忽略异常值并找到使边际最大化的最佳超平面的特点。SVM 对异常值具有鲁棒性。&#xA;在这种类型的数据点中，SVM 所做的就是像之前的数据集一样找到最大边距，并在每次点跨越边距时添加惩罚。因此，此类情况下的边距称为软边距。当数据集存在软边距时，SVM 会尝试最小化(1/margin+∧(Σpenalty))。&#xA;引入松弛变量 首先，引入松弛变量（Slack Variables），这些变量表示数据点到超平面的距离。对于每个数据点，引入一个对应的松弛变量 $\xi_i$，表示第 $i$ 个数据点允许的错误。&#xA;目标函数修改 软间隔的目标函数通过调整传统硬间隔的目标函数，以考虑错误和松弛变量。新的目标函数可以表示为：&#xA;$ \min_{w, b, \xi} \frac{1}{2}||w||^2 + C \sum_{i=1}^{N} \xi_i $&#xA;其中：&#xA;$||w||^2$ 表示模型复杂度，即超平面的法向量的范数。 $\sum_{i=1}^{N} \xi_i$ 表示所有松弛变量的总和。 $C$ 是一个用户定义的超参数，用于平衡最小化模型复杂度和最小化分类错误的目标。&#xA;约束条件调整 随着引入了松弛变量，约束条件也需要相应的调整。约束条件现在变为：&#xA;$ y_i(w \cdot x_i + b) \geq 1 - \xi_i, \quad \text{for } i = 1, 2, \ldots, N $&#xA;这确保了即使数据点落在错误的一侧，它们的函数间隔仍然至少为 $1 - \xi_i$。&#xA;超参数调整 软间隔的效果受到超参数 $C$ 的影响， $C$ 的选择取决于对模型性能的需求。较大的 $C$ 值会更强调正确分类，但可能导致过拟合，而较小的 $C$ 值会更注重找到更大间隔，但可能容忍更多的错误分类。通过在实际问题中调整 $C$ 的值，可以根据具体情况平衡模型的复杂性和对错误的容忍度。这种灵活性使得软间隔成为处理线性不可分数据的有力工具。</description>
     </item>
     <item>
-      <title>机器学习 | 支持向量机线性可分</title>
+      <title>支持向量机线性可分 | 机器学习</title>
       <link>https://www.devean.cn/zh/blog/2023/machine-learning-support-vector-machine-linearly-separable/</link>
       <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://www.devean.cn/zh/blog/2023/machine-learning-support-vector-machine-linearly-separable/</guid>
@@ -79,7 +79,7 @@
       <description>本文从概念、应用场景、原理、工作流程、优缺点、应用实践、代码、可视化等几方面诠释 K 均值聚类模型&#xA;概述 K-Means 是一种无监督的聚类算法，其目的是将 n 个数据点分为 k 个聚类。每个聚类都有一个质心，这些质心最小化了其内部数据点与质心之间的距离。&#xA;它能做什么 市场细分: 识别具有相似属性的潜在客户群体。 图像分析: 图像压缩和图像分割中的像素聚类。 异常检测: 通过标识不符合标准集群特征的观测结果来检测异常。 基因表达数据分析: 对基因进行聚类以识别具有相似表达模式的基因家族。 原理 初始化： 随机选择 k 个数据点作为初始聚类中心，这些可以是数据集中实际存在的点，也可以是随机生成的点。&#xA;K-Means++: 为了避免随机初始化可能导致的不良结果，K-Means++ 策略通过特别选择远离其他中心的起始中心来优化初始聚类中心的位置。 分配： 遍历样本数据集，计算每个数据点到每个质心的距离，找出数据点距离最近的质心，将数据点分配给该聚类。&#xA;公式&#xA;设 $c_i$ 是第 i 个集群， $ \mu_i$ 是第 i 个集群的中心，目标是最小化所有数据点和其所在集群中心之间的平方距离之和： $ D = \sum_{i=1}^{K} \sum_{x \in c_i} ||x - \mu_i||^2 $&#xA;$d(p, q) = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + \cdots + (p_n - q_n)^2}$&#xA;更新： 计算每个聚类内的平均值，并将平均值设为新的聚类中心。</description>
     </item>
     <item>
-      <title>机器学习 | 特征缩放</title>
+      <title>机器学习特征缩放</title>
       <link>https://www.devean.cn/zh/blog/2023/machine-learning-feature-scaling/</link>
       <pubDate>Sat, 11 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://www.devean.cn/zh/blog/2023/machine-learning-feature-scaling/</guid>
@@ -93,7 +93,7 @@
       <description>本文从概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法。&#xA;K 近临(K Nearest-Neighbours) 一种简单的监督学习算法，惰性学习算法，在技术上并不训练模型来预测。适用于分类和回归任务。它的核心思想是：相似的对象彼此接近。例如，若果你想分类一个新的数据点(绿点)，可以查看训练数据中哪些数据点与它最接近，并根据这些最接近的数据点和标签来预测它的标签(红点或蓝圆)。&#xA;概念 K: 这是一个用户指定的正整数，即训练数据分类数量，代表要考虑的最近邻居的数量，上图中假设 K=2,即训练数据分类为蓝色圆和红色三角两类标签。&#xA;距离函数: 用于计算数据点之间的距离。最常见的是欧几里得距离、曼哈顿距离、马氏距离等。&#xA;投票机制:&#xA;分类任务: 将根据 k 个最近邻的多数投票来确定新数据点的类别。 回归任务: 通常取 k 个最近邻的输出变量的平均值。 原理 距离计算： 对于给定的新数据点，计算它与训练数据集中每个点的距离。 选取 K 个邻居： 从训练数据集中选取距离最近的 K 个点。 投票 (对于分类)： 对于 K 个邻居，看哪个类别最为常见，并将其指定为新数据点的类别。 均值 (对于回归)： 对于 K 个邻居，计算其属性的平均值，并将其指定为新数据点的值。 距离度量 欧几里得距离 (Euclidean Distance) 欧几里得距离的名称来源于古希腊数学家欧几里得，是衡量两点在平面或更高维空间中的&amp;quot;直线&amp;quot;距离。它基于勾股定理，用于计算两点之间的最短距离。在日常生活中，我们经常无意识地使用欧几里得距离，例如，当我们说两地之间的&amp;quot;直线&amp;quot;距离时，实际上是在引用欧几里得距离。 公式: 给定两点 P 和 Q，其坐标分别为 $P(x_1, x_2, &amp;hellip;, x_n)$ 和 $Q(y_1, y_2, &amp;hellip;, y_n)$ 在一个 n 维空间中，它们之间的欧几里得距离 d 定义为：&#xA;$d(P, Q) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$</description>
     </item>
     <item>
-      <title>机器学习 | 基础概念</title>
+      <title>机器学习基础概念</title>
       <link>https://www.devean.cn/zh/blog/2023/machine-learning-basic-concepts/</link>
       <pubDate>Fri, 08 Sep 2023 00:00:00 +0000</pubDate>
       <guid>https://www.devean.cn/zh/blog/2023/machine-learning-basic-concepts/</guid>

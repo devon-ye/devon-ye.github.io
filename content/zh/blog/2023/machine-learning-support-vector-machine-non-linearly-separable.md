@@ -1,5 +1,5 @@
 ---
-title:       "机器学习 | 支持向量机线性不可分"
+title:       "支持向量机线性不可分 | 机器学习"
 subtitle:    "Machine Learning Support Vector Machine Non-linearly Separable"
 description: "支持向量机线性不可分、软间隔、松弛变量、目标函数、约束条件、超参数 C,实际应用场景判别线性是否可分等几方面讲概述了支持向量机线性不可分"
 date:        2023-11-19
