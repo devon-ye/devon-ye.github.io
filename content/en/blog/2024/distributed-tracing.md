@@ -11,7 +11,7 @@ keywords: ["Distributed Tracing","Distributed"]
 ---
 
 
-# Distributed Tracing
+
 ## What is Distributed Tracing？
 
 Distributed tracing, also known as distributed request tracking, is a methodology for analyzing and monitoring distributed service profiles, especially for failures that occur for unknown and degraded performance reasons.

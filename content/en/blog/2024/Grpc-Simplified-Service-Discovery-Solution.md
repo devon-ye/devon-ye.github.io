@@ -12,8 +12,6 @@ draft: true
 ---
 
 
-# GRPC Simplified Service Discovery Program
-
 ## summary
 
 + The current service configuration is complex, and the test environment must ensure that the ports are not repeated

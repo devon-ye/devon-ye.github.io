@@ -12,7 +12,6 @@ keywords: ["nginx","reverse proxy ","Static deployment"]
 draft: true
 ---
 
-# Nginx Quick Start Tutorial
 
 ## Start deployment command
 

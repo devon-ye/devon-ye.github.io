@@ -260,7 +260,6 @@
       "baseprocessor",
       "core-concepts",
       "db存储方案",
-      "distributed-tracing",
       "dns负载均衡",
       "excutorservice代理封装",
       "feign",
