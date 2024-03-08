@@ -5,7 +5,7 @@ date:        2023-11-11
 author:      "Devean"
 math: true
 categories:  ["Tech" ]
-thumbnail: "/img/ml/svm1.png"
+thumbnail: "https://picx.zhimg.com/70/v2-8c14f9c712e3377ac8a94917dc2ff8c5_1440w.avis?source=172ae18b&biz_tag=Post"
 tags:        ["机器学习"]
 keywords: ["特征缩放","特征工程","机器学习"]
 ---
