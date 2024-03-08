@@ -1,6 +1,6 @@
 ---
 title:       "低延迟、高可用、高并发的交易服务技术方案"
-description: "基于Disruptor、kafka、canal、mysql、zookeeper实现低延迟、高并发写、高可用的、交易服务状态机架构模式系统"
+description: "本文从需求背景、功能和非功能需求、核心业务流程、技术难点、解决方案、核心逻辑实现以canal、kafka实现低延迟低耦合，以Disruptor、Mysql实现高并发,以zookeeper实现主备动态切换高可用"
 date:        2024-03-01
 author:      "Devean"
 image:       ""
