@@ -1,13 +1,13 @@
 ---
-title:       "分布式全链路追踪"
-description: "Tracing 核心概念、java进程内、进程间实现方法"
+title:       "分布式全链路追踪在Java中的实现"
+description: "1分钟快速让你理解分布式追踪核心概念、应用场景、核心原理、在Java各组件中如何封装实现分布式追踪,让大家1分钟快速理解分布式追踪"
 date:        2024-02-09
 author:      "Devean"
 tags:        ["系统设计 "]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/blog/tracing2.png"
-keywords: ["分布式追踪","分部署全链路追踪","分布式架构","Tracing"]
+keywords: ["分布式追踪","分布式全链路追踪","分布式架构","Tracing"]
 ---
 
 

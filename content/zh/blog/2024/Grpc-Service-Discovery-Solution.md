@@ -1,13 +1,13 @@
 ---
-title:       "GRPC服务发现方案"
-description: "GRPC、spring-boot、zookeeper实现轻量化服务发现"
+title:       "以GRPC服务发现实现方案选型为案例带你1分钟理解技术方案选型"
+description: "本文以某公司生产环境改造GRPC实际背景、提取核心信息从背景、痛点、功能需求、非功能需求、方案设计、存储选型及方案选型原则给大家阐释GPRC方案选型全流程"
 date:        2024-02-11
 author:   "Devean"
 tags:       ["系统设计"]
 categories:  ["Tech" ]
 math: true
 thumbnail: "/img/blog/service-zk.png"
-keywords: ["服务发现","服务注册","健康检查"]
+keywords: ["服务发现","服务注册","方案选型"]
 ---
 
 > 基于GRPC、spring-boot、zookeeper实现轻量化服务发现
