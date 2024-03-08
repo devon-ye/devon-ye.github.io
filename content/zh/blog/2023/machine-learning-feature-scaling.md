@@ -1,13 +1,13 @@
 ---
 title:       "3分钟快速理解机器学习中的特征缩放"
-description: "3分钟带你快速理解特征缩放(Feature Scaling)概念、目的、常用特征缩放方法对比身高、体重等数据：最小-最大缩放、标准缩放、鲁棒缩放、L2、L1范式公式讲解、Python缩放数据可视化对比诠释了特征缩放"
+description: "3分钟带你快速理解特征缩放(Feature Scaling)概念、目的、常用特征缩放方法对比身高、体重等数据用：最小最大缩放、标准缩放、鲁棒缩放、L2、L1范式、Python数据可视化对比特征缩放"
 date:        2023-11-11
 author:      "Devean"
 math: true
 categories:  ["Tech" ]
 thumbnail: "https://picx.zhimg.com/70/v2-8c14f9c712e3377ac8a94917dc2ff8c5_1440w.avis?source=172ae18b&biz_tag=Post"
 tags:        ["机器学习"]
-keywords: ["特征缩放","特征工程","机器学习"]
+keywords: ["特征缩放","特征工程","机器学习","Feature Scaling","Machine Learning"]
 ---
 
 > 本文从特征缩放概念、目的、常用特征缩放方法：最小-最大缩放、标准缩放、鲁棒缩放、L2 Normalization、L1 Normalization、Power Transformer的公式讲解、Python缩放数据可视化对比诠释了特征缩放
