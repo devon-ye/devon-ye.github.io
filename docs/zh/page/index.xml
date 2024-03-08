@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Devean 布洛克</title>
-    <link>https://www.devean.cn/zh/zh/page/</link>
+    <link>https://www.devean.cn/zh/page/</link>
     <description>Recent content in Pages on Devean 布洛克</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 15 Jul 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.devean.cn/zh/zh/page/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.devean.cn/zh/page/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于我</title>
-      <link>https://www.devean.cn/zh/zh/page/about/</link>
+      <link>https://www.devean.cn/zh/page/about/</link>
       <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.devean.cn/zh/zh/page/about/</guid>
+      <guid>https://www.devean.cn/zh/page/about/</guid>
       <description>关于我</description>
     </item>
     <item>
       <title></title>
-      <link>https://www.devean.cn/zh/zh/page/my-first-post/</link>
+      <link>https://www.devean.cn/zh/page/my-first-post/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.devean.cn/zh/zh/page/my-first-post/</guid>
+      <guid>https://www.devean.cn/zh/page/my-first-post/</guid>
       <description></description>
     </item>
   </channel>

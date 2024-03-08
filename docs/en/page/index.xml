@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Devean 布洛克</title>
-    <link>https://www.devean.cn/zh/en/page/</link>
+    <link>https://www.devean.cn/en/page/</link>
     <description>Recent content in Pages on Devean 布洛克</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Jul 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.devean.cn/zh/en/page/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.devean.cn/en/page/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
-      <link>https://www.devean.cn/zh/en/page/about/</link>
+      <link>https://www.devean.cn/en/page/about/</link>
       <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.devean.cn/zh/en/page/about/</guid>
+      <guid>https://www.devean.cn/en/page/about/</guid>
       <description>About Me</description>
     </item>
   </channel>
