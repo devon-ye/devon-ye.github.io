@@ -6,8 +6,15 @@
     <description>Recent content in Blog on Devean 布洛克</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 09 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.devean.cn/en/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution</title>
+      <link>https://www.devean.cn/en/blog/2024/qptrade/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/en/blog/2024/qptrade/</guid>
+      <description>Background Current Situation: BTC and ETH simple option orders can only be placed with BTC or ETH, not with the stablecoin USDT. Functional Requirements Users can directly place option orders using USDT stablecoin. After closing options, BTC and ETH are directly exchanged for USDT and transferred to the user&amp;rsquo;s account. Non-Functional Requirements Low latency (dependence on market matching of trading services, higher latency may result in capital loss due to market changes) High availability (service should not be down, upgrade and release should minimize downtime, and automatic complete recovery should be possible after restart) High concurrency (when trading market data arrives, multiple users operate concurrently, and users are concurrent, no queuing for processing) Business Process Users place option orders in USDT mode for BTC simple options.</description>
+    </item>
     <item>
       <title>Distributed Tracing</title>
       <link>https://www.devean.cn/en/blog/2024/distributed-tracing/</link>
