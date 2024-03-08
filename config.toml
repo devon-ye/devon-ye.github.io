@@ -1,12 +1,12 @@
 baseurl = "https://www.devean.cn/"
 metaDataFormat = "yaml"
-title = "Devean 布洛克"
 theme = "blist"
 
 DefaultContentLanguage = "zh"
 DefaultContentLanguageInSubdir = true
 [languages]
   [languages.zh]
+    title = "Devean 布洛克"
     contentDir="content/zh"
     weight = 1
     languageName = "中文"
@@ -34,6 +34,7 @@ DefaultContentLanguageInSubdir = true
         url = "https://ai.devean.cn/"
         weight = 4
   [languages.en]
+    title = "Devean Medium"
     contentDir = "content/en" #English
     weight = 2
     languageName = "English"
