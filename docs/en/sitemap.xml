@@ -2,165 +2,165 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.devean.cn/en/blog/</loc>
+    <loc>https://www.devean.cn/zh/en/blog/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/blog/"
+                href="https://www.devean.cn/zh/zh/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/blog/"
+                href="https://www.devean.cn/zh/en/blog/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/categories/</loc>
+    <loc>https://www.devean.cn/zh/en/categories/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/categories/"
+                href="https://www.devean.cn/zh/zh/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/categories/"
+                href="https://www.devean.cn/zh/en/categories/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/</loc>
+    <loc>https://www.devean.cn/zh/en/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/"
+                href="https://www.devean.cn/zh/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/"
+                href="https://www.devean.cn/zh/en/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/tags/distributed-architecture/</loc>
+    <loc>https://www.devean.cn/zh/en/tags/distributed-architecture/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/tags/distributed-tracing/</loc>
+    <loc>https://www.devean.cn/zh/en/tags/distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/blog/2024/distributed-tracing/</loc>
+    <loc>https://www.devean.cn/zh/en/blog/2024/distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/tags/</loc>
+    <loc>https://www.devean.cn/zh/en/tags/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/tags/"
+                href="https://www.devean.cn/zh/zh/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/tags/"
+                href="https://www.devean.cn/zh/en/tags/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/categories/tech/</loc>
+    <loc>https://www.devean.cn/zh/en/categories/tech/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/categories/tech/"
+                href="https://www.devean.cn/zh/zh/categories/tech/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/categories/tech/"
+                href="https://www.devean.cn/zh/en/categories/tech/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/categories/finance/</loc>
+    <loc>https://www.devean.cn/zh/en/categories/finance/</loc>
     <lastmod>2023-11-15T22:59:31+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/categories/finance/"
+                href="https://www.devean.cn/zh/zh/categories/finance/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/categories/finance/"
+                href="https://www.devean.cn/zh/en/categories/finance/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/tags/quantitative-finance/</loc>
+    <loc>https://www.devean.cn/zh/en/tags/quantitative-finance/</loc>
     <lastmod>2023-11-15T22:59:31+08:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/blog/2023/what-is-arbitrage/</loc>
+    <loc>https://www.devean.cn/zh/en/blog/2023/what-is-arbitrage/</loc>
     <lastmod>2023-11-15T22:59:31+08:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/blog/2023/mathematical-applications-in-quantitative-finance/</loc>
+    <loc>https://www.devean.cn/zh/en/blog/2023/mathematical-applications-in-quantitative-finance/</loc>
     <lastmod>2023-11-14T22:59:31+08:00</lastmod>
   </url><url>
-    <loc>https://www.devean.cn/en/categories/life/</loc>
+    <loc>https://www.devean.cn/zh/en/categories/life/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/categories/life/"
+                href="https://www.devean.cn/zh/zh/categories/life/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/categories/life/"
+                href="https://www.devean.cn/zh/en/categories/life/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/blog/2023/motorcycle-tour-around-xinjiang/</loc>
+    <loc>https://www.devean.cn/zh/en/blog/2023/motorcycle-tour-around-xinjiang/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/blog/2023/motorcycle-tour-around-xinjiang/"
+                href="https://www.devean.cn/zh/zh/blog/2023/motorcycle-tour-around-xinjiang/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/blog/2023/motorcycle-tour-around-xinjiang/"
+                href="https://www.devean.cn/zh/en/blog/2023/motorcycle-tour-around-xinjiang/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/tags/travel/</loc>
+    <loc>https://www.devean.cn/zh/en/tags/travel/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/tags/travel/"
+                href="https://www.devean.cn/zh/zh/tags/travel/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/tags/travel/"
+                href="https://www.devean.cn/zh/en/tags/travel/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/page/about/</loc>
+    <loc>https://www.devean.cn/zh/en/page/about/</loc>
     <lastmod>2021-07-15T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/page/about/"
+                href="https://www.devean.cn/zh/zh/page/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/page/about/"
+                href="https://www.devean.cn/zh/en/page/about/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/en/page/</loc>
+    <loc>https://www.devean.cn/zh/en/page/</loc>
     <lastmod>2021-07-15T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://www.devean.cn/zh/page/"
+                href="https://www.devean.cn/zh/zh/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.devean.cn/en/page/"
+                href="https://www.devean.cn/zh/en/page/"
                 />
   </url>
 </urlset>

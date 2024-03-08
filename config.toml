@@ -1,4 +1,4 @@
-baseurl = "https://www.devean.cn/"
+baseurl = "https://www.devean.cn/zh"
 metaDataFormat = "yaml"
 title = "Devean 布洛克"
 theme = "blist"
