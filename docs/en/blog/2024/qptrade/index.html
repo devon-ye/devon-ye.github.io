@@ -61,7 +61,7 @@
   <meta itemprop="name" content="Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution">
 <meta itemprop="description" content="This article discusses the technical solution for a trading service with low latency, high availability, and high concurrency, covering requirements, functional and non-functional requirements, core business processes, technical challenges, solutions, and core logic implementation using Canal, Kafka for low latency and low coupling, Disruptor for high concurrency, and Zookeeper for high availability."><meta itemprop="datePublished" content="2024-03-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-03-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1099">
+<meta itemprop="wordCount" content="1101">
 <meta itemprop="keywords" content="System Design," />
 
   
@@ -257,7 +257,7 @@
         <line x1="12" y1="6" x2="12" y2="19" />
         <line x1="21" y1="6" x2="21" y2="19" />
       </svg>
-      1099&nbsp;words
+      1101&nbsp;words
       
         
       
@@ -473,6 +473,8 @@
 <li>Upon service startup, a temporary node is registered with Zookeeper. A listener event is registered for the parent node, listening for the deletion event of the child node.</li>
 <li>When the child node deletion event occurs, indicating service downtime, Zookeeper deletes the temporary node associated with the service. This triggers the parent node&rsquo;s listening event, prompting it to re-elect a new master-slave node, update the master-slave machine, and update the service status.</li>
 </ul>
+<p><a href="https://www.processon.com/view/65e17ac82fedec13cb3d998e#pc" target="_blank" rel="noopener">ProcessOn Graph</a>
+</p>
 
   </article>
 <div class="px-2 mb-2">

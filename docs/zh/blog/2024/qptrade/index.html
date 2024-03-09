@@ -61,7 +61,7 @@
   <meta itemprop="name" content="低延迟、高可用、高并发的交易服务技术方案">
 <meta itemprop="description" content="本文从需求背景、功能和非功能需求、核心业务流程、技术难点、解决方案、核心逻辑实现以canal、kafka实现低延迟低耦合，Disruptor实现高并发,用zookeeper实现主备切换高可用"><meta itemprop="datePublished" content="2024-03-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-03-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="192">
+<meta itemprop="wordCount" content="193">
 <meta itemprop="keywords" content="系统设计," />
 
   
@@ -257,7 +257,7 @@
         <line x1="12" y1="6" x2="12" y2="19" />
         <line x1="21" y1="6" x2="21" y2="19" />
       </svg>
-      192&nbsp;字
+      193&nbsp;字
       
         
       
@@ -473,6 +473,8 @@
 <li>服务启动时，注册临时节点至zookeeper，给父节点注册监听事件，监听子节点的删除事件。</li>
 <li>当触发子节点监听事件，即服务宕机，zookeeper会将服务的临时节点删除，触发父节点的监听事件，父节点会重新选举新的主备节点，更新主备机器、服务的状态。</li>
 </ol>
+<p><a href="https://www.processon.com/view/65e17ac82fedec13cb3d998e#pc" target="_blank" rel="noopener">ProcessOn图</a>
+</p>
 
   </article>
 <div class="px-2 mb-2">

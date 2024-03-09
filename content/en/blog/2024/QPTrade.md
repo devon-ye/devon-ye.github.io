@@ -136,3 +136,6 @@ Utilizing Zookeeper's master-slave switching mechanism ensures continuous servic
 
 - Upon service startup, a temporary node is registered with Zookeeper. A listener event is registered for the parent node, listening for the deletion event of the child node.
 - When the child node deletion event occurs, indicating service downtime, Zookeeper deletes the temporary node associated with the service. This triggers the parent node's listening event, prompting it to re-elect a new master-slave node, update the master-slave machine, and update the service status.
+
+
+[ProcessOn Graph](https://www.processon.com/view/65e17ac82fedec13cb3d998e#pc)

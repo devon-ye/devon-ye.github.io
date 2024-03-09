@@ -142,6 +142,6 @@ public class StepOneHandler implements EventHandler<EventWrapper>, WorkHandler<E
 2. 当触发子节点监听事件，即服务宕机，zookeeper会将服务的临时节点删除，触发父节点的监听事件，父节点会重新选举新的主备节点，更新主备机器、服务的状态。
 
 
-
+[ProcessOn图](https://www.processon.com/view/65e17ac82fedec13cb3d998e#pc)
 
 
