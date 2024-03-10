@@ -65,3 +65,29 @@
   width: 100%;
 }
 
+.blog-card-border {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.truncate {
+  display: -webkit-box;
+     -webkit-box-orient: vertical;
+     overflow: hidden;
+     line-height: 1.5; /* 行高 */
+     -webkit-line-clamp: 2; /* 显示的行数 */
+
+     /* 显示省略号 */
+     text-overflow: ellipsis;
+
+     no-wrap: true;
+ }
+
+.truncate:hover {
+  display: block; /* 鼠标悬浮时，取消行数限制 */
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  max-width: none; /* 悬浮时取消最大宽度限制 */
+  white-space: normal; /* 允许内容自动换行 */
+}

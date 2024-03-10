@@ -216,6 +216,7 @@
       "top-full",
       "transform",
       "transition-colors",
+      "truncate",
       "w-1/2",
       "w-full",
       "z-10"
