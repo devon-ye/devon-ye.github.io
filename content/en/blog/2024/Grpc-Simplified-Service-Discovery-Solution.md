@@ -6,7 +6,7 @@ author:   "Devean"
 tags:       ["Service Discovery"]
 categories:  ["Tech" ]
 math: true
-thumbnail: "/img/blog/service-zk.png"
+thumbnail: "/img/blog/service-zk.webp"
 keywords: ["Service Discovery","Service Register","Service Health Check"]
 draft: true
 ---

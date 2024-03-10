@@ -7,7 +7,7 @@ author:      "Devean"
 tags:        ["机器学习"]
 math: true
 categories:  ["Tech" ]
-thumbnail: "/img/ml/som4.png"
+thumbnail: "/img/ml/som4.webp"
 keyword: ["自组织映射","机器学习"]
 ---
 

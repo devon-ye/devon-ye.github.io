@@ -6,7 +6,7 @@ author:   "Devean"
 tags:       ["系统设计"]
 categories:  ["Tech" ]
 math: true
-thumbnail: "/img/blog/service-zk.png"
+thumbnail: "/img/blog/service-zk.webp"
 keywords: ["服务发现","服务注册","方案选型"]
 ---
 

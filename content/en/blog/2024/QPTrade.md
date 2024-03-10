@@ -6,7 +6,7 @@ author:      "Devean"
 image:       ""
 math: true
 categories:  ["Tech"]
-thumbnail: "/img/blog/QPTrade1.png"
+thumbnail: "/img/blog/QPTrade1.webp"
 tags:        ["System Design"]
 keywords:    ["Low Latency", "High Concurrency", "High Availability", "System Design"]
 ---
