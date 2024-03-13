@@ -65,7 +65,11 @@
     {{ end }}
 
     {{ .Content }}
+    {{ if .Site.Params.share_style }}
+    {{ partial "share.html" . }}
+    {{ end }}
   </article>
+
 
   {{- partial "comments.html" . -}}
 

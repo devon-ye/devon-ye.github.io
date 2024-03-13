@@ -68,6 +68,10 @@ DefaultContentLanguageInSubdir = true
 [params]
    logo= "/favicon.svg"
 
+   share_style = true
+   custom_css = ["/css/share.min.css"]
+   custom_js = ["/js/social-share.min.js"]
+
   # Enable the darkmode toggle in header
   darkModeToggle = true
   
