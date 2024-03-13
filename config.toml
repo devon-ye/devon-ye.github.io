@@ -7,6 +7,7 @@ DefaultContentLanguageInSubdir = true
 [languages]
   [languages.zh]
     title = "Devean 布洛克"
+    description = "Devean 的个人博客"
     contentDir="content/zh"
     weight = 1
     languageName = "中文"
@@ -35,8 +36,9 @@ DefaultContentLanguageInSubdir = true
         weight = 4
   [languages.en]
     title = "Devean Medium"
+    description = "Devean Personal Blog"
     contentDir = "content/en" #English
-    weight = 2
+    weight = 1
     languageName = "English"
     [languages.en.params]
       introTitle = "The road is under feet, while heart is in the distance"
