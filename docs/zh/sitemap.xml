@@ -54,19 +54,6 @@
                 href="https://www.devean.cn/zh/categories/tech/"
                 />
   </url><url>
-    <loc>https://www.devean.cn/zh/blog/</loc>
-    <lastmod>2024-03-01T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.devean.cn/en/blog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.devean.cn/zh/blog/"
-                />
-  </url><url>
     <loc>https://www.devean.cn/zh/blog/2024/qptrade/</loc>
     <lastmod>2024-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -78,6 +65,19 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://www.devean.cn/zh/blog/2024/qptrade/"
+                />
+  </url><url>
+    <loc>https://www.devean.cn/zh/blog/</loc>
+    <lastmod>2024-03-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/blog/"
                 />
   </url><url>
     <loc>https://www.devean.cn/zh/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</loc>

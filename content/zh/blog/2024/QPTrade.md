@@ -1,6 +1,6 @@
 ---
-title:       "低延迟、高可用、高并发的交易服务技术方案"
-description: "本文从需求背景、功能和非功能需求、核心业务流程、技术难点、解决方案、核心逻辑实现以canal、kafka实现低延迟低耦合，Disruptor实现高并发,用zookeeper实现主备切换高可用"
+title:       "USDT简选期权交易平台：低延迟、高可用，BTC和ETH期权交易服务"
+description: "本文介绍了如何实现基于USDT稳定币的简选期权交易系统，包括用户操作流程、系统架构设计和关键技术实现。通过低延迟、高可用和高并发处理，确保交易平账操作的稳定性和可靠性。技术方案涉及Disruptor异步处理、Canal、Kafka中间件集群容错处理和基于zookeeper的主备切换机制。阅读本文，了解如何实现安全高效的简选期权交易系统！"
 date:        2024-03-01
 author:      "Devean"
 image:       ""
@@ -9,7 +9,7 @@ categories:  ["Tech" ]
 thumbnail: "/img/blog/QPTrade1.webp"
 tags:        ["系统设计"]
 
-keywords: ["低延迟","高并发","高可用","系统设计"]
+keywords: ["BTC简选期权", "USDT下单", "期权平仓", "BTC期权", "ETH期权", "稳定币交易", "低延迟交易", "高可用金融服务", "高并发交易系统", "承兑服务实时交易", "异步处理", "Disruptor", "容错处理", "中间件异常", "主备切换"]
 ---
 
 
