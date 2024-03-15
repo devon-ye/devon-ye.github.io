@@ -51,6 +51,13 @@
       <description>引言 在机器学习的广阔领域中，自组织映射（Self-Organizing Map，SOM）占据了一席之地。它是一种无监督学习的人工神经网络，用于数据的降维和可视化。今天，我们将深入探讨SOM的概念、定理、原理，并通过Python示例展示其在实际问题中的应用。&#xA;历史背景 SOM的提出源于对大脑皮层处理信息的方式的启发。Kohonen教授通过模拟这种生物学上的信息处理机制，创建了一种能够揭示数据内在结构的神经网络模型。从80年代初到现在，SOM已经在许多领域得到了广泛的应用，如金融分析、生物信息学、图像处理等。&#xA;概念 自组织映射（SOM）是由芬兰教授Teuvo Kohonen在1982年提出的一种无监督学习算法。它通过训练过程自我组织，形成一个拓扑结构，能够将高维数据映射到低维空间（通常是二维），同时保持数据的拓扑关系，这使得它在数据可视化方面特别有用。&#xA;与其他机器学习技术的对比 与传统的监督学习方法如深度学习神经网络和支持向量机等相比，SOM提供了一种不同的视角来处理和理解数据。SOM不依赖于标签数据，更专注于揭示数据的内在关系和结构。此外，与主成分分析（PCA）等其他降维技术相比，SOM保留了数据的非线性关系，这在许多复杂数据集的分析中是非常重要的。&#xA;原理 SOM的基本原理是将输入向量映射到一个二维的网格上。每个网格点（神经元）都有一个与输入空间维度相同的权重向量。通过竞争学习，SOM能够调整这些权重向量，使得相似的输入被映射到相近的神经元上。&#xA;竞争阶段： 对于每个输入向量，找到与之最相似（通常是欧氏距离最小）的神经元。 调整阶段： 调整胜出神经元及其邻域内的权重向量，使它们更靠近输入向量。 流程 初始化： 随机初始化神经元的权重向量。&#xA;竞争： 对于每个输入样本，找到最相似的神经元。&#xA;合作： 确定胜出神经元的邻域。&#xA;适应： 调整胜出神经元及其邻域内神经元的权重。&#xA;重复： 重复步骤2-4，直到网络稳定。&#xA;应用场景 数据可视化：将复杂的高维数据集映射到二维空间，以直观的形式展现数据结构。 聚类分析：自动发现数据中的模式和群组。 特征提取：在降维过程中提取数据的关键特征。 异常检测：识别数据集中的异常或离群点。 实际应用案例 在金融领域，SOM被用于信用评分系统，通过分析客户的历史交易数据来预测其信用风险。在生物信息学中，SOM用于分析和分类复杂的基因表达数据。在图像处理领域，SOM用于图像压缩和特征提取，帮助提高图像识别的效率和准确性。&#xA;Python完整示例 import numpy as np import pandas as pd import seaborn as sns import matplotlib.pyplot as plt from sklearn.datasets import load_iris from sklearn.preprocessing import StandardScaler from minisom import MiniSom # 数据加载 data = load_iris() X = data.</description>
     </item>
     <item>
+      <title>免费CA认证详细流程</title>
+      <link>https://www.devean.cn/zh/blog/2023/free-ca-certificate-configuration/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/2023/free-ca-certificate-configuration/</guid>
+      <description>Nginx配置 nginx.conf配置 server { listen 80; listen [::]:80; server_name www.domain.com domain.com; return 301 https://$server_name$request_uri; } # HTTPS服务器 server { listen 443 ssl; listen [::]:443 ssl; server_name www.domain.com domain.com; # 网站根目录 root /usr/share/nginx/domain; index index.html index.htm; # SSL ssl_session_cache shared:SSL:1m; ssl_session_timeout 10m; ssl_ciphers PROFILE=SYSTEM; ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; ssl_prefer_server_ciphers on; proxy_ssl_server_name on; location / { } error_page 404 /404.html; location = /40x.html { } error_page 500 502 503 504 /50x.html; location = /50x.</description>
+    </item>
+    <item>
       <title>非线性支持向量机 |机器学习</title>
       <link>https://www.devean.cn/zh/blog/2023/machine-learning-nonlinear-support-vector-machines/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>

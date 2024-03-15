@@ -92,6 +92,22 @@
     <loc>https://www.devean.cn/en/blog/2024/distributed-tracing/</loc>
     <lastmod>2024-02-09T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://www.devean.cn/en/tags/devops/</loc>
+    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.devean.cn/en/blog/2023/free-ca-certificate-configuration/</loc>
+    <lastmod>2023-12-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.devean.cn/zh/blog/2023/free-ca-certificate-configuration/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.devean.cn/en/blog/2023/free-ca-certificate-configuration/"
+                />
+  </url><url>
     <loc>https://www.devean.cn/en/categories/finance/</loc>
     <lastmod>2023-11-15T22:59:31+08:00</lastmod>
     <xhtml:link

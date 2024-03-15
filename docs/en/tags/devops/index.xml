@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on Devean Medium</title>
+    <link>https://www.devean.cn/en/tags/devops/</link>
+    <description>Recent content in DevOps on Devean Medium</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.devean.cn/en/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Free CA certification details process</title>
+      <link>https://www.devean.cn/en/blog/2023/free-ca-certificate-configuration/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/en/blog/2023/free-ca-certificate-configuration/</guid>
+      <description>Nginx Configuration nginx.conf config server { listen 80; listen [::]:80; server_name www.domain.com domain.com; return 301 https://$server_name$request_uri; } # HTTPS server server { listen 443 ssl; listen [::]:443 ssl; server_name www.domain.com domain.com; # website root direction root /usr/share/nginx/domain; index index.html index.htm; # SSL ssl_session_cache shared:SSL:1m; ssl_session_timeout 10m; ssl_ciphers PROFILE=SYSTEM; ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; ssl_prefer_server_ciphers on; proxy_ssl_server_name on; location / { } error_page 404 /404.html; location = /40x.html { } error_page 500 502 503 504 /50x.</description>
+    </item>
+  </channel>
+</rss>

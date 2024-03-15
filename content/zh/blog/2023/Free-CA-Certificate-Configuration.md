@@ -1,67 +1,106 @@
 ---
 title:       "免费CA认证详细流程"
-subtitle:    ""
-description: "免费CA证书配置全流程"
+description: "教你1分钟搞定免费CA证书配置"
 date:        2023-12-11
 author:      ""
 image:       ""
-tags:        ["CA"]
+tags:        ["运维"]
 categories:  ["Tech"]
 keywords: []
 thumbnail: "/img/blog/CA.png"
-keyword: ["CA证书","SSL证书"]
-draft: true
+keyword: ["CA证书","SSL证书","certbot","nginx","https配置"]
+draft: false
 ---
 
 
-## 免费CA证书配置
 
-+ 安装certbot
+## Nginx配置
+
+
+### nginx.conf配置
+```bash
+    server {
+        listen 80;
+        listen [::]:80;
+        server_name  www.domain.com domain.com;
+        return 301 https://$server_name$request_uri;
+    }
+    # HTTPS服务器
+    server {
+        listen 443 ssl;
+        listen [::]:443 ssl;
+        server_name www.domain.com  domain.com;
+        
+         # 网站根目录
+        root /usr/share/nginx/domain;
+        index index.html index.htm;
+        
+        # SSL
+        ssl_session_cache shared:SSL:1m;
+        ssl_session_timeout 10m;
+        ssl_ciphers PROFILE=SYSTEM;
+	    ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+        ssl_prefer_server_ciphers on;
+        proxy_ssl_server_name on;
+        
+	    location / {
+	    }
+	    
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+        
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
+
+```
+### Nginx验证配置正确性
+```bash
+   nginx -t
+   nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+   nginx: configuration file /etc/nginx/nginx.conf **test is successful
+```
+### Nginx加载新增配置
+```bash
+   systemctl reload nginx
+```
+
+## DNS配置及验证
+
+### DNS配置
+  在DNS厂商DNS配置服务里配置  www.domain.com 到服务器IP地址解析
+
+### 验证域名访问
+
++ 浏览器访问域名 www.domain.com
+
+![](/img/blog/not-secure.png)
+
+
+ + 1. 可正常访问站点
+ + 2. 浏览器显示站点不安全
+
+## 免费CA证书申请
+
+### 安装certbot
 
 ```bash
 
    yum install certbot
 
 ```
+![img_1.png](/img/blog/yum-install-certbot.png)
 
+### 自动安装证书
 
-+ 手动只安装证书
-
-```shell
-
- certbot run -a manual -i nginx -d domain.com,www.domain.com
-
+```bash
+   certbot --nginx
 ```
 
-```shell
-Saving debug log to /var/log/letsencrypt/letsencrypt.log
-Requesting a certificate for www.domain.com
+![img_2.png](/img/blog/certbot-nginx.png)
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Create a file containing just this data:
+## 验证安装结果
 
-I7Sl7-xakxMT9dCS67OrHmzn_tFiBx-64g58jlkj9FM.LdWLRuDDIqZUWnece6JOlugrqigifvupPi5EXSfWi0M
-
-And make it available on your web server at this URL:
-
-http://www.yuntun.com/.well-known/acme-challenge/I7Sl7-xakxMT9dCS67OrHmzn_tFiBx-64g58jlkj9FM
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Press Enter to Continue
-
-```
-
-
-+ 创建验证文件
-    +  按上面提示创建对应的文件
-    +  自己验证http文件可访问 
-    + 继续按continue
-
-
-```shell
-  
-
-
-```
-
-## 重启nginx服务
+![img_2.png](/img/blog/ssl-secured.png)
