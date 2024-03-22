@@ -76,7 +76,7 @@ HBase是一个分布式的、面向列、非关系开源数据库，是Apache Ha
 
 ![img_1.png](/img/blog/Ffile-structure.png)
 
-10 **HDFS：** HDFS 是 HBase 的底层存储引擎，用于存储 HBase 表的数据。HBase 使用 HDFS 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。
+10. **HDFS：** HDFS 是 HBase 的底层存储引擎，用于存储 HBase 表的数据。HBase 使用 HDFS 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。
 11. **DataNode：** DataNode 是 HDFS 的数据节点，用于存储 HBase 表的数据。HBase 使用 DataNode 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。
 
 

@@ -41,7 +41,7 @@
   <meta itemprop="name" content="HBase全面解析：架构、应用场景及优化策略一网打尽">
 <meta itemprop="description" content="这篇文章全面解析了HBase的架构、应用场景和优化策略，包括表设计、数据访问模式和文件合并等关键技术。无论是想深入了解HBase的初学者，还是希望优化数据库性能的专业人士，都能从中获得宝贵的经验和实用的技巧"><meta itemprop="datePublished" content="2024-03-22T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-03-22T00:00:00+00:00" />
-<meta itemprop="wordCount" content="371">
+<meta itemprop="wordCount" content="369">
 <meta itemprop="keywords" content="系统设计,HBase," />
 
   
@@ -241,7 +241,7 @@
         <line x1="12" y1="6" x2="12" y2="19" />
         <line x1="21" y1="6" x2="21" y2="19" />
       </svg>
-      371&nbsp;字
+      369&nbsp;字
       
         
       
@@ -470,8 +470,10 @@
 <li><strong>HFile：</strong> HFile 是 HBase 的数据文件，用于存储数据。HFile 是基于 HDFS 的数据文件，用于存储 HBase 表的数据。HFile 采用了块压缩和块索引等技术，以提高数据的存储效率和读取性能。</li>
 </ol>
 <p><img src="/img/blog/Ffile-structure.png" alt="img_1.png"></p>
-<p>10 <strong>HDFS：</strong> HDFS 是 HBase 的底层存储引擎，用于存储 HBase 表的数据。HBase 使用 HDFS 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。
-11. <strong>DataNode：</strong> DataNode 是 HDFS 的数据节点，用于存储 HBase 表的数据。HBase 使用 DataNode 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。</p>
+<ol start="10">
+<li><strong>HDFS：</strong> HDFS 是 HBase 的底层存储引擎，用于存储 HBase 表的数据。HBase 使用 HDFS 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。</li>
+<li><strong>DataNode：</strong> DataNode 是 HDFS 的数据节点，用于存储 HBase 表的数据。HBase 使用 DataNode 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。</li>
+</ol>
 <h2 id="hbase应用开发经验总结">HBase应用开发经验总结</h2>
 <h3 id="rowkey设计">RowKey设计</h3>
 <h4 id="rowkey设计原则">RowKey设计原则</h4>
