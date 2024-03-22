@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HBase on Devean 布洛克</title>
+    <link>https://www.devean.cn/zh/tags/hbase/</link>
+    <description>Recent content in HBase on Devean 布洛克</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 22 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.devean.cn/zh/tags/hbase/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HBase全面解析：架构、应用场景及优化策略一网打尽</title>
+      <link>https://www.devean.cn/zh/blog/2024/hbase-summary/</link>
+      <pubDate>Fri, 22 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/zh/blog/2024/hbase-summary/</guid>
+      <description>什么是HBase ？ HBase是一个分布式的、面向列、非关系开源数据库，是Apache Hadoop项目的一部分，运行于HDFS文件系统之上。HBase是Google的Bigtable论文 的开源实现，是一个高可靠、高性能、面向列、可伸缩的分布式存储系统，适合于大规模的非结构化数据存储。&#xA;HBase有什么特点 横向扩展性： HBase 可以在成百上千台服务器上扩展，以存储和处理大规模数据集。它使用了 Hadoop 的分布式文件系统（HDFS）作为底层存储引擎，并通过水平分区和数据复制来实现高可用性和容错性。&#xA;高性能： HBase 提供了快速的读写访问，支持高并发和低延迟的数据访问。它通过将数据存储在内存中以及支持数据分区和索引来优化数据访问性能。&#xA;面向列存储： HBase 使用面向列的存储模式，这意味着它可以有效地处理稀疏数据和大量的列。这种存储模式使得 HBase 特别适合于分析型工作负载，如数据仓库、日志分析和实时分析。&#xA;面向行和面向列数据库特征对比 维度 面向行数据库 面向列数据库 数据存储单位 行 列族 适用场景 OLTP（事务处理）、关联查询 OLAP（在线分析处理）、大规模数据存储和查询 读取性能 读取整个记录较快 读取特定列或列族较快 写入性能 单行写入较快 大规模写入较快 索引结构 B-tree 或 B+tree LSM 树 或类似结构 查询灵活性 适用于复杂查询和事务 适用于聚合操作和宽表查询 ACID 特性 具有较好的 ACID 特性 通常具有较弱的 ACID 特性 存储空间占用 相对较高 相对较低 数据压缩率 相对较低 相对较高 数据模型 关系型模型 键值对模型（或称宽表模型） 产品 MySQL, PostgreSQL, Oracle Database, SQL Server, SQLite Apache HBase, Apache Cassandra, Google Bigtable, ScyllaDB, Vertica 弹性模式： HBase 提供了灵活的模式设计，允许在不停机的情况下动态地添加或删除列族，从而实现了数据模式的弹性和灵活性。</description>
+    </item>
+  </channel>
+</rss>

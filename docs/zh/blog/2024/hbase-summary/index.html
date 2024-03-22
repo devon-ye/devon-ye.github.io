@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="zh" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg">
+
+  <title>
+  HBase全面解析：架构、应用场景及优化策略一网打尽 - Devean 布洛克
+  </title>
+  <meta name="description" content="这篇文章全面解析了HBase的架构、应用场景和优化策略，包括表设计、数据访问模式和文件合并等关键技术。无论是想深入了解HBase的初学者，还是希望优化数据库性能的专业人士，都能从中获得宝贵的经验和实用的技巧" />
+  <meta name="keywords" content="HBase,HBase特点,HBase应用场景,HBase架构,HBase开发经验总结,RowKey设计,HBase表结构设计,HBase优化策略,HBase热点问题,HBase合并" />
+  
+  <meta name="author" content="Devean" />
+  
+  
+  <meta name="baidu-site-verification" content="codeva-aKGHHixfLv" />
+  
+  <meta name="google-site-verification" content="5YbYjVsLhmXRSCU2u_xrAegZCOyvI296GhQyr-o9L9c" />
+  <meta name="google-adsense-account" content="ca-pub-1062383921426856"/>
+
+  <meta name="generator" content="Hugo 0.121.1"><link
+    rel="stylesheet"
+    href="https://www.devean.cn/css/styles.min.414cb4900388f20298158bc0efd779dc7e3a010f449b968fa5803166b93c6d56.css"
+    integrity="sha256-QUy0kAOI8gKYFYvA79d53H46AQ9Em5aPpYAxZrk8bVY="
+  />
+  
+  
+
+  <meta property="og:title" content="HBase全面解析：架构、应用场景及优化策略一网打尽" />
+<meta property="og:description" content="这篇文章全面解析了HBase的架构、应用场景和优化策略，包括表设计、数据访问模式和文件合并等关键技术。无论是想深入了解HBase的初学者，还是希望优化数据库性能的专业人士，都能从中获得宝贵的经验和实用的技巧" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devean.cn/zh/blog/2024/hbase-summary/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-03-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-22T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="HBase全面解析：架构、应用场景及优化策略一网打尽"/>
+<meta name="twitter:description" content="这篇文章全面解析了HBase的架构、应用场景和优化策略，包括表设计、数据访问模式和文件合并等关键技术。无论是想深入了解HBase的初学者，还是希望优化数据库性能的专业人士，都能从中获得宝贵的经验和实用的技巧"/>
+
+  <meta itemprop="name" content="HBase全面解析：架构、应用场景及优化策略一网打尽">
+<meta itemprop="description" content="这篇文章全面解析了HBase的架构、应用场景和优化策略，包括表设计、数据访问模式和文件合并等关键技术。无论是想深入了解HBase的初学者，还是希望优化数据库性能的专业人士，都能从中获得宝贵的经验和实用的技巧"><meta itemprop="datePublished" content="2024-03-22T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-03-22T00:00:00+00:00" />
+<meta itemprop="wordCount" content="371">
+<meta itemprop="keywords" content="系统设计,HBase," />
+
+  
+  <meta name="lang" content="zh" />
+  
+
+  
+  
+
+  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+  
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"
+          crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "jr52ezl3v8");
+  </script>
+  <script async src="https://fundingchoicesmessages.google.com/i/pub-1062383921426856?ers=1" nonce="NfGRs7DCS-JUraZJwqXtEA"></script>
+  <script nonce="NfGRs7DCS-JUraZJwqXtEA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+  
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https'){
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+
+  </script>
+
+  
+  <script>
+    
+    var _baId = '1ae0b78ddcca3b07f0cf346c87ee7585';
+
+    
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  
+
+  <link rel="stylesheet" href="https://www.devean.cn/css/share.min.css" />
+</head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-10 flex-wrap p-8 mx-auto relative">
+  <a href="https://www.devean.cn/zh/" class="capitalize font-extrabold text-2xl brand">
+    
+    <img src="/favicon.svg" class="h-8 max-w-full" />
+    <span class="brand-title">Devean 布洛克</span>
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute z-10 px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/zh/blog">博客</a></li>
+    
+    <li><a href="/zh/page/about/">关于</a></li>
+    
+    <li><a href="/zh/tags">标签</a></li>
+    
+    <li><a href="https://ai.devean.cn/">AI 知识库</a></li>
+    
+
+    
+    
+    <li class="flex items-center">
+      
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="12" r="9" />
+        <line x1="3.6" y1="9" x2="20.4" y2="9" />
+        <line x1="3.6" y1="15" x2="20.4" y2="15" />
+        <path d="M11.5 3a17 17 0 0 0 0 18" />
+        <path d="M12.5 3a17 17 0 0 1 0 18" />
+      </svg>
+      <a href="/en" lang="en">English</a>
+      
+      
+      
+      
+    </li>
+    
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="/img/blog/arch.png" alt="HBase全面解析：架构、应用场景及优化策略一网打尽" class="rounded-lg shadow-sm w-full object-contain" />
+    
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    March 22, 2024
+  
+
+
+    </div>
+    
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">HBase全面解析：架构、应用场景及优化策略一网打尽</h1>
+    
+    <h5 class="text-sm flex items-center flex-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      发布 
+  
+    March 22, 2024
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      2&nbsp;分钟
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      371&nbsp;字
+      
+        
+      
+    </h5>
+    
+
+    <details id="TableOfContents" class="px-4 mt-4 bg-gray-100 dark:bg-gray-700 rounded toc">
+    <summary class="flex items-center font-bold py-2 px-4 cursor-pointer justify-between select-none text-black dark:text-white">
+      <span>Table of contents</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <polyline points="6 9 12 15 18 9"></polyline>
+     </svg>
+    </summary>
+
+    <ul class="mt-2 pb-4">
+        
+
+        
+        <li>
+        <a href="#%e4%bb%80%e4%b9%88%e6%98%afhbase-">什么是HBase ？</a>
+        
+
+        
+        </li><li>
+        <a href="#hbase%e6%9c%89%e4%bb%80%e4%b9%88%e7%89%b9%e7%82%b9">HBase有什么特点</a>
+        
+
+        
+        </li><li>
+        <a href="#hbase%e7%9a%84%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af%e6%9c%89%e5%93%aa%e4%ba%9b">HBase的应用场景有哪些？</a>
+        
+
+        
+        </li><li>
+        <a href="#hbase%e7%9a%84%e6%9e%b6%e6%9e%84%e6%98%af%e6%80%8e%e6%a0%b7%e7%9a%84">HBase的架构是怎样的</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#hbase-%e7%9a%84%e6%9e%b6%e6%9e%84%e4%b8%bb%e8%a6%81%e7%94%b1%e4%bb%a5%e4%b8%8b%e5%87%a0%e4%b8%aa%e7%bb%84%e4%bb%b6%e7%bb%84%e6%88%90">HBase 的架构主要由以下几个组件组成：</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#hbase%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%e7%bb%8f%e9%aa%8c%e6%80%bb%e7%bb%93">HBase应用开发经验总结</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#rowkey%e8%ae%be%e8%ae%a1">RowKey设计</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#rowkey%e8%ae%be%e8%ae%a1%e5%8e%9f%e5%88%99">RowKey设计原则</a>
+        
+
+        
+        </li><li>
+        <a href="#rowkey-%e7%83%ad%e7%82%b9%e9%97%ae%e9%a2%98">RowKey 热点问题</a>
+        
+
+        
+        </li><li>
+        <a href="#rowkey%e5%b8%b8%e8%a7%81%e8%ae%be%e8%ae%a1%e4%bc%98%e5%8c%96%e6%96%b9%e6%b3%95">RowKey常见设计优化方法</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#%e8%a1%a8%e7%bb%93%e6%9e%84%e8%ae%be%e8%ae%a1%e5%8e%9f%e5%88%99">表结构设计原则</a>
+        
+
+        
+        </li><li>
+        <a href="#%e6%95%b0%e6%8d%ae%e8%ae%bf%e9%97%ae%e6%a8%a1%e5%bc%8f">数据访问模式</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e9%9a%8f%e6%9c%ba%e8%ae%bf%e9%97%ae%e6%a8%a1%e5%bc%8f">随机访问模式</a>
+        
+
+        
+        </li><li>
+        <a href="#%e6%89%ab%e6%8f%8f%e8%ae%bf%e9%97%ae%e6%a8%a1%e5%bc%8f">扫描访问模式</a>
+        
+
+        
+        </li></ul>
+      </li></ul>
+      </li><li>
+        <a href="#%e6%96%87%e4%bb%b6%e5%90%88%e5%b9%b6">文件合并</a>
+        
+
+        
+        <ul>
+            <li>
+        <a href="#%e5%b0%8f%e5%90%88%e5%b9%b6-minor-compactio">小合并 Minor Compactio</a>
+        
+
+        
+        </li><li>
+        <a href="#%e5%a4%a7%e5%90%88%e5%b9%b6--major-compactio">大合并  Major Compactio</a>
+        
+
+        
+        </li></ul>
+      </li><li>
+        <a href="#hbase%e7%9a%84client-%e6%8e%a5%e5%8f%a3%e5%b0%81%e8%a3%85">HBase的Client 接口封装</a>
+        </li></ul>
+  </details>
+
+    <h2 id="什么是hbase-">什么是HBase ？</h2>
+<p>HBase是一个分布式的、面向列、非关系开源数据库，是Apache Hadoop项目的一部分，运行于HDFS文件系统之上。HBase是Google的<a href="https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf" target="_blank" rel="noopener">Bigtable论文</a>
+的开源实现，是一个高可靠、高性能、面向列、可伸缩的分布式存储系统，适合于大规模的非结构化数据存储。</p>
+<h2 id="hbase有什么特点">HBase有什么特点</h2>
+<p><strong>横向扩展性：</strong> HBase 可以在成百上千台服务器上扩展，以存储和处理大规模数据集。它使用了 Hadoop 的分布式文件系统（HDFS）作为底层存储引擎，并通过水平分区和数据复制来实现高可用性和容错性。</p>
+<p><strong>高性能：</strong> HBase 提供了快速的读写访问，支持高并发和低延迟的数据访问。它通过将数据存储在内存中以及支持数据分区和索引来优化数据访问性能。</p>
+<p><strong>面向列存储：</strong> HBase 使用面向列的存储模式，这意味着它可以有效地处理稀疏数据和大量的列。这种存储模式使得 HBase 特别适合于分析型工作负载，如数据仓库、日志分析和实时分析。</p>
+<ul>
+<li>面向行和面向列数据库特征对比</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>面向行数据库</th>
+<th>面向列数据库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据存储单位</td>
+<td>行</td>
+<td>列族</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>OLTP（事务处理）、关联查询</td>
+<td>OLAP（在线分析处理）、大规模数据存储和查询</td>
+</tr>
+<tr>
+<td>读取性能</td>
+<td>读取整个记录较快</td>
+<td>读取特定列或列族较快</td>
+</tr>
+<tr>
+<td>写入性能</td>
+<td>单行写入较快</td>
+<td>大规模写入较快</td>
+</tr>
+<tr>
+<td>索引结构</td>
+<td>B-tree 或 B+tree</td>
+<td>LSM 树 或类似结构</td>
+</tr>
+<tr>
+<td>查询灵活性</td>
+<td>适用于复杂查询和事务</td>
+<td>适用于聚合操作和宽表查询</td>
+</tr>
+<tr>
+<td>ACID 特性</td>
+<td>具有较好的 ACID 特性</td>
+<td>通常具有较弱的 ACID 特性</td>
+</tr>
+<tr>
+<td>存储空间占用</td>
+<td>相对较高</td>
+<td>相对较低</td>
+</tr>
+<tr>
+<td>数据压缩率</td>
+<td>相对较低</td>
+<td>相对较高</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>关系型模型</td>
+<td>键值对模型（或称宽表模型）</td>
+</tr>
+<tr>
+<td>产品</td>
+<td>MySQL, PostgreSQL, Oracle Database, SQL Server, SQLite</td>
+<td>Apache HBase, Apache Cassandra, Google Bigtable, ScyllaDB, Vertica</td>
+</tr>
+</tbody>
+</table>
+<p><strong>弹性模式：</strong> HBase 提供了灵活的模式设计，允许在不停机的情况下动态地添加或删除列族，从而实现了数据模式的弹性和灵活性。</p>
+<p><strong>支持大数据生态系统：</strong> HBase 与 Apache Hadoop 生态系统紧密集成，可以与 Hadoop MapReduce、Apache Hive、Apache Spark 等其他大数据处理框架无缝地集成，从而实现对大规模数据的分析、挖掘和处理。</p>
+<p><img src="/img/blog/big-data-feature.png" alt="img.png"></p>
+<h2 id="hbase的应用场景有哪些">HBase的应用场景有哪些？</h2>
+<ol>
+<li>
+<p><strong>大规模数据随机实时读/写</strong>：如果您需要存储和处理海量数据，并且需要快速地进行实时查询和检索，那么 HBase 是一个很好的选择。由于它采用了分布式存储和面向列的存储模式，可以实现高性能的随机读取和写入，从而支持实时数据查询和分析。</p>
+</li>
+<li>
+<p><strong>高并发的数据访问</strong>：HBase 提供了高并发的读写访问能力，可以同时处理大量的读写请求。因此，如果您的应用场景需要支持高并发的数据访问，例如社交网络应用、实时日志分析等，那么 HBase 是一个不错的选择。</p>
+</li>
+<li>
+<p><strong>需要水平扩展的应用场景</strong>：HBase 可以在成百上千台服务器上进行水平扩展，可以处理PB级别的数据量。因此，如果您的应用场景需要处理大规模数据，并且需要随着数据量的增长而进行水平扩展，那么 HBase 是一个合适的存储解决方案。</p>
+</li>
+<li>
+<p><strong>实时数据处理和分析</strong>：HBase 可以与实时数据处理框架（例如 Apache Storm、Apache Flink）结合使用，用于存储实时生成的数据，并且支持快速的数据查询和分析。因此，如果您的应用场景需要进行实时数据处理和分析，那么 HBase 是一个合适的选择。</p>
+</li>
+</ol>
+<h2 id="hbase的架构是怎样的">HBase的架构是怎样的</h2>
+<p><img src="/img/blog/arch.png" alt="img.png"></p>
+<h3 id="hbase-的架构主要由以下几个组件组成">HBase 的架构主要由以下几个组件组成：</h3>
+<ol>
+<li><strong>客户端：</strong> 客户端是 HBase 的用户接口，用于与 HBase 集群进行交互。客户端可以通过 HBase 的 Java API 或 Thrift、REST 等接口来访问 HBase 集群，进行数据的读写操作。</li>
+<li><strong>ZooKeeper：</strong> ZooKeeper 是 HBase 的协调服务，用于协调 HBase 集群的状态和元数据信息。HBase 使用 ZooKeeper 来进行主节点的选举、RegionServer 的注册和状态监控等操作。</li>
+<li><strong>HMaster：</strong> HMaster 是 HBase 的主节点，负责管理 HBase 集群的元数据信息，包括表的创建、删除、分割、合并等操作。HMaster 还负责监控 RegionServer 的状态，并负责 RegionServer 的负载均衡和故障转移。</li>
+<li><strong>RegionServer：</strong> RegionServer 是 HBase 的工作节点，负责存储和处理数据。每个 RegionServer 可以管理多个 Region，每个 Region 对应一个 HBase 表的一个分区。RegionServer 负责处理客户端的读写请求，并负责数据的存储和检索。</li>
+<li><strong>HLog：</strong> HLog 是 HBase 的 Write-Ahead Log（WAL）文件，用于记录数据的变更操作。HLog 用于保证数据的一致性和持久性，以防止数据丢失。</li>
+<li><strong>HRegion：</strong> HRegion 是 HBase 的数据存储单元，对应一个 HBase 表的一个分区。每个 HRegion 包含多个 Store，每个 Store 对应一个列族。HRegion 负责存储和管理数据，并负责处理客户端的读写请求。</li>
+<li><strong>Store：</strong> Store 是 HBase 的数据存储单元，对应一个 HBase 表的一个列族。每个 Store 包含多个 StoreFile，每个 StoreFile 对应一个 HFile。Store 负责存储和管理数据，并负责处理客户端的读写请求。</li>
+<li><strong>MemStore：</strong> MemStore 是 HBase 的内存存储单元，用于缓存数据的变更操作。MemStore 用于缓存数据的变更操作，以提高数据的写入性能。当 MemStore 的数据量达到一定阈值时，会将数据刷写到磁盘上的 StoreFile 中。</li>
+<li><strong>HFile：</strong> HFile 是 HBase 的数据文件，用于存储数据。HFile 是基于 HDFS 的数据文件，用于存储 HBase 表的数据。HFile 采用了块压缩和块索引等技术，以提高数据的存储效率和读取性能。</li>
+</ol>
+<p><img src="/img/blog/Ffile-structure.png" alt="img_1.png"></p>
+<p>10 <strong>HDFS：</strong> HDFS 是 HBase 的底层存储引擎，用于存储 HBase 表的数据。HBase 使用 HDFS 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。
+11. <strong>DataNode：</strong> DataNode 是 HDFS 的数据节点，用于存储 HBase 表的数据。HBase 使用 DataNode 来存储 HFile 和 HLog 文件，以实现数据的持久化和高可靠性。</p>
+<h2 id="hbase应用开发经验总结">HBase应用开发经验总结</h2>
+<h3 id="rowkey设计">RowKey设计</h3>
+<h4 id="rowkey设计原则">RowKey设计原则</h4>
+<p><strong>长度原则：</strong> RowKey的长度尽量短，一般控制在10-100个字节之间，以便提高数据的存储效率和读取性能，实际存储结构如下图。除此之外尽可能定长,不要使用变长的自增数字,变长自增key，可能导致写倾斜在单机，出现写热点问题。</p>
+<p><img src="/img/blog/data-structure.png" alt="hbase data structure"></p>
+<p><strong>唯一原则：</strong></p>
+<p>必须在设计上保证RowKey的唯一性。由于在HBase中数据存储是Key-Value形式，若向HBase中同一张表插入相同RowKey的数据，在存储单个版本数据情况下，则原先存在的数据会被新的数据覆盖，多版本存储情况下，新的数据会被追加到原先的数据后面。</p>
+<p><strong>排序原则：</strong></p>
+<p>HBase的RowKey是按照ASCII有序排序的，即按字典序排序，也就是字符大ASCII码的值的大小，所以值比较小的RowKey会排在前面,RowKey短的也会排在前面,因此我们在设计RowKey的时候要充分利用这点，将经常需要一起查询的数据放在一起，这样可以提高查询效率。</p>
+<p><strong>散列原则：</strong></p>
+<p>设计的RowKey应均匀的分布在各个HBase节点上,因为按字典序及表的分区来决定数据存储在哪个RegionServer上，如果RowKey的设计不合理，可能会导致数据倾斜，即数据集中在某个RegionServer上，如果前缀相同的RowKey过多，会导致数据倾斜，影响HBase的性能。</p>
+<h4 id="rowkey-热点问题">RowKey 热点问题</h4>
+<ol>
+<li><strong>顺序递增的RowKey</strong>：</li>
+</ol>
+<ul>
+<li>当RowKey是顺序递增的时候，例如时间戳作为RowKey的一部分，如果写入速率过高，那么所有的写操作都会集中在最后的Region中，导致该Region成为热点写。同时，如果读取操作也集中在最新的数据上，那么这些读操作也会集中在同一个Region，导致热点读。</li>
+</ul>
+<ol start="2">
+<li><strong>随机分布的RowKey</strong>：</li>
+</ol>
+<ul>
+<li>当RowKey的分布不均匀，例如采用随机生成的UUID作为RowKey，有些Region可能会负责大量的数据，而其他Region可能几乎没有数据。这样的话，负责大量数据的Region容易成为热点写，同时也可能成为热点读，因为访问这些数据的请求集中在一个Region上。</li>
+</ul>
+<ol start="3">
+<li><strong>某些特定的业务场景</strong>：</li>
+</ol>
+<ul>
+<li>某些特定的业务场景可能会导致热点读和热点写，例如流行度较高的用户或热门的数据。如果大量的读写操作集中在某些特定的RowKey上，那么就会导致相关Region成为热点。</li>
+</ul>
+<ol start="4">
+<li><strong>批量写入或读取</strong>：</li>
+</ol>
+<ul>
+<li>如果应用程序进行大量的批量写入或读取操作，并且这些操作都集中在一小部分RowKey上，那么就可能导致热点写或热点读。这种情况下，一些Region会承担大量的负载，而其他Region可能闲置。</li>
+</ul>
+<h4 id="rowkey常见设计优化方法">RowKey常见设计优化方法</h4>
+<p><strong>Reversing逆序：</strong></p>
+<p>如果经初步设计出的RowKey在数据分布上不均匀，但RowKey尾部的数据却呈现出了良好的随机性，此时，可以考虑将RowKey的信息翻转，或者直接将尾部的bytes提前到RowKey的开头。 Reversing可以有效的使RowKey随机分布，但是牺牲了RowKey的有序性。将rowKey的部分逆序，可以有效的减少热点问题，但是牺牲了rowKey的有序性。</p>
+<ul>
+<li>缺点：利于Get操作，但不利于Scan操作，因为数据在原RowKey上的自然顺序已经被打乱。</li>
+</ul>
+<p><strong>SaltingSalting（加盐):</strong></p>
+<p>在原RowKey的前面添加固定长度的随机数，也就是给RowKey分配一个随机前缀使它和之间的RowKey的开头不同,随机数能保障数据在所有Regions间的负载均衡。</p>
+<ul>
+<li>缺点：因为添加的是随机数，基于原RowKey查询时无法知道随机数是什么，那样在查询的时候就需要去各个可能的Regions中查找，Salting对于读取是利空的。并且加盐这种方式增加了读写时的吞吐量。</li>
+</ul>
+<p><strong>Hashing:</strong>
+基于RowKey的完整或部分数据进行Hash，而后将Hashing后的值完整替换或部分替换原RowKey的前缀部分。这里说的 hash 包含 MD5、sha1、sha256 或 sha512 等算法。</p>
+<ul>
+<li>缺点：与 Reversing 类似，Hashing 也不利于 Scan，因为打乱了原RowKey的自然顺序。</li>
+</ul>
+<p><strong>Combining:</strong>
+将多个字段组合成一个RowKey，这样可以保证RowKey的唯一性，同时也可以保证RowKey的有序性。例如，可以将时间戳和设备ID组合成一个RowKey，这样可以保证同一设备的数据存储在一起，同时也可以保证数据按时间顺序存储。</p>
+<h3 id="表结构设计原则">表结构设计原则</h3>
+<ol>
+<li>
+<p><strong>表设计：</strong></p>
+<ul>
+<li>表名设计：建议生产线创建表时不要单独使用表名，而应该使用命名空间加表名的形式。同一个业务的相关表放在同一个命名空间下，不同业务使用不同的命名空间。这样可以方便管理，也可以避免表名冲突及权限控制</li>
+<li>列族设计：单业务单表尽可能保持少的列族数量、因底层存储HFile文件数量与列族数量成正比，列族数量越多，每次读取多个列族内数据时，读取的HFile文件越多，直接影响性能。</li>
+<li>列设计：避免设计过多的列，尽量将相关的数据存储在同一列族下，以减少列的数量。</li>
+<li>表属性配置
+<ul>
+<li>MAX_FILESIZE: 表示HBase表中HFile文件的最大大小，默认为10G。如果HFile文件的大小超过了这个值，HBase会自动触发Split操作，将HFile文件切分成更小的文件。</li>
+<li>MEMSTORE_FLUSHSIZE: 表示HBase表中MemStore的最大大小，默认为128M。当MemStore的大小超过这个值时，HBase会自动触发Flush操作，将MemStore中的数据刷写到HFile文件中。</li>
+<li>DURABILITY: 表示HBase表中数据的持久化策略，默认为USE_DEFAULT。可以设置为SKIP_WAL，表示不将数据写入WAL文件，以提高写入性能。但是这样会降低数据的持久性和可靠性。</li>
+<li>READONLY: 表示HBase表是否只读，默认为false。可以设置为true，表示HBase表只读，不允许写入操作。这样可以保护数据不被修改。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>列族设计</strong>：</p>
+</li>
+</ol>
+<ul>
+<li>列族名称设计：列族名称应具有可读性和描述性，除此之外，列族名称的长度应尽量短。</li>
+<li>合理划分列族，将具有相似访问模式的列放在同一个列族中，以提高读取效率，因同一个列族内的数据存储在同一块HFile上，实际生产中一搬不超过3个。</li>
+<li>避免设计过多的列族，以减少HBase中的列族数量，从而降低维护成本,及同一张表内列族越多，每次读取多个列族内数据时，读取的HFile文件越多，即直接影响性能。</li>
+<li>列族配置
+<ul>
+<li>VERSIONS: 用于控制列族中数据的版本数，默认为1，即只保留最新的版本。如果需要保留多个版本，可以设置VERSIONS的值为2或更多。</li>
+<li>BLOCKCACHE: 用于控制列族中数据的缓存策略，默认为true，即开启缓存。如果数据的<strong>访问模式是随机读取，可以关闭缓存以节省内存。</strong></li>
+<li>BLOOMFILTER: 布隆过滤器类型，可选项为NONE、ROW和ROWCOL，默认为ROW。ROW模式表示仅仅根据rowkey就可以判断待查找数据是否存在于HFile中，而ROWCOL模式只对指定列的随机读有优化作用，如果用户只根据rowkey定位所有数据，而没有具体指定列查找，ROWCOL模式就不会有任何效果。通常建议选择ROW模式。</li>
+<li>TTL (Time To Live) ：数据失效时间。TTL是HBase非常重要的一个特性，可以让数据自动过期失效，不需要用户手动删除。根据实际业务情况配置数据保留时间，以节省存储空间。</li>
+<li>COMPRESSION: 数据压缩算法，可选项为NONE、GZ、LZO、SNAPPY、BZIP2，默认为NONE。最重要的作用是减少数据存储成本，理论上SNAPPY算法的压缩率可以达到5∶1甚至更高，但是根据测试数据不同，压缩率可能并没有达到理论值，另一方面，压缩/解压缩需要消耗大量计算资源，对系统CPU资源需求较高。</li>
+<li>DATA_BLOCK_ENCODING：数据编码算法，可选项NONE、PREFIX、DIFF、FASTDIFF和PREFIX_TREE。和压缩一样，编码最直接、最重要的作用也是减少数据存储成本；编码/解码一般也需要大量计算，需要消耗大量CPU资源。</li>
+<li>BLOCKSIZE ：文件块大小。Block是HBase系统文件层面写入、读取的最小粒度，默认块大小为64K。对于不同的业务数据，块大小的合理设置对读写性能有很大的影响。通常来说，如果业务请求以get请求为主，可以考虑将块设置较小；如果以scan请求为主，可以将块调大；默认的64K块大小是在scan和get之间取得的一个平衡。</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li><strong>列设计</strong>：</li>
+</ol>
+<ul>
+<li>避免设计过多的列，尽量将相关的数据存储在同一列族下，以减少列的数量。</li>
+<li>列的命名应具有可读性和描述性，便于理解和维护。</li>
+</ul>
+<h3 id="数据访问模式">数据访问模式</h3>
+<p>HBase支持两种主要的数据访问模式：随机访问和扫描访问。这两种模式各有适用的场景，可以根据具体需求选择合适的访问模式。</p>
+<h4 id="随机访问模式">随机访问模式</h4>
+<p>随机访问模式是指根据行键（Row Key）直接访问特定行数据的模式。在随机访问模式下，用户可以通过指定行键直接获取或修改相应的数据，而不需要扫描整个表。随机访问模式适用于需要快速定位和获取特定行数据的场景，通常用于查询、更新或删除单个数据记录的操作。RowKey设计时就不用考虑数据的存储连续性问题。</p>
+<h5 id="特点">特点：</h5>
+<ul>
+<li>快速：通过行键直接获取数据，读取速度非常快。</li>
+<li>精准：能够准确定位到特定行数据，适用于精确查找和操作。</li>
+</ul>
+<h4 id="扫描访问模式">扫描访问模式</h4>
+<ul>
+<li>扫描访问模式是指按照顺序或范围扫描表中的数据的模式。在扫描访问模式下，用户可以指定起始行键和结束行键，按照字典序顺序扫描表中的数据，或者指定特定的行范围进行扫描。扫描访问模式适用于需要按照顺序或范围获取大量数据的场景，通常用于数据分析、统计或批量处理等操作。</li>
+<li>扫描访问模式需特别注意是否存在最新数据高频读写问题，如果存在，在设计RowKey 可设计散列前缀+Long.MAX_VALUE-时间戳，这样可以保证最新数据分散在不同的Region中，且最新数据在最后，不会影响其他数据的读写。</li>
+</ul>
+<h5 id="特点-1">特点：</h5>
+<ul>
+<li>适用于大量数据：能够高效处理大量数据的扫描和处理。</li>
+<li>顺序访问：按照字典序顺序或指定范围顺序扫描数据，适用于顺序处理或统计。</li>
+</ul>
+<p>根据业务场景选择合适的数据访问模式，可以提高数据访问效率和性能、比如读多写少的高频查询场景、还是读少写多的高频写入同步统计分析场景。，还是两者结合。</p>
+<h2 id="文件合并">文件合并</h2>
+<p>HBase 中的存储管理机制通过监控和控制存储文件的数量和大小，以及定期执行合并和切分操作，来保证数据的存储和管理的高效性和稳定性。即小文件过多时触发合并，合并为大文件,来减少碎片文件数量,当大文件过大时触发Region切分，主要目的是为了保持数据的负载均衡和系统的性能，防止单机负载过高，导致性能下降。</p>
+<p><img src="/img/blog/Compactio.png" alt="Compactio"></p>
+<h3 id="小合并-minor-compactio">小合并 Minor Compactio</h3>
+<p>小合并主要目的是合并多个较小的HFile文件，以减少存储文件数量，减少磁盘占用，并提高读取性能。</p>
+<ul>
+<li>触发时机：
+<ul>
+<li>当HFile数量达到一定阈值时。</li>
+<li>当某个列族的HFile文件数量超过一定阈值时。</li>
+<li>定期触发，以维护存储文件的整洁性和性能。</li>
+</ul>
+</li>
+<li>影响范围： 小合并只影响某个列族的HFile文件，不会影响其他列族的数据。</li>
+</ul>
+<h3 id="大合并--major-compactio">大合并  Major Compactio</h3>
+<p>一般情况下，Major Compaction持续时间会比较长，整个过程会消耗大量系统资源，对上层业务有比较大的影响。因此线上部分数据量较大的业务通常推荐关闭自动触发Major Compaction功能，改为在业务低峰期手动触发（或设置策略自动在低峰期触发）。</p>
+<h2 id="hbase的client-接口封装">HBase的Client 接口封装</h2>
+<p><a href="https://github.com/devon-ye/org-middle-ware/tree/develop/mw-HBase" target="_blank" rel="noopener">https://github.com/devon-ye/org-middle-ware/tree/develop/mw-HBase</a>
+</p>
+
+    
+    <div class="social-share" data-initialized="true" data-wechat-qrcode-title="不扫别后悔">
+        <font style="font-size:18px;color:darkcyan;"></font>
+        <a href="#" class="social-share-icon icon-weibo"></a>
+
+        <a href="#" class="social-share-icon icon-twitter"></a>
+        <a href="#" class="social-share-icon icon-linkedin"></a>
+        <a href="#" class="social-share-icon icon-facebook"></a>
+        <a href="#" class="social-share-icon icon-qq"></a>
+        <a href="#" class="social-share-icon icon-qzone"></a>
+</div>
+
+
+<script src="https://hugo-picture.oss-cn-beijing.aliyuncs.com/social-share.min.js"></script>
+    
+  </article>
+<div class="px-2 mb-2">
+  
+  <script src="https://giscus.app/client.js"
+    data-repo="devon-ye/devon-ye.github.io"
+    data-repo-id="R_kgDOKsihIw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOKsihI84CdO_B"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    
+        data-lang="zh-CN"
+    
+    crossorigin="anonymous"
+    async>
+  </script>
+  
+</div>
+<div class="bg-blue-100 dark:bg-gray-900">
+  <div class="container px-4 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2"></div>
+      <p class="opacity-60"></p>
+    </div>
+
+    <ul class="flex justify-center gap-x-3 flex-wrap gap-y-2">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://stackoverflow.com/users/7220519"
+          target="_blank"
+          rel="noopener"
+          aria-label="stackoverflow"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709657378038" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5296" width="24" height="24"><path d="M620.715 895.83l-407.339 0.17-0.043-87.168 407.339-0.213 0.043 87.21zM896 402.132L826.325 0l-85.76 14.933 69.675 402.091L896 402.091zM630.528 696.832l-405.632-37.419-7.979 86.827 405.632 37.376 7.979-86.784z m26.752-113.75l-393.387-105.94-22.613 84.18 393.43 105.985 22.613-84.224z m51.37-99.711L357.76 276.053l-44.16 75.094 350.89 207.36 44.203-75.094z m86.017-61.014L565.163 85.12l-71.894 49.067 229.547 337.237 71.85-49.067z" fill="#FF810F" p-id="5297" data-spm-anchor-id="a313x.search_index.0.i6.5af23a81WrAAoZ" class=""></path><path d="M697.77 597.333v357.974H155.905V597.333h-70.57V1024H768V597.333z" fill="#BEBCBC" p-id="5298"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.processon.com/u/593ac0e9e4b0815a28c1f7b4"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709657114808" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4242" width="24" height="24"><path d="M848 64h-672C114.752 64 64 114.752 64 176v672C64 909.248 114.752 960 176 960h672c61.248 0 112-50.752 112-112v-672C960 114.752 909.248 64 848 64M461.248 687.008C429.76 720.256 384.256 736 323.008 736s-106.752-15.744-138.24-48.992C141.024 646.752 120 587.264 120 512c0-76.992 20.992-136.512 64.768-175.008C216.256 303.744 261.76 288 323.008 288s106.752 15.744 138.24 48.992c43.744 38.496 64.736 98.016 64.736 175.008 0 75.232-20.992 134.752-64.736 175.008m-138.24-323.776c-35.008 0-63.008 12.256-84 38.496s-31.488 63.008-31.488 110.24c0 47.232 10.496 84 31.488 110.24S288 660.704 323.008 660.704s63.008-12.256 84-38.496c19.264-26.24 29.76-63.008 29.76-110.24s-10.496-84-29.76-110.24c-20.992-26.24-48.992-38.496-84-38.496m547.744 360.512h-84v-190.752c0-15.744-1.76-28-7.008-36.736-8.768-15.744-22.752-24.512-45.504-24.512-28 0-47.264 12.256-57.76 35.008-5.248 12.256-7.008 28-7.008 47.232v169.76h-82.24v-311.488h78.752v45.504c10.496-15.744 20.992-28 29.76-35.008 17.504-12.256 38.496-19.264 64.736-19.264 31.488 0 57.76 8.768 78.752 26.24 20.992 15.744 31.488 43.744 31.488 84v210.016" fill="#1296db" p-id="4243"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+          href="https://github.com/devon-ye"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709657554202" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6376" width="24" height="24"><path d="M512 42.666667A464.64 464.64 0 0 0 42.666667 502.186667 460.373333 460.373333 0 0 0 363.52 938.666667c23.466667 4.266667 32-9.813333 32-22.186667v-78.08c-130.56 27.733333-158.293333-61.44-158.293333-61.44a122.026667 122.026667 0 0 0-52.053334-67.413333c-42.666667-28.16 3.413333-27.733333 3.413334-27.733334a98.56 98.56 0 0 1 71.68 47.36 101.12 101.12 0 0 0 136.533333 37.973334 99.413333 99.413333 0 0 1 29.866667-61.44c-104.106667-11.52-213.333333-50.773333-213.333334-226.986667a177.066667 177.066667 0 0 1 47.36-124.16 161.28 161.28 0 0 1 4.693334-121.173333s39.68-12.373333 128 46.933333a455.68 455.68 0 0 1 234.666666 0c89.6-59.306667 128-46.933333 128-46.933333a161.28 161.28 0 0 1 4.693334 121.173333A177.066667 177.066667 0 0 1 810.666667 477.866667c0 176.64-110.08 215.466667-213.333334 226.986666a106.666667 106.666667 0 0 1 32 85.333334v125.866666c0 14.933333 8.533333 26.88 32 22.186667A460.8 460.8 0 0 0 981.333333 502.186667 464.64 464.64 0 0 0 512 42.666667" p-id="6377"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.zhihu.com/people/devonaha"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709657624367" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7508" width="24" height="24"><path d="M0 0m256 0l512 0q256 0 256 256l0 512q0 256-256 256l-512 0q-256 0-256-256l0-512q0-256 256-256Z" fill="#008DF9" p-id="7509"></path><path d="M554.7008 727.1424h48.0512l15.8208 54.1184 86.1952-54.1184h101.632V280.832h-251.6992v446.336z m51.1488-397.8752h149.4016v349.44h-57.3184l-57.2416 35.9168-10.4192-35.84-24.4224-0.0768v-349.44z m-93.6448 155.776h-107.3664c3.584-55.6032 4.5312-105.856 4.5312-150.7328h104.96s4.0448-46.2848-17.5872-45.7472H315.136c7.168-26.9312 16.128-54.7072 26.9056-83.456 0 0-49.408 0-66.2016 44.288-6.9632 18.2272-27.136 88.4736-62.976 160.256 12.0576-1.3312 52.0448-2.432 75.5712-45.568 4.352-12.0832 5.1456-13.6704 10.5472-29.824h59.2128c0 21.5552-2.4576 137.216-3.456 150.6816H247.552c-24.1152 0-31.9488 48.4608-31.9488 48.4608h134.5536C341.1456 635.6992 292.6848 721.92 204.8 790.0672c42.0352 12.032 83.9424-1.8944 104.6272-20.3008 0 0 47.1808-42.88 73.0368-142.08l110.6944 133.2224s16.256-55.1424-2.5344-82.0224c-15.5648-18.3296-57.5744-67.84-75.4688-85.7856l-30.0288 23.808c8.96-28.672 14.336-56.5248 16.1536-83.456h126.4896s-0.1792-48.4352-15.5648-48.4352z" fill="#FFFFFF" p-id="7510"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a
+                href="https://www.cnblogs.com/Devonmusa"
+                target="_blank"
+                rel="noopener"
+                aria-label="Behance"
+                class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg t="1709657677632" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8608" width="24" height="24"><path d="M851.40363594 172.59636406c-187.46181844-187.46181844-491.34545437-187.46181844-678.80727188 0-187.46181844 187.46181844-187.46181844 491.34545437 0 678.80727188 187.46181844 187.46181844 491.34545437 187.46181844 678.80727188 0 187.46181844-187.46181844 187.46181844-491.34545437 0-678.80727188zM387.33090875 728.08727281a47.08363594 47.08363594 0 1 1-66.63272719-66.50181843 47.08363594 47.08363594 0 0 1 66.63272719 66.50181843z m205.52727281 1.39636313a38.74909125 38.74909125 0 0 1-76.62545437-11.52h-0.04363594a6.54545437 6.54545437 0 0 0-0.04363688 0.30545531v-0.34909125c0.30545438-2.61818156 2.05090875-20.72727281-2.96727281-44.98909125a174.24 174.24 0 0 0-48.56727281-89.28 172.10181844 172.10181844 0 0 0-88.8-48.30545438 156.69818156 156.69818156 0 0 0-42.45818156-2.92363593 38.66181844 38.66181844 0 0 1-35.38909125-65.32363688 38.61818156 38.61818156 0 0 1 21.12-10.8218175v-0.2181825c4.45090875-0.74181844 111.14181844-16.45090875 200.33454562 72.74181844 89.01818156 89.01818156 74.18181844 196.14545438 73.44 200.72727281z m175.2 7.59272812a38.74909125 38.74909125 0 0 1-65.67272719 21.3818175 39.49090875 39.49090875 0 0 1-11.65090875-33.73090875c0.08727281-0.34909125 5.10545437-37.48363594-5.06181843-88.97454562-13.30909125-67.37454562-45.29454563-126.89454563-94.95272719-176.90181844-50.00727281-49.70181844-109.52727281-81.64363594-176.94545438-94.95272719-51.49090875-10.16727281-88.58181844-5.19272719-89.01818156-5.14909031h0.21818156-0.04363687a39.92727281 39.92727281 0 0 1-44.68363594-32.90181844 38.83636406 38.83636406 0 0 1 32.20363594-44.37818156c1.92-0.30545438 47.86909125-7.33090875 111.27272719 4.36363594a411.75272719 411.75272719 0 0 1 106.25454562 34.95272718 425.76 425.76 0 0 1 114.63272719 82.25454563l0.91636406 0.96 0.96 0.87272719a425.89090875 425.89090875 0 0 1 82.25454563 114.72c16.40727281 33.6 28.14545437 69.29454562 34.99636312 106.21090875 11.65090875 63.40363594 4.66909125 109.35272719 4.32 111.27272812z" fill="#1296db" p-id="8609"></path></svg>
+        </a>
+      </li>
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Devean©2019-Now
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+  
+  </footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://www.devean.cn/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const darkStorage = localStorage.getItem('darkmode');
+  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (!darkStorage && isBrowserDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  if (darkStorage && darkStorage === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script>
+
+
+</body>
+</html>
