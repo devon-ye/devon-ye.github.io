@@ -6,8 +6,15 @@
     <description>Recent content on Devean Medium</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Apr 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.devean.cn/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue parent-child component interaction</title>
+      <link>https://www.devean.cn/en/blog/2024/vue-parent-child-component-interaction/</link>
+      <pubDate>Thu, 04 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.devean.cn/en/blog/2024/vue-parent-child-component-interaction/</guid>
+      <description>Parameter interaction Props interaction Parent component &amp;lt;template&amp;gt; &amp;lt;ChildComponent :message=&amp;#34;dynamicMessage&amp;#34; /&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script setup lang=&amp;#34;ts&amp;#34;&amp;gt; import ChildComponent from &amp;#39;./ChildComponent.vue&amp;#39;; import { ref } from &amp;#39;vue&amp;#39;; const dynamicMessage = ref(&amp;#39;Hello, world!&amp;#39;); // 在父组件中可以动态更新 dynamicMessage 的值 &amp;lt;/script&amp;gt; Child component &amp;lt;template&amp;gt; &amp;lt;div&amp;gt;{{ message }}&amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script setup lang=&amp;#34;ts&amp;#34;&amp;gt; import { defineProps } from &amp;#39;vue&amp;#39;; const props = defineProps({ message: String, }); function showMessage() { console.log(props.message); } &amp;lt;/script&amp;gt; Router interaction Parent component &amp;lt;!-- ParentComponent.vue --&amp;gt; &amp;lt;template&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1&amp;gt;Parent Component&amp;lt;/h1&amp;gt; &amp;lt;button @click=&amp;#34;goToChild&amp;#34;&amp;gt;Go to Child Component&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script setup&amp;gt; import { useRouter } from &amp;#39;vue-router&amp;#39;; const router = useRouter(); const goToChild = () =&amp;gt; { const parentId = &amp;#39;123&amp;#39;; // Example parent id router.</description>
+    </item>
     <item>
       <title>Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution</title>
       <link>https://www.devean.cn/en/blog/2024/qptrade/</link>
