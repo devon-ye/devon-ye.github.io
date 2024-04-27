@@ -45,9 +45,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="USDT简选期权交易平台：低延迟、高可用，BTC和ETH期权交易服务" />
+    <meta property="og:title" content="USDT简选期权交易平台：低延迟、高可用，BTC和ETH期权交易服务" />
 <meta property="og:description" content="本文介绍了如何实现基于USDT稳定币的简选期权交易系统，包括用户操作流程、系统架构设计和关键技术实现。通过低延迟、高可用和高并发处理，确保交易平账操作的稳定性和可靠性。技术方案涉及Disruptor异步处理、Canal、Kafka中间件集群容错处理和基于zookeeper的主备切换机制。阅读本文，了解如何实现安全高效的简选期权交易系统！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/zh/blog/2024/qptrade/" /><meta property="article:section" content="blog" />
@@ -55,23 +66,23 @@
 <meta property="article:modified_time" content="2024-03-01T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="USDT简选期权交易平台：低延迟、高可用，BTC和ETH期权交易服务"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="USDT简选期权交易平台：低延迟、高可用，BTC和ETH期权交易服务"/>
 <meta name="twitter:description" content="本文介绍了如何实现基于USDT稳定币的简选期权交易系统，包括用户操作流程、系统架构设计和关键技术实现。通过低延迟、高可用和高并发处理，确保交易平账操作的稳定性和可靠性。技术方案涉及Disruptor异步处理、Canal、Kafka中间件集群容错处理和基于zookeeper的主备切换机制。阅读本文，了解如何实现安全高效的简选期权交易系统！"/>
 
-  <meta itemprop="name" content="USDT简选期权交易平台：低延迟、高可用，BTC和ETH期权交易服务">
+    <meta itemprop="name" content="USDT简选期权交易平台：低延迟、高可用，BTC和ETH期权交易服务">
 <meta itemprop="description" content="本文介绍了如何实现基于USDT稳定币的简选期权交易系统，包括用户操作流程、系统架构设计和关键技术实现。通过低延迟、高可用和高并发处理，确保交易平账操作的稳定性和可靠性。技术方案涉及Disruptor异步处理、Canal、Kafka中间件集群容错处理和基于zookeeper的主备切换机制。阅读本文，了解如何实现安全高效的简选期权交易系统！"><meta itemprop="datePublished" content="2024-03-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-03-01T00:00:00+00:00" />
 <meta itemprop="wordCount" content="193">
 <meta itemprop="keywords" content="系统设计," />
 
-  
-  <meta name="lang" content="zh" />
-  
+    
+    <meta name="lang" content="zh" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"

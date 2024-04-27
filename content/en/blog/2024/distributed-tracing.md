@@ -171,9 +171,10 @@ public class TraceHystrixConcurrencyStrategy extends HystrixConcurrencyStrategy 
 
 ```
 
-#### 进程内跨线程
 
-###### Runnnable接口代理封装
+#### In-process cross-thread
+
+###### Runnnable Interface proxy encapsulation
 
 ```java
 
@@ -200,7 +201,7 @@ public class TraceHystrixConcurrencyStrategy extends HystrixConcurrencyStrategy 
 
 ```
 
-##### ExcutorService代理封装
+##### ExcutorService Proxy encapsulation
 
 ```java
 

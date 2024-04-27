@@ -45,9 +45,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution" />
+    <meta property="og:title" content="Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution" />
 <meta property="og:description" content="This article discusses the technical solution for a trading service with low latency, high availability, and high concurrency, covering requirements, functional and non-functional requirements, core business processes, technical challenges, solutions, and core logic implementation using Canal, Kafka for low latency and low coupling, Disruptor for high concurrency, and Zookeeper for high availability." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/en/blog/2024/qptrade/" /><meta property="article:section" content="blog" />
@@ -55,23 +66,23 @@
 <meta property="article:modified_time" content="2024-03-01T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution"/>
 <meta name="twitter:description" content="This article discusses the technical solution for a trading service with low latency, high availability, and high concurrency, covering requirements, functional and non-functional requirements, core business processes, technical challenges, solutions, and core logic implementation using Canal, Kafka for low latency and low coupling, Disruptor for high concurrency, and Zookeeper for high availability."/>
 
-  <meta itemprop="name" content="Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution">
+    <meta itemprop="name" content="Low-Latency, High-Availability, High-Concurrency Trading Service Technical Solution">
 <meta itemprop="description" content="This article discusses the technical solution for a trading service with low latency, high availability, and high concurrency, covering requirements, functional and non-functional requirements, core business processes, technical challenges, solutions, and core logic implementation using Canal, Kafka for low latency and low coupling, Disruptor for high concurrency, and Zookeeper for high availability."><meta itemprop="datePublished" content="2024-03-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-03-01T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1101">
 <meta itemprop="keywords" content="System Design," />
 
-  
-  <meta name="lang" content="en" />
-  
+    
+    <meta name="lang" content="en" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"

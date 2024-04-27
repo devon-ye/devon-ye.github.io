@@ -45,9 +45,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="构建高性能系统：解析架构设计三原则与常见方案" />
+    <meta property="og:title" content="构建高性能系统：解析架构设计三原则与常见方案" />
 <meta property="og:description" content="探索系统架构设计中的关键原则与常见方案，深入剖析高性能、高可用、可拓展等核心问题的解决方案。从简单优化到演化架构，逐步揭示构建可靠系统的深度秘诀，助您轻松应对复杂挑战。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/zh/blog/2019/arch-design/" /><meta property="article:section" content="blog" />
@@ -55,23 +66,23 @@
 <meta property="article:modified_time" content="2019-08-01T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="构建高性能系统：解析架构设计三原则与常见方案"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="构建高性能系统：解析架构设计三原则与常见方案"/>
 <meta name="twitter:description" content="探索系统架构设计中的关键原则与常见方案，深入剖析高性能、高可用、可拓展等核心问题的解决方案。从简单优化到演化架构，逐步揭示构建可靠系统的深度秘诀，助您轻松应对复杂挑战。"/>
 
-  <meta itemprop="name" content="构建高性能系统：解析架构设计三原则与常见方案">
+    <meta itemprop="name" content="构建高性能系统：解析架构设计三原则与常见方案">
 <meta itemprop="description" content="探索系统架构设计中的关键原则与常见方案，深入剖析高性能、高可用、可拓展等核心问题的解决方案。从简单优化到演化架构，逐步揭示构建可靠系统的深度秘诀，助您轻松应对复杂挑战。"><meta itemprop="datePublished" content="2019-08-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-08-01T00:00:00+00:00" />
 <meta itemprop="wordCount" content="169">
 <meta itemprop="keywords" content="系统设计," />
 
-  
-  <meta name="lang" content="zh" />
-  
+    
+    <meta name="lang" content="zh" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"

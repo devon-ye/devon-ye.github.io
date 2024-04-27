@@ -177,9 +177,9 @@ $$
 
 **12. 计算最大间隔：**
 
-最大间隔的计算是通过对偶问题中的 $\alpha^*$ 计算得到的。具体地，最大间隔是 $\frac{2}{\|w\|}$，其中 $w$ 由 $\sum_{i=1}^{m} \alpha_i^* y_i x_i$ 计算得到。
+最大间隔的计算是通过对偶问题中的 $ \alpha^* $ 计算得到的。具体地，最大间隔是 $ \frac{2}{\|w\|} $，其中 $w$ 由 $ \sum_{i=1}^{m} \alpha_i^* y_i x_i $ 计算得到。
 >> 欢迎大家关注
-![](https://files.mdnice.com/user/50789/e5f12b6f-3e5c-4dfe-bab9-f074734d3e37.png)
+  ![](https://files.mdnice.com/user/50789/e5f12b6f-3e5c-4dfe-bab9-f074734d3e37.png)
 
 ## 往期推荐
 

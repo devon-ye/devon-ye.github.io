@@ -45,9 +45,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="K临近(KNN) | 机器学习" />
+    <meta property="og:title" content="K临近(KNN) | 机器学习" />
 <meta property="og:description" content="K临近(KNN)的概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/zh/blog/2023/machine-learning-k-nearest-neighbours/" /><meta property="article:section" content="blog" />
@@ -55,23 +66,23 @@
 <meta property="article:modified_time" content="2023-09-10T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="K临近(KNN) | 机器学习"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="K临近(KNN) | 机器学习"/>
 <meta name="twitter:description" content="K临近(KNN)的概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法"/>
 
-  <meta itemprop="name" content="K临近(KNN) | 机器学习">
+    <meta itemprop="name" content="K临近(KNN) | 机器学习">
 <meta itemprop="description" content="K临近(KNN)的概念、原理、距离函数、K 值选择、K 值影响、、优缺点、应用几方面详细讲述了 KNN 算法"><meta itemprop="datePublished" content="2023-09-10T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-09-10T00:00:00+00:00" />
 <meta itemprop="wordCount" content="286">
 <meta itemprop="keywords" content="机器学习," />
 
-  
-  <meta name="lang" content="zh" />
-  
+    
+    <meta name="lang" content="zh" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"

@@ -57,24 +57,35 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   {{ end }}
 
-  {{ range .AlternativeOutputFormats -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end -}}
+    {{ range .AlternativeOutputFormats -}}
+      {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ end -}}
 
-  {{ template "_internal/opengraph.html" . }}
-  {{ template "_internal/twitter_cards.html" . }}
-  {{ template "_internal/schema.html" . }}
+    {{ template "_internal/opengraph.html" . }}
+    {{ template "_internal/twitter_cards.html" . }}
+    {{ template "_internal/schema.html" . }}
 
-  {{ if gt (len .Site.Languages) 1}}
-  <meta name="lang" content="{{ .Site.Language }}" />
-  {{ end }}
+    {{ if gt (len .Site.Languages) 1}}
+    <meta name="lang" content="{{ .Site.Language }}" />
+    {{ end }}
 
-  <!-- Custom JS -->
-  {{ range .Site.Params.custom_js }}
+    <!-- Custom JS -->
+    {{ range .Site.Params.custom_js }}
 
-  <script src="{{ . | absURL }}"></script>
+    <script src="{{ . | absURL }}"></script>
   {{ end }}
   {{ if .Site.GoogleAnalytics }}
   {{ template "_internal/google_analytics.html" . }}

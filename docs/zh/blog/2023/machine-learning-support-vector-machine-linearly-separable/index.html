@@ -45,9 +45,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="支持向量机线性可分 | 机器学习" />
+    <meta property="og:title" content="支持向量机线性可分 | 机器学习" />
 <meta property="og:description" content="支持向量机概念、硬间隔、软间隔和非线性的区别、原理、术语、最大间隔数学推导几个方面详细讲解线性可分的支持向量机" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/zh/blog/2023/machine-learning-support-vector-machine-linearly-separable/" /><meta property="article:section" content="blog" />
@@ -55,23 +66,23 @@
 <meta property="article:modified_time" content="2023-11-18T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="支持向量机线性可分 | 机器学习"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="支持向量机线性可分 | 机器学习"/>
 <meta name="twitter:description" content="支持向量机概念、硬间隔、软间隔和非线性的区别、原理、术语、最大间隔数学推导几个方面详细讲解线性可分的支持向量机"/>
 
-  <meta itemprop="name" content="支持向量机线性可分 | 机器学习">
+    <meta itemprop="name" content="支持向量机线性可分 | 机器学习">
 <meta itemprop="description" content="支持向量机概念、硬间隔、软间隔和非线性的区别、原理、术语、最大间隔数学推导几个方面详细讲解线性可分的支持向量机"><meta itemprop="datePublished" content="2023-11-18T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-11-18T00:00:00+00:00" />
-<meta itemprop="wordCount" content="310">
+<meta itemprop="wordCount" content="316">
 <meta itemprop="keywords" content="机器学习," />
 
-  
-  <meta name="lang" content="zh" />
-  
+    
+    <meta name="lang" content="zh" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"
@@ -261,7 +272,7 @@
         <line x1="12" y1="6" x2="12" y2="19" />
         <line x1="21" y1="6" x2="21" y2="19" />
       </svg>
-      310&nbsp;字
+      316&nbsp;字
       
         
       
@@ -426,7 +437,7 @@ $$</p>
 \text{maximize} \quad \frac{2}{|w|} = \frac{2}{\sqrt{\sum_{i=1}^{m} (\alpha_i^* y_i x_i)^2}}
 $$</p>
 <p><strong>12. 计算最大间隔：</strong></p>
-<p>最大间隔的计算是通过对偶问题中的 $\alpha^<em>$ 计算得到的。具体地，最大间隔是 $\frac{2}{|w|}$，其中 $w$ 由 $\sum_{i=1}^{m} \alpha_i^</em> y_i x_i$ 计算得到。</p>
+<p>最大间隔的计算是通过对偶问题中的 $ \alpha^* $ 计算得到的。具体地，最大间隔是 $ \frac{2}{|w|} $，其中 $w$ 由 $ \sum_{i=1}^{m} \alpha_i^* y_i x_i $ 计算得到。</p>
 <blockquote>
 <blockquote>
 <p>欢迎大家关注

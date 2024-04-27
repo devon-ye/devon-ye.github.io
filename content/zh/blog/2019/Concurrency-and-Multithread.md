@@ -55,7 +55,9 @@ keywords: ["并发","多线程","线程安全","系统设计"]
                 TERMINATED
                     终止线程的线程状态。 即线程已完成当前任务的执行。
          }
-         ```
+```
+                 
+                 
 ### 1.3 重入锁
 
 #### 概念：
@@ -284,25 +286,21 @@ public static class DiscardPolicy implements RejectedExecutionHandler {
 ### Java并发数据结构
   
   * 接口
-    
-            
-    BlockingQueue
-    BlockingDeque
-    ConcurrentMap
-    TransferQueue
- * 类
- 
-      
-    LinkedBlockingQueue
-    ConcurrentLinkedQueue
-    LinkedBlockingDeque
-    ConcurrentLinkedDeque
-    ArrayBlockingQueue
-    DelayQueue
-    LinkedTransferQueue
-    PriorityBlockingQueue
-    ConcurrentHashMap
-     
+    + BlockingQueue
+    + BlockingDeque
+    + ConcurrentMap
+    + TransferQueue
+ * 类 
+    + LinkedBlockingQueue
+    + ConcurrentLinkedQueue
+    + LinkedBlockingDeque
+    + ConcurrentLinkedDeque
+    + ArrayBlockingQueue
+    + DelayQueue
+    + LinkedTransferQueue
+    + PriorityBlockingQueue
+    + ConcurrentHashMap
+   
 ## 4 应用场景
  
  ### 4.1 多读少写

@@ -45,9 +45,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="深入理解负载均衡技术：分类、算法和典型架构详解" />
+    <meta property="og:title" content="深入理解负载均衡技术：分类、算法和典型架构详解" />
 <meta property="og:description" content="本文深入探讨了负载均衡技术的分类、算法和典型架构，包括DNS负载均衡、硬件负载均衡（如F5、A10）、软件负载均衡（如Nginx、LVS）、以及常用的负载均衡算法（如轮询、加权轮询、源地址哈希等）。通过深入理解负载均衡技术，可以为系统架构设计和性能优化提供重要参考。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/zh/blog/2019/load-balance/" /><meta property="article:section" content="blog" />
@@ -55,23 +66,23 @@
 <meta property="article:modified_time" content="2019-08-23T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="深入理解负载均衡技术：分类、算法和典型架构详解"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="深入理解负载均衡技术：分类、算法和典型架构详解"/>
 <meta name="twitter:description" content="本文深入探讨了负载均衡技术的分类、算法和典型架构，包括DNS负载均衡、硬件负载均衡（如F5、A10）、软件负载均衡（如Nginx、LVS）、以及常用的负载均衡算法（如轮询、加权轮询、源地址哈希等）。通过深入理解负载均衡技术，可以为系统架构设计和性能优化提供重要参考。"/>
 
-  <meta itemprop="name" content="深入理解负载均衡技术：分类、算法和典型架构详解">
+    <meta itemprop="name" content="深入理解负载均衡技术：分类、算法和典型架构详解">
 <meta itemprop="description" content="本文深入探讨了负载均衡技术的分类、算法和典型架构，包括DNS负载均衡、硬件负载均衡（如F5、A10）、软件负载均衡（如Nginx、LVS）、以及常用的负载均衡算法（如轮询、加权轮询、源地址哈希等）。通过深入理解负载均衡技术，可以为系统架构设计和性能优化提供重要参考。"><meta itemprop="datePublished" content="2019-08-23T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-08-23T00:00:00+00:00" />
 <meta itemprop="wordCount" content="66">
 <meta itemprop="keywords" content="系统设计," />
 
-  
-  <meta name="lang" content="zh" />
-  
+    
+    <meta name="lang" content="zh" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"

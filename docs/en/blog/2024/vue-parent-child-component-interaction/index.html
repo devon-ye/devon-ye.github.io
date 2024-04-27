@@ -45,9 +45,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="Vue parent-child component interaction" />
+    <meta property="og:title" content="Vue parent-child component interaction" />
 <meta property="og:description" content="Vue interaction between parent and child components" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/en/blog/2024/vue-parent-child-component-interaction/" /><meta property="article:section" content="blog" />
@@ -55,23 +66,23 @@
 <meta property="article:modified_time" content="2024-04-04T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Vue parent-child component interaction"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Vue parent-child component interaction"/>
 <meta name="twitter:description" content="Vue interaction between parent and child components"/>
 
-  <meta itemprop="name" content="Vue parent-child component interaction">
+    <meta itemprop="name" content="Vue parent-child component interaction">
 <meta itemprop="description" content="Vue interaction between parent and child components"><meta itemprop="datePublished" content="2024-04-04T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-04-04T00:00:00+00:00" />
 <meta itemprop="wordCount" content="151">
 <meta itemprop="keywords" content="Vue,Web front," />
 
-  
-  <meta name="lang" content="en" />
-  
+    
+    <meta name="lang" content="en" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"

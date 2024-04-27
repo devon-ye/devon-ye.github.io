@@ -43,9 +43,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="自组织映射 | 机器学习" />
+    <meta property="og:title" content="自组织映射 | 机器学习" />
 <meta property="og:description" content="本文从概念、定理、原理，并通过Python示例展示自组织映射其在实际问题中的应用" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/zh/blog/2023/machine-learning-self-organnizing-maps/" /><meta property="article:section" content="blog" />
@@ -53,23 +64,23 @@
 <meta property="article:modified_time" content="2023-12-19T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="自组织映射 | 机器学习"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="自组织映射 | 机器学习"/>
 <meta name="twitter:description" content="本文从概念、定理、原理，并通过Python示例展示自组织映射其在实际问题中的应用"/>
 
-  <meta itemprop="name" content="自组织映射 | 机器学习">
+    <meta itemprop="name" content="自组织映射 | 机器学习">
 <meta itemprop="description" content="本文从概念、定理、原理，并通过Python示例展示自组织映射其在实际问题中的应用"><meta itemprop="datePublished" content="2023-12-19T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-12-19T00:00:00+00:00" />
 <meta itemprop="wordCount" content="183">
 <meta itemprop="keywords" content="机器学习," />
 
-  
-  <meta name="lang" content="zh" />
-  
+    
+    <meta name="lang" content="zh" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"

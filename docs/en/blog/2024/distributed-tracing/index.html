@@ -45,9 +45,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="Distributed Tracing" />
+    <meta property="og:title" content="Distributed Tracing" />
 <meta property="og:description" content="Tracing core concepts, java in-process, inter-process implementation methods" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/en/blog/2024/distributed-tracing/" /><meta property="article:section" content="blog" />
@@ -55,23 +66,23 @@
 <meta property="article:modified_time" content="2024-02-09T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Distributed Tracing"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Distributed Tracing"/>
 <meta name="twitter:description" content="Tracing core concepts, java in-process, inter-process implementation methods"/>
 
-  <meta itemprop="name" content="Distributed Tracing">
+    <meta itemprop="name" content="Distributed Tracing">
 <meta itemprop="description" content="Tracing core concepts, java in-process, inter-process implementation methods"><meta itemprop="datePublished" content="2024-02-09T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-02-09T00:00:00+00:00" />
-<meta itemprop="wordCount" content="552">
+<meta itemprop="wordCount" content="558">
 <meta itemprop="keywords" content="Distributed Tracing,Distributed Architecture ," />
 
-  
-  <meta name="lang" content="en" />
-  
+    
+    <meta name="lang" content="en" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"
@@ -261,7 +272,7 @@
         <line x1="12" y1="6" x2="12" y2="19" />
         <line x1="21" y1="6" x2="21" y2="19" />
       </svg>
-      552&nbsp;words
+      558&nbsp;words
       
         
       
@@ -341,7 +352,7 @@
 
         
         </li><li>
-        <a href="#%e8%bf%9b%e7%a8%8b%e5%86%85%e8%b7%a8%e7%ba%bf%e7%a8%8b">进程内跨线程</a>
+        <a href="#in-process-cross-thread">In-process cross-thread</a>
         
 
         
@@ -478,8 +489,8 @@ Compiler bytecode instrumentation</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> CallableDecorator<span style="color:#ff79c6">&lt;&gt;</span>(callable);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="进程内跨线程">进程内跨线程</h4>
-<h6 id="runnnable接口代理封装">Runnnable接口代理封装</h6>
+</span></span></code></pre></div><h4 id="in-process-cross-thread">In-process cross-thread</h4>
+<h6 id="runnnable-interface-proxy-encapsulation">Runnnable Interface proxy encapsulation</h6>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">RunnableWrapper</span> <span style="color:#8be9fd;font-style:italic">implements</span> Runnable {
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">final</span> Runnable runnable;
@@ -501,7 +512,7 @@ Compiler bytecode instrumentation</p>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h5 id="excutorservice代理封装">ExcutorService代理封装</h5>
+</span></span></code></pre></div><h5 id="excutorservice-proxy-encapsulation">ExcutorService Proxy encapsulation</h5>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">TracingExecutorServiceImpl</span> <span style="color:#8be9fd;font-style:italic">implements</span> ExecutorService {

@@ -43,9 +43,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+       });
+      });
+    </script>
+
   
 
-  <meta property="og:title" content="神经网络 | 机器学习" />
+    <meta property="og:title" content="神经网络 | 机器学习" />
 <meta property="og:description" content="本文旨在深入浅出地解析神经网络的基础原理，以及其在各行各业中的应用实例、代码实战" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devean.cn/zh/blog/2024/machine-learning-neural-networks/" /><meta property="article:section" content="blog" />
@@ -53,23 +64,23 @@
 <meta property="article:modified_time" content="2024-01-11T00:00:00+00:00" />
 
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="神经网络 | 机器学习"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="神经网络 | 机器学习"/>
 <meta name="twitter:description" content="本文旨在深入浅出地解析神经网络的基础原理，以及其在各行各业中的应用实例、代码实战"/>
 
-  <meta itemprop="name" content="神经网络 | 机器学习">
+    <meta itemprop="name" content="神经网络 | 机器学习">
 <meta itemprop="description" content="本文旨在深入浅出地解析神经网络的基础原理，以及其在各行各业中的应用实例、代码实战"><meta itemprop="datePublished" content="2024-01-11T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2024-01-11T00:00:00+00:00" />
 <meta itemprop="wordCount" content="243">
 <meta itemprop="keywords" content="机器学习," />
 
-  
-  <meta name="lang" content="zh" />
-  
+    
+    <meta name="lang" content="zh" />
+    
 
-  
-  
+    
+    
 
-  <script src="https://www.devean.cn/js/social-share.min.js"></script>
+    <script src="https://www.devean.cn/js/social-share.min.js"></script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1062383921426856"
