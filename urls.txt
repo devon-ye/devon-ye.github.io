@@ -4,5 +4,7 @@ https://www.devean.cn/zh/blog/2024/grpc-service-discovery-solution/
 https://www.devean.cn/zh/blog/2024/distributed-tracing/
 https://www.devean.cn/zh/blog/2024/machine-learning-neural-networks/
 https://www.devean.cn/zh/blog/2024/machine-learning-decision-trees/
-https://www.devean.cn/zh/blog/2023/machine-learning-self-organnizing-maps/
-https://www.devean.cn/zh/blog/2023/free-ca-certificate-configuration/
+
+
+
+

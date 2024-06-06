@@ -66,6 +66,108 @@ events {
 
 ```
 
+## 单机nginx标准配置
+```bash
+http {
+    # 定义限速区域
+    limit_req_zone $binary_remote_addr zone=one:10m rate=1000r/s;  # 每秒 1000 个请求
+    limit_conn_zone $binary_remote_addr zone=addr:10m;  # 连接数区域
+
+    # HTTP 服务器配置
+    server {
+        listen 80;
+        listen [::]:80;
+        server_name domain.com www.domain.com;
+        
+        # 将所有请求重定向到 HTTPS
+        return 301 https://$server_name$request_uri;
+    }
+
+    # HTTPS 服务器配置
+    server {
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
+        server_name knowhub.yuntun.group;
+
+        # SSL安全证书配置
+        ssl_certificate /etc/letsencrypt/live/domain.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/domain.com/privkey.pem;
+        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_prefer_server_ciphers off;
+        ssl_ciphers 'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256';
+
+        # 安全头配置
+        # HSTS (强制使用 HTTPS)
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+        # 防止点击劫持
+        add_header X-Frame-Options "SAMEORIGIN";
+        # 防止 XSS 攻击
+        add_header X-XSS-Protection "1; mode=block";
+        # 防止 MIME 类型嗅探
+        add_header X-Content-Type-Options "nosniff";
+
+        # 限速和限流配置
+        limit_req zone=one burst=20 nodelay;
+        limit_conn addr 10;
+        # 定义限速区域
+        limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;  # 每秒 1 个请求
+        limit_conn_zone $binary_remote_addr zone=addr:10m;  # 连接数区域
+        
+        # 允许每个 IP 地址最多同时建立 10 个连接
+        limit_conn addr 100;
+
+        # 配置你的站点
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        location / {
+              # 每个客户端连接的传输速率限制为 1MB/s
+            limit_rate 1m;
+
+            # 最大请求体大小为 10MB
+            client_max_body_size 10m;
+
+            # 黑名单和白名单配置 
+            # 允许的 IP 列表 (白名单)
+            allow 192.168.1.1;  # 单个 IP
+            allow 192.168.1.0/24;  # 子网
+            allow 10.0.0.0/8;  # 大子网
+
+            # 拒绝的 IP 列表 (黑名单)
+            deny 192.168.2.1;  # 单个 IP
+            deny 192.168.2.0/24;  # 子网
+            deny 11.0.0.0/8;  # 大子网
+
+            # 默认拒绝所有其他 IP
+            deny all;
+            try_files $uri $uri/ =404;
+        }
+        
+        # 配置 API 代理
+        location /api {
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_pass http://localhost:3000;
+        }
+        
+        # 处理静态文件
+        location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
+            expires 7d;
+            add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        }
+
+        # 日志配置
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
+    }
+}
+
+
+
+```
+
 
 
 
